@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeutschMind &bull; AI German Learning (English + Urdu)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#090D16',
+                            900: '#0F172A',
+                            850: '#131B2E',
+                            800: '#1E293B',
+                            700: '#334155'
+                        },
+                        accent: {
+                            indigo: '#6366F1',
+                            violet: '#8B5CF6',
+                            emerald: '#10B981',
+                            amber: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        urdu: ['Noto Sans Arabic', 'Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        html, body {
+            background-color: #090D16 !important;
+            color: #F1F5F9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        .font-urdu {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            direction: rtl;
+        }
+
+        .minimal-card {
+            background: rgba(19, 27, 46, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1.25rem;
+            transition: all 0.25s ease-out;
+        }
+
+        .minimal-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Ambient subtle background glow */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            background: radial-gradient(circle at 50% -20%, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.05) 45%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090D16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-indigo-500/30 selection:text-indigo-300">
+
+    <div class="ambient-glow"></div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <span class="font-bold text-white text-sm tracking-tighter">DE</span>
+                </div>
+                <div>
+                    <span class="text-base font-extrabold tracking-tight text-white">Deutsch<span class="text-indigo-400">Mind</span></span>
+                    <span class="block text-[10px] text-slate-400 tracking-wider font-mono">German via EN &amp; Urdu (اردو)</span>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-1 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-white bg-indigo-600/30 border border-indigo-500/40">
+                    <i data-lucide="layout-grid" class="w-3.5 h-3.5 inline mr-1 text-indigo-400"></i> Dashboard
+                </button>
+                <button onclick="switchTab('vocab')" id="nav-vocab" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="book-marked" class="w-3.5 h-3.5 inline mr-1"></i> Vocab Vault
+                </button>
+                <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 inline mr-1"></i> Grammar Lab
+                </button>
+                <button onclick="switchTab('listening')" id="nav-listening" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="headphones" class="w-3.5 h-3.5 inline mr-1 text-emerald-400"></i> Listening
+                </button>
+                <button onclick="switchTab('speaking')" id="nav-speaking" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="mic" class="w-3.5 h-3.5 inline mr-1 text-violet-400"></i> Speaking
+                </button>
+                <button onclick="switchTab('exam')" id="nav-exam" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="award" class="w-3.5 h-3.5 inline mr-1 text-amber-400"></i> Promotion Exam
+                </button>
+                <button onclick="switchTab('antirep')" id="nav-antirep" class="nav-btn px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all text-slate-400 hover:text-white">
+                    <i data-lucide="layers" class="w-3.5 h-3.5 inline mr-1"></i> Anti-Repetition
+                </button>
+            </nav>
+
+            <!-- Status Badges & API Key Button -->
+            <div class="flex items-center space-x-3">
+                <button onclick="openApiKeyModal()" id="btn-api-key" class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all cursor-pointer">
+                    <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span id="api-key-status-text">Check API Key</span>
+                </button>
+                <div class="flex items-center space-x-2 bg-indigo-950/40 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-mono text-indigo-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Level: <span id="current-tier-badge" class="font-bold text-white">ZERO</span></span>
+                </div>
+                <div class="hidden sm:inline-flex items-center space-x-1.5 text-xs text-slate-400 font-mono bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-lg">
+                    <span class="text-indigo-400 font-bold">DE</span>
+                    <span>◄</span>
+                    <span class="text-slate-200">EN</span>
+                    <span>+</span>
+                    <span class="text-emerald-400 font-urdu font-bold">اردو</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full space-y-8 relative z-10">
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="tab-content space-y-8">
+
+            <!-- Hero Banner -->
+            <div class="minimal-card p-8 border border-indigo-500/20 bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="space-y-3 max-w-2xl">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold">
+                            <i data-lucide="globe-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+                            <span>Trilingual AI German Tutor (English &amp; اردو)</span>
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                            German Level: <span id="hero-tier-title" class="text-indigo-400">ZERO (Absolute Beginner)</span>
+                        </h1>
+                        <p class="text-slate-400 text-xs md:text-sm leading-relaxed">
+                            Master German (Deutsch) with dual English &amp; Urdu explanations. Dynamic CEFR level guardrails, smart topic deduplication, and exam gateways.
+                        </p>
+                    </div>
+
+                    <!-- Level Selector -->
+                    <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-800 flex flex-wrap gap-1.5">
+                        <button onclick="setUserLevel('ZERO')" id="btn-level-ZERO" class="level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30">ZERO</button>
+                        <button onclick="setUserLevel('A1')" id="btn-level-A1" class="level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-slate-400 hover:text-white">A1</button>
+                        <button onclick="setUserLevel('A2')" id="btn-level-A2" class="level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-slate-400 hover:text-white">A2</button>
+                        <button onclick="setUserLevel('B1')" id="btn-level-B1" class="level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-slate-400 hover:text-white">B1</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Vocabulary Generator Card (2 cols) -->
+                <div class="md:col-span-2 minimal-card p-6 flex flex-col justify-between space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">German Daily Vocabulary</h3>
+                                <p class="text-xs text-slate-400">German words with English &amp; Urdu (اردو) meanings</p>
+                            </div>
+                        </div>
+                        <button onclick="generateDailyVocab()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center space-x-2 shadow-md shadow-indigo-600/20">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            <span>Generate 4 Words</span>
+                        </button>
+                    </div>
+
+                    <!-- Cards Container -->
+                    <div id="vocab-card-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-8 rounded-xl bg-slate-900/60 border border-slate-800 text-center text-slate-400 text-xs col-span-2">
+                            Click "Generate 4 Words" to load your first German vocabulary set.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Challenge (1 col) -->
+                <div class="minimal-card p-6 flex flex-col justify-between space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2.5 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">Grammar Lab</h3>
+                                <p class="text-xs text-slate-400">German sentence correction</p>
+                            </div>
+                        </div>
+                        <button onclick="loadNewGrammarExercise()" title="Load next grammar question" class="px-3 py-1.5 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/40 text-indigo-300 text-xs font-mono font-bold transition-all flex items-center space-x-1">
+                            <span>Next Question ➔</span>
+                        </button>
+                    </div>
+
+                    <div id="grammar-challenge-box" class="space-y-4 bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                        <div class="flex items-center justify-between text-[11px] font-mono text-indigo-400">
+                            <span id="grammar-concept-tag">Verb Conjugation</span>
+                            <span id="grammar-cefr-tag" class="px-2 py-0.5 rounded bg-indigo-500/20">ZERO</span>
+                        </div>
+                        
+                        <!-- Dual Language Instructions -->
+                        <div class="space-y-1">
+                            <p id="grammar-instruction-en" class="text-xs text-slate-300 font-medium">Correct the German sentence below:</p>
+                            <p id="grammar-instruction-ur" class="text-xs text-emerald-400 font-urdu">درج ذیل جرمن جملے میں غلطی درست کریں:</p>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-rose-950/30 border border-rose-500/30">
+                            <span id="grammar-target-sentence" class="text-rose-300 font-mono text-xs font-semibold">Ich kommt aus Deutschland.</span>
+                            <button onclick="speakGerman(document.getElementById('grammar-target-sentence').innerText)" title="Listen to German sentence" class="p-1.5 rounded bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
+                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Dual Language Hint -->
+                        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] space-y-1">
+                            <div id="grammar-hint-en" class="text-slate-400">Hint: For 'Ich' (I), verb ends in '-e'.</div>
+                            <div id="grammar-hint-ur" class="text-emerald-400 font-urdu">اشارہ: ضمیر 'Ich' کے ساتھ فعل کا آخر '-e' ہوتا ہے۔</div>
+                        </div>
+
+                        <input type="text" id="grammar-user-input" placeholder="Type correct German sentence..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500/60 font-mono">
+                        
+                        <div class="flex items-center gap-2">
+                            <button onclick="submitGrammarChallenge()" class="flex-1 py-2.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 text-xs font-bold transition-all">
+                                Submit Answer
+                            </button>
+                            <button onclick="loadNewGrammarExercise()" title="Load Next Question" class="px-3.5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-xs font-bold transition-all flex items-center space-x-1">
+                                <span>Next ➔</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="grammar-feedback-result" class="hidden p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs space-y-1">
+                        <!-- Result -->
+                    </div>
+                </div>
+
+                <!-- Anti-Repetition Vault (3 cols full width) -->
+                <div class="md:col-span-3 minimal-card p-6 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">Smart Anti-Repetition Engine</h3>
+                                <p class="text-xs text-slate-400">Queries completed German topics to guarantee 100% novel learning scenarios</p>
+                            </div>
+                        </div>
+                        <span id="topic-count-badge" class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono font-bold">
+                            0 Topics Logged
+                        </span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Logged German Topics (Excluded from future prompts):</div>
+                        <div id="topics-badge-list" class="flex flex-wrap gap-2 min-h-[40px] p-3 rounded-xl bg-slate-950 border border-slate-800">
+                            <span class="text-xs text-slate-500 italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VOCAB VAULT FULL VIEW -->
+        <section id="view-vocab" class="tab-content hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">German Vocabulary Vault</h2>
+                    <p class="text-xs text-slate-400">Stored German words in SQLite database with dual EN &amp; UR translations</p>
+                </div>
+                <button onclick="generateDailyVocab()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center space-x-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Generate German Words</span>
+                </button>
+            </div>
+
+            <div id="full-vocab-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Full list -->
+            </div>
+        </section>
+
+        <!-- GRAMMAR LAB FULL VIEW -->
+        <section id="view-grammar" class="tab-content hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">German Grammar Lab</h2>
+                    <p class="text-xs text-slate-400">Interactive sentence correction with English &amp; Urdu feedback</p>
+                </div>
+                <button onclick="loadNewGrammarExercise()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center space-x-2">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                    <span>Load New Grammar Exercise</span>
+                </button>
+            </div>
+
+            <div class="minimal-card p-8 max-w-3xl mx-auto space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <span id="full-grammar-concept" class="text-sm font-mono text-indigo-400 font-bold">Target: Verb Conjugation</span>
+                    <span id="full-grammar-level" class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 font-mono text-xs">ZERO</span>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-xs font-mono text-slate-400 uppercase">Instructions:</label>
+                    <p id="full-grammar-instructions-en" class="text-sm text-white font-medium">Correct the grammatical error in the German sentence below:</p>
+                    <p id="full-grammar-instructions-ur" class="text-sm text-emerald-400 font-urdu">درج ذیل جرمن جملے میں گرائمر کی غلطی کو درست کریں:</p>
+                    
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
+                        <span id="full-grammar-target" class="text-rose-300 font-mono text-sm font-bold">Ich kommt aus Deutschland.</span>
+                        <button onclick="speakGerman(document.getElementById('full-grammar-target').innerText)" title="Listen to German sentence" class="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
+                            <i data-lucide="volume-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-mono text-slate-400 uppercase">Your Corrected German Sentence:</label>
+                        <textarea id="full-grammar-input" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white font-mono focus:outline-none focus:border-indigo-500/60" placeholder="Type correct German sentence..."></textarea>
+                    </div>
+
+                    <button onclick="submitFullGrammarExercise()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all shadow-lg shadow-indigo-600/20">
+                        Submit Answer for AI Grader
+                    </button>
+                </div>
+
+                <div id="full-grammar-result-box" class="hidden p-6 rounded-xl bg-slate-950 border border-slate-800 space-y-3 font-mono text-xs">
+                    <!-- Detailed evaluation result -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ANTI-REPETITION FULL VIEW -->
+        <section id="view-antirep" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="text-xl font-bold text-white">Smart Anti-Repetition Engine</h2>
+                <p class="text-xs text-slate-400">Complete record of completed German topics in SQLite</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 minimal-card p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white">Logged Topic History</h3>
+                    <div id="full-topics-list" class="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- List -->
+                    </div>
+                </div>
+
+                <div class="minimal-card p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white">Manual Topic Logger</h3>
+                    <p class="text-xs text-slate-400">Manually exclude a German topic from future generator prompts.</p>
+                    <input type="text" id="manual-topic-category" placeholder="Category (e.g. Vocabulary)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-white">
+                    <input type="text" id="manual-topic-summary" placeholder="Topic Summary (e.g. Ordering Coffee)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-white">
+                    <button onclick="submitManualTopic()" class="w-full py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-all">
+                        Log Topic
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: LISTENING COMPREHENSION LAB -->
+        <section id="view-listening" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 text-emerald-400 text-xs font-mono mb-1">
+                        <i data-lucide="headphones" class="w-4 h-4"></i>
+                        <span>Module 3: Audio Pipeline</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white tracking-tight">German Listening Comprehension</h2>
+                    <p class="text-xs text-slate-400">Listen to native German scenario playback (with speed guardrail) and answer 5 comprehension questions.</p>
+                </div>
+                <button onclick="loadNewListeningScenario()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/20">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Generate New Scenario</span>
+                </button>
+            </div>
+
+            <div class="minimal-card p-8 border border-emerald-500/20 space-y-6">
+                <!-- Scenario Audio Player Header -->
+                <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span id="listening-scenario-title" class="text-lg font-bold text-white font-sans">Im Café in Berlin</span>
+                            <div id="listening-scenario-topic" class="text-xs text-emerald-400 font-mono">Topic: Cafe Conversation</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-mono text-slate-400">Audio Speed:</span>
+                            <button onclick="cycleListeningSpeed()" id="listening-speed-badge" title="Click to cycle audio playback speed" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-mono text-xs font-bold transition-all cursor-pointer border border-emerald-500/30 flex items-center space-x-1">
+                                <span id="speed-val-text">0.75x</span>
+                                <i data-lucide="chevron-right" class="w-3 h-3 text-emerald-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Controls -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="playListeningAudio()" id="btn-play-listening" class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/30">
+                            <i data-lucide="volume-2" class="w-4 h-4"></i>
+                            <span>Listen to Audio Scenario</span>
+                        </button>
+
+                        <button onclick="toggleListeningScript()" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 text-xs font-medium transition-all flex items-center space-x-2">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                            <span id="script-toggle-text">Show Audio Transcript</span>
+                        </button>
+                    </div>
+
+                    <!-- Audio Transcript Container (Collapsible) -->
+                    <div id="listening-script-box" class="hidden p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-emerald-400 uppercase">German Audio Script:</span>
+                            <button onclick="speakGerman(document.getElementById('listening-narrative-de').innerText)" title="Listen to German narrative" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-mono text-[10px] flex items-center space-x-1">
+                                <i data-lucide="volume-2" class="w-3 h-3"></i>
+                                <span>Play Audio</span>
+                            </button>
+                        </div>
+                        <p id="listening-narrative-de" class="text-sm font-semibold text-slate-100 font-sans">Loading German narrative...</p>
+                        <div class="border-t border-slate-800 pt-2 space-y-1">
+                            <p id="listening-narrative-en" class="text-xs text-slate-400">English translation...</p>
+                            <p id="listening-narrative-ur" class="text-xs text-emerald-400 font-urdu">Urdu translation...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 Multiple Choice Questions -->
+                <div class="space-y-6">
+                    <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="help-circle" class="w-4 h-4 text-emerald-400"></i>
+                        <span>Comprehension Questions (5 Questions)</span>
+                    </h3>
+
+                    <div id="listening-questions-container" class="space-y-6">
+                        <!-- 5 Questions will render here -->
+                        <div class="p-6 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-slate-500">
+                            Click "Generate New Scenario" to load audio listening test.
+                        </div>
+                    </div>
+
+                    <button onclick="submitListeningTest()" id="btn-submit-listening" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/30">
+                        Submit Listening Test Answers
+                    </button>
+                </div>
+
+                <!-- Result Breakdown -->
+                <div id="listening-result-box" class="hidden p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
+                    <!-- Listening evaluation result -->
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: SPEAKING & PRONUNCIATION LAB -->
+        <section id="view-speaking" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 text-violet-400 text-xs font-mono mb-1">
+                        <i data-lucide="mic" class="w-4 h-4"></i>
+                        <span>Module 4: Speech Capture &amp; LLM Evaluation</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white tracking-tight">German Speaking &amp; Pronunciation</h2>
+                    <p class="text-xs text-slate-400">Record your speech via browser microphone. Evaluated on 4 AI metrics: Accuracy, Range, Relevance, and Fluency.</p>
+                </div>
+                <button onclick="loadNewSpeakingPrompt()" class="px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-violet-600/20">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Generate New Prompt</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Left Column: Task Prompt & Recording Controls (7 cols) -->
+                <div class="lg:col-span-7 minimal-card p-6 border border-violet-500/20 space-y-6">
+                    
+                    <!-- Task Prompt Box -->
+                    <div class="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span id="speaking-prompt-topic" class="text-sm font-bold text-violet-300 font-mono">Sich Vorstellen (Self Introduction)</span>
+                            <span id="speaking-cefr-badge" class="px-2.5 py-1 rounded-lg bg-violet-500/20 text-violet-300 font-mono text-xs font-bold">ZERO</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-start justify-between">
+                                <h4 id="speaking-prompt-de" class="text-base font-bold text-white">Stellen Sie sich kurz auf Deutsch vor.</h4>
+                                <button onclick="speakGerman(document.getElementById('speaking-prompt-de').innerText)" title="Listen to speaking prompt" class="p-1.5 rounded-lg bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 transition-all flex-shrink-0 ml-2">
+                                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p id="speaking-prompt-en" class="text-xs text-slate-300">Briefly introduce yourself in German (Name, Origin, Residence).</p>
+                            <p id="speaking-prompt-ur" class="text-xs text-emerald-400 font-urdu">جرمن میں اپنا مختصر تعارف کروائیں (نام، علاقہ، رہائش)۔</p>
+                        </div>
+
+                        <!-- Target Sample Phrases -->
+                        <div class="space-y-1.5 pt-2 border-t border-slate-800">
+                            <span class="text-[11px] font-mono text-slate-400 uppercase">Suggested Target German Phrases:</span>
+                            <div id="speaking-sample-phrases" class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs text-indigo-300 font-mono">Ich heiße...</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs text-indigo-300 font-mono">Ich komme aus...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Microphone Recording Console -->
+                    <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 text-center space-y-4">
+                        <div class="relative inline-block">
+                            <button onclick="toggleSpeechRecording()" id="btn-mic-record" class="w-20 h-20 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center mx-auto transition-all shadow-xl shadow-violet-600/30">
+                                <i data-lucide="mic" id="mic-icon" class="w-8 h-8"></i>
+                            </button>
+                            <div id="recording-pulse" class="hidden absolute inset-0 rounded-full bg-rose-500/40 animate-ping pointer-events-none"></div>
+                        </div>
+
+                        <div id="recording-status" class="text-xs font-mono text-slate-400">
+                            Click microphone to start recording your German speech
+                        </div>
+
+                        <!-- Real-time Speech-to-Text Transcript Textarea -->
+                        <div class="space-y-2 text-left">
+                            <label class="block text-xs font-mono text-slate-400 uppercase">Transcribed German Speech (STT Output):</label>
+                            <textarea id="speaking-transcript-input" rows="3" placeholder="Speak into mic or type your German response..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs text-white font-mono focus:outline-none focus:border-violet-500/60"></textarea>
+                        </div>
+
+                        <button onclick="submitSpeakingSpeech()" id="btn-submit-speaking" class="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all shadow-lg shadow-violet-600/30 flex items-center justify-center space-x-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Submit Speech to 4-Criterion AI Grader</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: 4-Criterion Grader Breakdown (5 cols) -->
+                <div class="lg:col-span-5 minimal-card p-6 border border-violet-500/20 space-y-6">
+                    <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="award" class="w-5 h-5 text-violet-400"></i>
+                        <span>AI Speech Grade Report</span>
+                    </h3>
+
+                    <div id="speaking-result-container" class="space-y-4">
+                        <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-slate-500 space-y-2">
+                            <i data-lucide="mic-off" class="w-6 h-6 mx-auto text-slate-600"></i>
+                            <div>Record and submit your speech to view 4-criterion evaluation breakdown.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 4: PROMOTION EXAM GATEWAY -->
+        <section id="view-exam" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 text-amber-400 text-xs font-mono mb-1">
+                        <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                        <span>Phase 4: Level Gatekeeper Logic</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white tracking-tight">German CEFR Promotion Exam Gateway</h2>
+                    <p class="text-xs text-slate-400">Integrated 4-Module Exam: Vocab (20%), Grammar (20%), Listening (30%), Speaking (30%). Requires ≥80% overall &amp; ≥70% per module to advance.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="text-xs font-mono text-slate-400">Target Promotion:</span>
+                    <span id="exam-target-badge" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 font-mono text-xs font-extrabold border border-amber-500/40">ZERO ➔ A1</span>
+                </div>
+            </div>
+
+            <!-- Start Exam Card -->
+            <div id="exam-start-card" class="minimal-card p-8 border border-amber-500/30 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-bold text-white">Ready for your Promotion Exam?</h3>
+                        <p class="text-slate-300 text-xs max-w-2xl leading-relaxed">
+                            Pass all 4 modules under strict CEFR level guardrails to automatically promote your account level in SQLite database!
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-2">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800"><span class="text-indigo-400 font-bold">Mod 1: Vocab</span><div class="text-[10px] text-slate-400">20% Weight (10 Qs)</div></div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800"><span class="text-violet-400 font-bold">Mod 2: Grammar</span><div class="text-[10px] text-slate-400">20% Weight (10 Qs)</div></div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800"><span class="text-emerald-400 font-bold">Mod 3: Listening</span><div class="text-[10px] text-slate-400">30% Weight (5 MCQs)</div></div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800"><span class="text-rose-400 font-bold">Mod 4: Speaking</span><div class="text-[10px] text-slate-400">30% Weight (STT Grader)</div></div>
+                        </div>
+                    </div>
+                    <button onclick="startPromotionExam()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm transition-all shadow-xl shadow-amber-500/20 whitespace-nowrap flex items-center space-x-2">
+                        <i data-lucide="play" class="w-5 h-5"></i>
+                        <span>Start Promotion Exam</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Exam Form Container -->
+            <div id="exam-active-container" class="hidden minimal-card p-8 border border-amber-500/30 space-y-8">
+                <!-- Exam step forms will render here -->
+            </div>
+
+            <!-- Exam Scoreboard & Diagnostic Report Container -->
+            <div id="exam-scoreboard-container" class="hidden space-y-6">
+                <!-- Scoreboard report will render here -->
+            </div>
+
+            <!-- Exam History Section -->
+            <div class="minimal-card p-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="history" class="w-4 h-4 text-amber-400"></i>
+                        <span>Past Exam History Log</span>
+                    </h3>
+                    <button onclick="fetchExamHistory()" class="text-xs text-amber-400 hover:text-amber-300 font-mono">Refresh History</button>
+                </div>
+                <div id="exam-history-list" class="space-y-2 font-mono text-xs">
+                    <div class="text-slate-500 italic p-3">No exam records found in database.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 px-6 py-6 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>DeutschMind &bull; German Learning Engine (English + Urdu اردو)</div>
+            <div class="flex items-center space-x-4">
+                <span>FastAPI Backend</span>
+                <span>SQLite DB</span>
+                <span>Gemini AI</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 hidden z-50 px-4 py-3 rounded-xl bg-slate-900 border border-indigo-500/40 text-indigo-300 text-xs font-mono shadow-2xl flex items-center space-x-2">
+        <i data-lucide="check-circle" class="w-4 h-4 text-indigo-400"></i>
+        <span id="toast-msg">Action completed!</span>
+    </div>
+
+    <!-- Application Javascript Logic -->
+    <script>
+        const API_BASE = "";
+        let currentUserId = "user_demo_01";
+        let currentLevel = "ZERO";
+        let currentGrammarExercise = null;
+        let currentListeningScenario = null;
+        let currentSpeakingPrompt = null;
+        let recognition = null;
+        let isRecording = false;
+        let currentListeningSpeed = 0.75;
+        const LISTENING_SPEEDS = [1.0, 0.9, 0.75, 0.5];
+
+        function cycleListeningSpeed() {
+            const idx = LISTENING_SPEEDS.indexOf(currentListeningSpeed);
+            const nextIdx = (idx + 1) % LISTENING_SPEEDS.length;
+            currentListeningSpeed = LISTENING_SPEEDS[nextIdx];
+            
+            const badge = document.getElementById('listening-speed-badge');
+            const valText = document.getElementById('speed-val-text');
+            if (valText) {
+                valText.innerText = `${currentListeningSpeed}x`;
+            } else if (badge) {
+                badge.innerHTML = `<span id="speed-val-text">${currentListeningSpeed}x</span> <i data-lucide="chevron-right" class="w-3 h-3 text-emerald-400"></i>`;
+                lucide.createIcons();
+            }
+            showToast(`Audio speed set to ${currentListeningSpeed}x`);
+        }
+
+        async function submitManualTopic() {
+            const catInput = document.getElementById('manual-topic-category');
+            const sumInput = document.getElementById('manual-topic-summary');
+            const category = (catInput && catInput.value.trim()) ? catInput.value.trim() : 'Manual Entry';
+            const summary = sumInput ? sumInput.value.trim() : '';
+
+            if (!summary) {
+                showToast("Please enter a topic summary to log.");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/api/topics`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        category: category,
+                        topic_summary: summary
+                    })
+                });
+                if (catInput) catInput.value = "";
+                if (sumInput) sumInput.value = "";
+                
+                await fetchCompletedTopics();
+                showToast(`Logged topic: "${summary}"!`);
+            } catch (e) {
+                console.error("Error logging manual topic:", e);
+                showToast("Failed to log topic.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            fetchUserData();
+            fetchCompletedTopics();
+            fetchUserVocab();
+            loadNewGrammarExercise();
+            loadNewListeningScenario();
+            loadNewSpeakingPrompt();
+            initSpeechRecognition();
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3500);
+        }
+
+        // --- TTS PRONUNCIATION ENGINE ---
+        function speakGerman(text, speedOverride = null) {
+            if (!text) return;
+            const rates = { "ZERO": 0.75, "A1": 0.75, "A2": 0.9, "B1": 1.0 };
+            const targetRate = speedOverride || rates[currentLevel] || 0.85;
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const uttr = new SpeechSynthesisUtterance(text);
+                uttr.lang = 'de-DE';
+                uttr.rate = targetRate;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const deVoice = voices.find(v => v.lang.includes('de'));
+                if (deVoice) uttr.voice = deVoice;
+                
+                window.speechSynthesis.speak(uttr);
+                showToast(`🔊 Playing German pronunciation (${targetRate}x speed)...`);
+            } else {
+                const audio = new Audio(`${API_BASE}/api/audio/tts?text=${encodeURIComponent(text)}&cefr_level=${currentLevel}`);
+                audio.play().catch(e => console.error("Audio playback error:", e));
+                showToast(`🔊 Playing backend TTS audio...`);
+            }
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-white', 'bg-indigo-600/30', 'border', 'border-indigo-500/40');
+                btn.classList.add('text-slate-400');
+            });
+
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-white', 'bg-indigo-600/30', 'border', 'border-indigo-500/40');
+            }
+        }
+
+        async function setUserLevel(level) {
+            currentLevel = level;
+            document.getElementById('current-tier-badge').innerText = level;
+            document.getElementById('hero-tier-title').innerText = `${level} Tier`;
+
+            document.querySelectorAll('.level-select-btn').forEach(btn => {
+                btn.className = 'level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-slate-400 hover:text-white';
+            });
+            const activeBtn = document.getElementById(`btn-level-${level}`);
+            if (activeBtn) {
+                activeBtn.className = 'level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
+            }
+
+            const defaultSpeeds = { "ZERO": 0.75, "A1": 0.75, "A2": 0.9, "B1": 1.0 };
+            currentListeningSpeed = defaultSpeeds[level] || 0.85;
+            const valText = document.getElementById('speed-val-text');
+            if (valText) valText.innerText = `${currentListeningSpeed}x`;
+
+            try {
+                await fetch(`${API_BASE}/api/users`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, current_level: level})
+                });
+                showToast(`German learning level updated to ${level}`);
+                generateDailyVocab();
+                loadNewGrammarExercise();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function fetchUserData() {
+            try {
+                const res = await fetch(`${API_BASE}/api/users/${currentUserId}`);
+                const data = await res.json();
+                if (data.current_level) {
+                    setUserLevel(data.current_level);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function fetchCompletedTopics() {
+            try {
+                const res = await fetch(`${API_BASE}/api/topics/${currentUserId}`);
+                const data = await res.json();
+                const topics = data.completed_topics || [];
+                
+                document.getElementById('topic-count-badge').innerText = `${topics.length} Topics Logged`;
+                
+                const listEl = document.getElementById('topics-badge-list');
+                const fullListEl = document.getElementById('full-topics-list');
+
+                if (topics.length === 0) {
+                    listEl.innerHTML = `<span class="text-xs text-slate-500 italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</span>`;
+                    if (fullListEl) fullListEl.innerHTML = `<div class="text-xs text-slate-500 italic">No topics logged yet.</div>`;
+                    return;
+                }
+
+                listEl.innerHTML = topics.map(t => `
+                    <span class="px-3 py-1 rounded-lg bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono flex items-center space-x-1">
+                        <i data-lucide="shield" class="w-3 h-3 text-indigo-400"></i>
+                        <span>${t}</span>
+                    </span>
+                `).join('');
+
+                if (fullListEl) {
+                    fullListEl.innerHTML = topics.map((t, i) => `
+                        <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono">
+                            <span class="text-white">#${i+1} ${t}</span>
+                            <span class="text-emerald-400">Excluded</span>
+                        </div>
+                    `).join('');
+                }
+                lucide.createIcons();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function generateDailyVocab() {
+            const activeLevel = currentLevel;
+            const container = document.getElementById('vocab-card-container');
+            container.innerHTML = `
+                <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-indigo-400 font-mono col-span-2 space-y-2">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto text-indigo-400"></i>
+                    <div>Generating ${activeLevel} German vocabulary with English &amp; Urdu translations...</div>
+                </div>
+            `;
+            lucide.createIcons();
+
+            try {
+                const res = await fetch(`${API_BASE}/api/vocabulary/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, cefr_level: activeLevel, count: 4})
+                });
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({detail: "Failed to generate vocabulary"}));
+                    throw new Error(err.detail || "Server error");
+                }
+                const data = await res.json();
+                const items = data.vocabulary || [];
+
+                container.innerHTML = items.map(item => `
+                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 hover:border-indigo-500/40 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-base font-bold text-indigo-300 font-sans">${item.word}</span>
+                                <button onclick="speakGerman('${item.word.replace(/'/g, "\\'")}')" title="Listen to pronunciation" class="p-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 transition-all">
+                                    <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                            <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-mono text-[10px] border border-indigo-500/20">${item.cefr_level || activeLevel}</span>
+                        </div>
+                        
+                        <!-- Dual Meaning -->
+                        <div class="space-y-1 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80">
+                            <div class="text-xs text-slate-200"><span class="text-slate-400 font-mono text-[10px]">EN:</span> ${item.definition_en || item.definition || ''}</div>
+                            <div class="text-xs text-emerald-400 font-urdu"><span class="text-slate-400 font-mono text-[10px] font-sans">UR:</span> ${item.definition_ur || ''}</div>
+                        </div>
+
+                        <!-- Example Sentences -->
+                        <div class="text-[11px] text-slate-300 italic bg-slate-900/40 p-2 rounded-lg space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-slate-100 font-sans">"${item.example_sentence || ''}"</span>
+                                <button onclick="speakGerman('${(item.example_sentence || '').replace(/'/g, "\\'")}')" class="text-indigo-400 hover:text-indigo-300 ml-1">
+                                    <i data-lucide="volume-2" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                            <div class="text-slate-400 text-[10px] font-sans">&bull; ${item.example_translation_en || ''}</div>
+                            <div class="text-emerald-400 text-[10px] font-urdu">&bull; ${item.example_translation_ur || ''}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+                lucide.createIcons();
+                fetchCompletedTopics();
+                fetchUserVocab();
+                showToast(`Generated ${items.length} German Vocabulary cards for level ${activeLevel}!`);
+            } catch (e) {
+                console.error("Vocabulary Generation Error:", e);
+                container.innerHTML = `<div class="p-6 rounded-xl bg-slate-950 border border-rose-500/40 text-rose-400 text-xs font-mono col-span-2 text-center space-y-1"><div>⚠ ${e.message || "Failed to generate vocabulary"}</div><div class="text-[10px] text-slate-500">Check server console logs for details.</div></div>`;
+            }
+        }
+
+        async function fetchUserVocab() {
+            try {
+                const res = await fetch(`${API_BASE}/api/vocabulary/${currentUserId}`);
+                const data = await res.json();
+                const items = data.vocabulary || [];
+
+                const fullList = document.getElementById('full-vocab-list');
+                if (fullList) {
+                    if (items.length === 0) {
+                        fullList.innerHTML = `<div class="text-xs text-slate-500 col-span-3">No German vocabulary stored yet.</div>`;
+                    } else {
+                        fullList.innerHTML = items.map(item => `
+                            <div class="p-5 rounded-xl minimal-card space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-base font-bold text-indigo-300 font-sans">${item.word}</span>
+                                        <button onclick="speakGerman('${item.word.replace(/'/g, "\\'")}')" class="p-1 rounded bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30">
+                                            <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono text-xs">${item.cefr_level || 'ZERO'}</span>
+                                </div>
+                                <div class="text-xs text-slate-300"><strong class="text-slate-400">EN:</strong> ${item.definition_en || item.definition || ''}</div>
+                                <div class="text-xs text-emerald-400 font-urdu"><strong class="text-slate-400 font-sans">UR:</strong> ${item.definition_ur || ''}</div>
+                            </div>
+                        `).join('');
+                        lucide.createIcons();
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function loadNewGrammarExercise() {
+            // Immediately reset input fields & hide previous evaluation boxes
+            const gInput = document.getElementById('grammar-user-input');
+            const fInput = document.getElementById('full-grammar-input');
+            if (gInput) gInput.value = "";
+            if (fInput) fInput.value = "";
+
+            const gFeedback = document.getElementById('grammar-feedback-result');
+            const fFeedback = document.getElementById('full-grammar-result-box');
+            if (gFeedback) gFeedback.classList.add('hidden');
+            if (fFeedback) fFeedback.classList.add('hidden');
+
+            const targetSentence = document.getElementById('grammar-target-sentence');
+            if (targetSentence) targetSentence.innerText = "Loading new sentence...";
+            const fTargetSentence = document.getElementById('full-grammar-target');
+            if (fTargetSentence) fTargetSentence.innerText = "Loading new sentence...";
+
+            try {
+                const res = await fetch(`${API_BASE}/api/grammar/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
+                });
+                const data = await res.json();
+                const ex = data.exercise;
+                currentGrammarExercise = ex;
+
+                document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
+                document.getElementById('grammar-cefr-tag').innerText = currentLevel;
+                document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || "Correct the German sentence below:";
+                document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
+                document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence;
+                document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ''}`;
+                document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ''}`;
+
+                const fConcept = document.getElementById('full-grammar-concept');
+                if (fConcept) fConcept.innerText = ex.target_concept || "German Grammar";
+                const fLevel = document.getElementById('full-grammar-level');
+                if (fLevel) fLevel.innerText = currentLevel;
+                const fInstEn = document.getElementById('full-grammar-instructions-en');
+                if (fInstEn) fInstEn.innerText = ex.instructions_en || "Correct the German sentence below:";
+                const fInstUr = document.getElementById('full-grammar-instructions-ur');
+                if (fInstUr) fInstUr.innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
+                if (fTargetSentence) fTargetSentence.innerText = ex.incorrect_sentence;
+
+                lucide.createIcons();
+                fetchCompletedTopics();
+                showToast(`Loaded new German grammar sentence!`);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function submitGrammarChallenge() {
+            const userAns = document.getElementById('grammar-user-input').value.trim();
+            if (!userAns || !currentGrammarExercise) return;
+
+            const resBox = document.getElementById('grammar-feedback-result');
+            resBox.classList.remove('hidden');
+            resBox.innerHTML = `<span class="text-indigo-400 animate-pulse">Evaluating German answer...</span>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/grammar/submit`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        incorrect_sentence: currentGrammarExercise.incorrect_sentence,
+                        user_answer: userAns,
+                        target_concept: currentGrammarExercise.target_concept,
+                        cefr_level: currentLevel
+                    })
+                });
+                const data = await res.json();
+                const evalRes = data.evaluation;
+
+                if (evalRes.is_correct) {
+                    resBox.innerHTML = `
+                        <div class="text-emerald-400 font-bold">✓ Passed (Score: ${evalRes.score}/100)</div>
+                        <div class="text-slate-200 text-xs">${evalRes.explanation_en || ''}</div>
+                        <div class="text-emerald-400 text-xs font-urdu">${evalRes.explanation_ur || ''}</div>
+                    `;
+                } else {
+                    resBox.innerHTML = `
+                        <div class="text-rose-400 font-bold">✗ Needs Revision (Score: ${evalRes.score}/100)</div>
+                        <div class="text-slate-300 text-xs">${evalRes.explanation_en || ''}</div>
+                        <div class="text-emerald-400 text-xs font-urdu">${evalRes.explanation_ur || ''}</div>
+                        <div class="flex items-center justify-between text-indigo-300 font-mono text-xs bg-indigo-950/40 p-2.5 rounded-lg border border-indigo-500/30 mt-1">
+                            <span>Correct: "${evalRes.correct_version}"</span>
+                            <button onclick="speakGerman('${(evalRes.correct_version || '').replace(/'/g, "\\'")}')" title="Listen to corrected German" class="p-1 rounded bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 transition-all flex-shrink-0 ml-2">
+                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+                lucide.createIcons();
+                fetchCompletedTopics();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function submitFullGrammarExercise() {
+            const userAns = document.getElementById('full-grammar-input').value.trim();
+            if (!userAns || !currentGrammarExercise) return;
+
+            const resBox = document.getElementById('full-grammar-result-box');
+            resBox.classList.remove('hidden');
+            resBox.innerHTML = `<span class="text-indigo-400 animate-pulse">Evaluating German answer...</span>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/grammar/submit`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        incorrect_sentence: currentGrammarExercise.incorrect_sentence,
+                        user_answer: userAns,
+                        target_concept: currentGrammarExercise.target_concept,
+                        cefr_level: currentLevel
+                    })
+                });
+                const data = await res.json();
+                const evalRes = data.evaluation;
+
+                resBox.innerHTML = `
+                    <div class="${evalRes.is_correct ? 'text-emerald-400' : 'text-rose-400'} font-bold text-sm">
+                        ${evalRes.is_correct ? '✓ Evaluation: Passed' : '✗ Evaluation: Needs Improvement'} (Score: ${evalRes.score}/100)
+                    </div>
+                    <div class="text-slate-200 text-xs">${evalRes.explanation_en || ''}</div>
+                    <div class="text-emerald-400 text-xs font-urdu">${evalRes.explanation_ur || ''}</div>
+                    <div class="flex items-center justify-between text-indigo-300 font-mono text-xs bg-indigo-950/40 p-2.5 rounded-lg border border-indigo-500/30 mt-1">
+                        <span>Correct German Sentence: "${evalRes.correct_version}"</span>
+                        <button onclick="speakGerman('${(evalRes.correct_version || '').replace(/'/g, "\\'")}')" title="Listen to corrected German" class="p-1 rounded bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 transition-all flex-shrink-0 ml-2">
+                            <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+                fetchCompletedTopics();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // --- MODULE 3: LISTENING COMPREHENSION FUNCTIONS ---
+
+        async function loadNewListeningScenario() {
+            const qContainer = document.getElementById('listening-questions-container');
+            qContainer.innerHTML = `<div class="p-6 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-emerald-400 font-mono animate-pulse">Generating German audio listening scenario...</div>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/listening/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
+                });
+                const data = await res.json();
+                const sc = data.scenario;
+                currentListeningScenario = sc;
+
+                document.getElementById('listening-scenario-title').innerText = sc.title || "German Scenario";
+                document.getElementById('listening-scenario-topic').innerText = `Topic: ${sc.topic || 'German Practice'}`;
+                document.getElementById('listening-narrative-de').innerText = sc.narrative_de;
+                document.getElementById('listening-narrative-en').innerText = sc.narrative_en;
+                document.getElementById('listening-narrative-ur').innerText = sc.narrative_ur;
+
+                const questions = sc.questions || [];
+                qContainer.innerHTML = questions.map((q, qIdx) => `
+                    <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-xs font-mono text-emerald-400 font-bold">Question ${qIdx + 1}:</span>
+                                <h4 class="text-sm font-bold text-white font-sans mt-0.5">${q.question_de}</h4>
+                                <p class="text-xs text-slate-400 font-sans">${q.question_en}</p>
+                                <p class="text-xs text-emerald-400 font-urdu">${q.question_ur}</p>
+                            </div>
+                            <button onclick="speakGerman('${q.question_de.replace(/'/g, "\\'")}')" class="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30">
+                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            ${q.options.map((opt, optIdx) => `
+                                 <label class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-emerald-500/40 transition-all">
+                                     <div class="flex items-center space-x-3">
+                                         <input type="radio" name="q_${qIdx}" value="${optIdx}" class="text-emerald-500 focus:ring-emerald-500 bg-slate-950 border-slate-700">
+                                         <span class="text-xs font-sans text-slate-200 font-medium">${opt}</span>
+                                     </div>
+                                     <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakGerman('${opt.replace(/'/g, "\\'")}')" title="Listen to option" class="p-1.5 rounded-lg text-slate-400 hover:text-emerald-300 hover:bg-emerald-500/20 transition-all">
+                                         <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                     </button>
+                                 </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+
+                lucide.createIcons();
+                document.getElementById('listening-result-box').classList.add('hidden');
+                showToast(`Loaded German Audio Listening Scenario!`);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function playListeningAudio() {
+            if (!currentListeningScenario || !currentListeningScenario.narrative_de) return;
+            speakGerman(currentListeningScenario.narrative_de, currentListeningSpeed);
+        }
+
+        function toggleListeningScript() {
+            const box = document.getElementById('listening-script-box');
+            const txt = document.getElementById('script-toggle-text');
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                txt.innerText = "Hide Audio Transcript";
+            } else {
+                box.classList.add('hidden');
+                txt.innerText = "Show Audio Transcript";
+            }
+        }
+
+        async function submitListeningTest() {
+            if (!currentListeningScenario) return;
+            const questions = currentListeningScenario.questions || [];
+            const userAnswers = [];
+            const correctAnswers = questions.map(q => q.correct_option);
+
+            for (let i = 0; i < questions.length; i++) {
+                const selected = document.querySelector(`input[name="q_${i}"]:checked`);
+                if (!selected) {
+                    showToast(`Please answer Question ${i + 1} before submitting!`);
+                    return;
+                }
+                userAnswers.push(parseInt(selected.value));
+            }
+
+            const resBox = document.getElementById('listening-result-box');
+            resBox.classList.remove('hidden');
+            resBox.innerHTML = `<span class="text-emerald-400 animate-pulse font-mono text-xs">Evaluating listening answers...</span>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/listening/submit`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        scenario_title: currentListeningScenario.title || "Listening Test",
+                        user_answers: userAnswers,
+                        correct_answers: correctAnswers,
+                        cefr_level: currentLevel
+                    })
+                });
+                const data = await res.json();
+                
+                resBox.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="text-base font-bold ${data.passed ? 'text-emerald-400' : 'text-amber-400'} font-sans">
+                            ${data.passed ? '✓ Listening Test Passed!' : '⚠ Review Needed'} (${data.correct_count}/${data.total_questions} Correct)
+                        </span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-sm font-bold">
+                            Score: ${data.score_percentage}%
+                        </span>
+                    </div>
+                    <div class="text-xs text-slate-200">${data.feedback_en}</div>
+                    <div class="text-xs text-emerald-400 font-urdu">${data.feedback_ur}</div>
+                `;
+                fetchCompletedTopics();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+
+        // --- MODULE 4: SPEAKING & STT CAPTURE FUNCTIONS ---
+
+        function initSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = 'de-DE';
+
+                recognition.onresult = (event) => {
+                    let transcript = '';
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    document.getElementById('speaking-transcript-input').value = transcript;
+                };
+
+                recognition.onend = () => {
+                    if (isRecording) {
+                        setRecordingState(false);
+                    }
+                };
+
+                recognition.onerror = (event) => {
+                    console.error("Speech recognition error:", event.error);
+                    setRecordingState(false);
+                };
+            }
+        }
+
+        function toggleSpeechRecording() {
+            if (!recognition) {
+                showToast("Web Speech API not supported in browser. You can type your German speech response.");
+                return;
+            }
+            if (isRecording) {
+                recognition.stop();
+                setRecordingState(false);
+            } else {
+                recognition.start();
+                setRecordingState(true);
+            }
+        }
+
+        function setRecordingState(active) {
+            isRecording = active;
+            const btn = document.getElementById('btn-mic-record');
+            const pulse = document.getElementById('recording-pulse');
+            const status = document.getElementById('recording-status');
+            const icon = document.getElementById('mic-icon');
+
+            if (active) {
+                btn.className = "w-20 h-20 rounded-full bg-rose-600 text-white flex items-center justify-center mx-auto transition-all shadow-xl shadow-rose-600/50 scale-105";
+                pulse.classList.remove('hidden');
+                status.innerText = "🔴 Listening to your German speech... Speak now!";
+                status.className = "text-xs font-mono text-rose-400 font-bold animate-pulse";
+            } else {
+                btn.className = "w-20 h-20 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center mx-auto transition-all shadow-xl shadow-violet-600/30";
+                pulse.classList.add('hidden');
+                status.innerText = "Click microphone to start recording your German speech";
+                status.className = "text-xs font-mono text-slate-400";
+            }
+        }
+
+        async function loadNewSpeakingPrompt() {
+            try {
+                const res = await fetch(`${API_BASE}/api/speaking/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
+                });
+                const data = await res.json();
+                const p = data.prompt;
+                currentSpeakingPrompt = p;
+
+                document.getElementById('speaking-prompt-topic').innerText = p.topic || "Speaking Task";
+                document.getElementById('speaking-cefr-badge').innerText = currentLevel;
+                document.getElementById('speaking-prompt-de').innerText = p.prompt_de;
+                document.getElementById('speaking-prompt-en').innerText = p.prompt_en;
+                document.getElementById('speaking-prompt-ur').innerText = p.prompt_ur;
+                document.getElementById('speaking-transcript-input').value = "";
+
+                const phrasesEl = document.getElementById('speaking-sample-phrases');
+                const phrases = p.sample_phrases || ["Ich heiße..."];
+                phrasesEl.innerHTML = phrases.map(ph => `
+                    <button onclick="speakGerman('${ph.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-violet-500/40 text-xs text-indigo-300 font-mono flex items-center space-x-1">
+                        <i data-lucide="volume-2" class="w-3 h-3 text-violet-400"></i>
+                        <span>"${ph}"</span>
+                    </button>
+                `).join('');
+                lucide.createIcons();
+
+                document.getElementById('speaking-result-container').innerHTML = `
+                    <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-slate-500 space-y-2">
+                        <i data-lucide="mic-off" class="w-6 h-6 mx-auto text-slate-600"></i>
+                        <div>Record and submit your speech to view 4-criterion evaluation breakdown.</div>
+                    </div>
+                `;
+                lucide.createIcons();
+                showToast(`Loaded German Speaking Prompt!`);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function submitSpeakingSpeech() {
+            const transcript = document.getElementById('speaking-transcript-input').value.trim();
+            if (!transcript) {
+                showToast("Please record audio or type your German response first.");
+                return;
+            }
+            if (!currentSpeakingPrompt) return;
+
+            const resContainer = document.getElementById('speaking-result-container');
+            resContainer.innerHTML = `
+                <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-violet-400 font-mono space-y-2">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto text-violet-400"></i>
+                    <div>Evaluating speech across 4 LLM criteria (Accuracy, Range, Relevance, Fluency)...</div>
+                </div>
+            `;
+            lucide.createIcons();
+
+            try {
+                const res = await fetch(`${API_BASE}/api/speaking/evaluate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        cefr_level: currentLevel,
+                        prompt_text: currentSpeakingPrompt.prompt_de,
+                        user_transcript: transcript
+                    })
+                });
+                const data = await res.json();
+                const ev = data.evaluation;
+
+                resContainer.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-slate-950 border border-violet-500/30 space-y-4">
+                        
+                        <!-- Header Score -->
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <div>
+                                <span class="text-xs font-mono ${ev.passed ? 'text-emerald-400' : 'text-amber-400'} font-bold">
+                                    ${ev.passed ? '✓ SPEAKING PASSED' : '⚠ NEEDS PRACTICE'}
+                                </span>
+                                <h4 class="text-sm font-bold text-white">Overall Speech Grade</h4>
+                            </div>
+                            <div class="px-3.5 py-1.5 rounded-xl bg-violet-600/30 border border-violet-500/40 text-violet-300 font-mono text-base font-extrabold">
+                                ${ev.overall_score}/100
+                            </div>
+                        </div>
+
+                        <!-- 4-Criterion Grid -->
+                        <div class="grid grid-cols-2 gap-2.5 font-mono text-xs">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <div class="text-[10px] text-slate-400">1. Grammatical Accuracy</div>
+                                <div class="text-base font-bold text-indigo-400">${ev.grammatical_accuracy}/100</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <div class="text-[10px] text-slate-400">2. Vocabulary Range</div>
+                                <div class="text-base font-bold text-violet-400">${ev.vocabulary_range}/100</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <div class="text-[10px] text-slate-400">3. Task Relevance</div>
+                                <div class="text-base font-bold text-emerald-400">${ev.task_relevance}/100</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <div class="text-[10px] text-slate-400">4. Fluency</div>
+                                <div class="text-base font-bold text-amber-400">${ev.fluency}/100</div>
+                            </div>
+                        </div>
+
+                        <!-- Trilingual Feedback -->
+                        <div class="space-y-2 pt-2 border-t border-slate-800 text-xs">
+                            <div class="text-slate-200"><strong>AI Feedback (EN):</strong> ${ev.feedback_en || ''}</div>
+                            <div class="text-emerald-400 font-urdu"><strong>فیڈ بیک (اردو):</strong> ${ev.feedback_ur || ''}</div>
+                            ${ev.ideal_response_de ? `
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-mono text-[11px]">
+                                    <span><strong>Ideal German Response:</strong> "${ev.ideal_response_de}"</span>
+                                    <button onclick="speakGerman('${(ev.ideal_response_de || '').replace(/'/g, "\\'")}')" title="Listen to ideal response" class="p-1 rounded bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 transition-all flex-shrink-0 ml-2">
+                                        <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+                fetchCompletedTopics();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // --- PHASE 4: PROMOTION EXAM GATEWAY FUNCTIONS ---
+        let currentExamPayload = null;
+
+        async function startPromotionExam() {
+            const container = document.getElementById('exam-active-container');
+            const startCard = document.getElementById('exam-start-card');
+            const scoreboard = document.getElementById('exam-scoreboard-container');
+
+            startCard.classList.add('hidden');
+            scoreboard.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            container.innerHTML = `
+                <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
+                    <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
+                    <div class="text-sm font-bold">Generating German CEFR ${currentLevel} Promotion Exam...</div>
+                    <div class="text-slate-400">Creating 4 modules: Vocab (10 Qs), Grammar (10 Qs), Listening (5 MCQs), Speaking Prompt</div>
+                </div>
+            `;
+            lucide.createIcons();
+
+            try {
+                const res = await fetch(`${API_BASE}/api/exam/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
+                });
+                const data = await res.json();
+                currentExamPayload = data.exam;
+
+                const ex = data.exam;
+                const m1 = ex.module1_vocab || [];
+                const m2 = ex.module2_grammar || [];
+                const m3 = ex.module3_listening || {};
+                const m4 = ex.module4_speaking || {};
+
+                container.innerHTML = `
+                    <div class="space-y-8">
+                        
+                        <!-- Exam Header -->
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                            <div>
+                                <span class="text-xs font-mono text-amber-400 font-bold">OFFICIAL PROMOTION EXAM</span>
+                                <h3 class="text-xl font-bold text-white">CEFR Level: ${currentLevel} ➔ ${data.target_promotion_level}</h3>
+                            </div>
+                            <div class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">
+                                Minimum Pass: 80% Overall (≥70% per module)
+                            </div>
+                        </div>
+
+                        <!-- MODULE 1: VOCABULARY TEST (20% Weight) -->
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-2 text-indigo-400 font-bold text-base border-b border-indigo-500/20 pb-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                                <span>Module 1: Vocabulary Test (20% Weight &bull; 10 Questions)</span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                ${m1.map((q, idx) => `
+                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-mono text-indigo-400 font-bold">Q${idx+1}: "${q.question_sentence}"</span>
+                                            <button onclick="speakGerman('${q.question_sentence.replace(/'/g, "\\'")}')" class="p-1 rounded bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30">
+                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                            </button>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            ${q.options.map((opt, oIdx) => `
+                                                <label class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-indigo-500/40 text-xs">
+                                                    <div class="flex items-center space-x-2">
+                                                        <input type="radio" name="exam_vocab_${idx}" value="${oIdx}" class="text-indigo-500 bg-slate-950 border-slate-700">
+                                                        <span class="text-slate-200">${opt}</span>
+                                                    </div>
+                                                    <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakGerman('${opt.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-indigo-300">
+                                                        <i data-lucide="volume-2" class="w-3 h-3"></i>
+                                                    </button>
+                                                </label>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- MODULE 2: WRITTEN GRAMMAR TEST (20% Weight) -->
+                        <div class="space-y-4 pt-4 border-t border-slate-800">
+                            <div class="flex items-center space-x-2 text-violet-400 font-bold text-base border-b border-violet-500/20 pb-2">
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                                <span>Module 2: Written Grammar Test (20% Weight &bull; 10 Sentence Corrections)</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                ${m2.map((g, idx) => `
+                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                                        <div class="flex items-center justify-between text-xs font-mono">
+                                            <span class="text-violet-400 font-bold">Task ${idx+1}: ${g.target_concept}</span>
+                                            <button onclick="speakGerman('${g.incorrect_sentence.replace(/'/g, "\\'")}')" class="p-1 rounded bg-violet-500/20 text-violet-300">
+                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                            </button>
+                                        </div>
+                                        <div class="p-2.5 rounded bg-rose-950/30 border border-rose-500/30 text-rose-300 font-mono text-xs font-semibold">
+                                            Incorrect: "${g.incorrect_sentence}"
+                                        </div>
+                                        <input type="text" id="exam_grammar_input_${idx}" placeholder="Type correct German sentence..." class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs text-white font-mono focus:border-violet-500/60">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- MODULE 3: LISTENING COMPREHENSION (30% Weight) -->
+                        <div class="space-y-4 pt-4 border-t border-slate-800">
+                            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base border-b border-emerald-500/20 pb-2">
+                                <i data-lucide="headphones" class="w-5 h-5"></i>
+                                <span>Module 3: Listening Comprehension (30% Weight &bull; 5 MCQs)</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 text-center">
+                                <div class="text-sm font-bold text-white">${m3.title || 'German Audio Scenario'}</div>
+                                <div class="text-xs text-slate-400">Audio playback only (text hidden during official exam).</div>
+                                <button onclick="speakGerman('${(m3.narrative_de || '').replace(/'/g, "\\'")}')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 mx-auto inline-flex items-center space-x-2">
+                                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                                    <span>Play Listening Audio Scenario</span>
+                                </button>
+                            </div>
+
+                            <div class="space-y-4">
+                                ${(m3.questions || []).map((q, idx) => `
+                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-mono text-emerald-400 font-bold">Listening Q${idx+1}: ${q.question_de}</span>
+                                            <button onclick="speakGerman('${q.question_de.replace(/'/g, "\\'")}')" class="p-1 rounded bg-emerald-500/20 text-emerald-300">
+                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                            </button>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            ${q.options.map((opt, oIdx) => `
+                                                <label class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-emerald-500/40 text-xs">
+                                                    <div class="flex items-center space-x-2">
+                                                        <input type="radio" name="exam_listening_${idx}" value="${oIdx}" class="text-emerald-500 bg-slate-950 border-slate-700">
+                                                        <span class="text-slate-200">${opt}</span>
+                                                    </div>
+                                                    <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakGerman('${opt.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-emerald-300">
+                                                        <i data-lucide="volume-2" class="w-3 h-3"></i>
+                                                    </button>
+                                                </label>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- MODULE 4: SPEAKING & PRONUNCIATION (30% Weight) -->
+                        <div class="space-y-4 pt-4 border-t border-slate-800">
+                            <div class="flex items-center space-x-2 text-rose-400 font-bold text-base border-b border-rose-500/20 pb-2">
+                                <i data-lucide="mic" class="w-5 h-5"></i>
+                                <span>Module 4: Speaking &amp; Pronunciation Test (30% Weight)</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="text-xs font-mono text-rose-400 font-bold">Task: ${m4.topic || 'Speaking Response'}</div>
+                                        <h4 id="exam-speaking-prompt-text" class="text-sm font-bold text-white mt-1">${m4.prompt_de}</h4>
+                                        <p class="text-xs text-slate-400">${m4.prompt_en}</p>
+                                    </div>
+                                    <button onclick="speakGerman('${(m4.prompt_de || '').replace(/'/g, "\\'")}')" class="p-1.5 rounded-lg bg-rose-500/20 text-rose-300">
+                                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+
+                                <div class="text-center pt-2 space-y-3">
+                                    <button onclick="toggleSpeechRecording()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 inline-flex items-center space-x-2">
+                                        <i data-lucide="mic" class="w-4 h-4"></i>
+                                        <span>Record Microphone Speech</span>
+                                    </button>
+
+                                    <textarea id="exam_speaking_transcript" rows="3" placeholder="Speak into mic or type your German response..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white font-mono focus:border-rose-500/60"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SUBMIT EXAM BUTTON -->
+                        <button onclick="submitPromotionExam()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-base transition-all shadow-xl shadow-amber-500/30 flex items-center justify-center space-x-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            <span>Submit Complete 4-Module Exam for AI Gateway Evaluation</span>
+                        </button>
+                    </div>
+                `;
+
+                lucide.createIcons();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function submitPromotionExam() {
+            if (!currentExamPayload) return;
+            const ex = currentExamPayload;
+            const m1 = ex.module1_vocab || [];
+            const m2 = ex.module2_grammar || [];
+            const m3 = ex.module3_listening || {};
+            const m4 = ex.module4_speaking || {};
+
+            const vocab_user_answers = [];
+            const vocab_correct_answers = m1.map(q => q.correct_option);
+            for (let i = 0; i < m1.length; i++) {
+                const sel = document.querySelector(`input[name="exam_vocab_${i}"]:checked`);
+                vocab_user_answers.push(sel ? parseInt(sel.value) : -1);
+            }
+
+            const grammar_user_answers = [];
+            const grammar_correct_sentences = m2.map(g => g.correct_sentence);
+            for (let i = 0; i < m2.length; i++) {
+                const val = document.getElementById(`exam_grammar_input_${i}`).value.trim();
+                grammar_user_answers.push(val);
+            }
+
+            const listening_user_answers = [];
+            const listening_questions = m3.questions || [];
+            const listening_correct_answers = listening_questions.map(q => q.correct_option);
+            for (let i = 0; i < listening_questions.length; i++) {
+                const sel = document.querySelector(`input[name="exam_listening_${i}"]:checked`);
+                listening_user_answers.push(sel ? parseInt(sel.value) : -1);
+            }
+
+            const speaking_transcript = document.getElementById('exam_speaking_transcript').value.trim();
+
+            const container = document.getElementById('exam-active-container');
+            container.innerHTML = `
+                <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
+                    <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
+                    <div class="text-base font-bold">Grading 4 Exam Modules &amp; Computing CEFR Gatekeeper Scores...</div>
+                    <div class="text-slate-400">Evaluating Vocab (20%), Grammar (20%), Listening (30%), Speaking (30%)</div>
+                </div>
+            `;
+            lucide.createIcons();
+
+            try {
+                const res = await fetch(`${API_BASE}/api/exam/evaluate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        cefr_level: currentLevel,
+                        vocab_user_answers: vocab_user_answers,
+                        vocab_correct_answers: vocab_correct_answers,
+                        grammar_user_answers: grammar_user_answers,
+                        grammar_correct_sentences: grammar_correct_sentences,
+                        listening_user_answers: listening_user_answers,
+                        listening_correct_answers: listening_correct_answers,
+                        speaking_prompt_text: m4.prompt_de || "Speaking Prompt",
+                        speaking_user_transcript: speaking_transcript
+                    })
+                });
+                const data = await res.json();
+                const diag = data.evaluation;
+
+                container.classList.add('hidden');
+                const scoreboard = document.getElementById('exam-scoreboard-container');
+                scoreboard.classList.remove('hidden');
+
+                if (diag.passed) {
+                    setUserLevel(diag.promoted_level);
+                }
+
+                const mods = diag.module_scores || {};
+                scoreboard.innerHTML = `
+                    <div class="minimal-card p-8 border ${diag.passed ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-rose-500/40 bg-rose-950/20'} space-y-6">
+                        
+                        <!-- Header Score Banner -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                            <div>
+                                <span class="text-xs font-mono font-bold ${diag.passed ? 'text-emerald-400' : 'text-rose-400'}">
+                                    ${diag.passed ? '🎉 EXAM PASSED - LEVEL PROMOTED!' : '⚠ EXAM NOT PASSED'}
+                                </span>
+                                <h3 class="text-2xl font-extrabold text-white">Overall Score: ${diag.overall_score}%</h3>
+                                <p class="text-xs text-slate-300 font-mono mt-1">Rule: ≥80% Overall &amp; ≥70% per module required.</p>
+                            </div>
+
+                            <div class="px-5 py-3 rounded-2xl ${diag.passed ? 'bg-emerald-600 text-white' : 'bg-rose-950/80 border border-rose-500/40 text-rose-300'} font-mono text-center">
+                                <div class="text-[10px] uppercase tracking-wider">Account Level</div>
+                                <div class="text-xl font-black">${diag.promoted_level}</div>
+                            </div>
+                        </div>
+
+                        <!-- 4-Module Score Breakdown -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-indigo-400 font-bold">1. Vocab (20%)</span>
+                                    <span class="${mods.vocab.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.vocab.passed ? 'PASS' : 'FAIL'}</span>
+                                </div>
+                                <div class="text-xl font-bold text-white">${mods.vocab.score}%</div>
+                                <div class="text-[10px] text-slate-400">Raw: ${mods.vocab.raw}</div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-violet-400 font-bold">2. Grammar (20%)</span>
+                                    <span class="${mods.grammar.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.grammar.passed ? 'PASS' : 'FAIL'}</span>
+                                </div>
+                                <div class="text-xl font-bold text-white">${mods.grammar.score}%</div>
+                                <div class="text-[10px] text-slate-400">Raw: ${mods.grammar.raw}</div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-emerald-400 font-bold">3. Listening (30%)</span>
+                                    <span class="${mods.listening.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.listening.passed ? 'PASS' : 'FAIL'}</span>
+                                </div>
+                                <div class="text-xl font-bold text-white">${mods.listening.score}%</div>
+                                <div class="text-[10px] text-slate-400">Raw: ${mods.listening.raw}</div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-rose-400 font-bold">4. Speaking (30%)</span>
+                                    <span class="${mods.speaking.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.speaking.passed ? 'PASS' : 'FAIL'}</span>
+                                </div>
+                                <div class="text-xl font-bold text-white">${mods.speaking.score}%</div>
+                                <div class="text-[10px] text-slate-400">Raw: ${mods.speaking.raw}</div>
+                            </div>
+                        </div>
+
+                        <!-- Trilingual Diagnostic Report -->
+                        <div class="space-y-2 pt-2 border-t border-slate-800 text-xs">
+                            <div class="text-slate-100 font-medium"><strong>Diagnostic Report (EN):</strong> ${diag.feedback_en}</div>
+                            <div class="text-emerald-400 font-urdu"><strong>رپورٹ (اردو):</strong> ${diag.feedback_ur}</div>
+                        </div>
+
+                        <button onclick="startPromotionExam()" class="px-5 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-amber-600/20">
+                            Retake Promotion Exam
+                        </button>
+                    </div>
+                `;
+
+                lucide.createIcons();
+                fetchExamHistory();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function fetchExamHistory() {
+            try {
+                const res = await fetch(`${API_BASE}/api/exam/history/${currentUserId}`);
+                const data = await res.json();
+                const list = data.exam_history || [];
+
+                const historyEl = document.getElementById('exam-history-list');
+                if (!historyEl) return;
+
+                if (list.length === 0) {
+                    historyEl.innerHTML = `<div class="text-slate-500 italic p-3">No exam records found in database.</div>`;
+                    return;
+                }
+
+                historyEl.innerHTML = list.map(item => `
+                    <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="px-2 py-0.5 rounded ${item.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'} font-bold">
+                                ${item.passed ? 'PASSED' : 'FAILED'}
+                            </span>
+                            <span class="text-slate-200">Level ${item.target_level} Exam</span>
+                            <span class="text-slate-400 text-[10px]">Vocab: ${item.vocab_score}% | Gram: ${item.written_score}% | List: ${item.listening_score}% | Speak: ${item.speaking_score}%</span>
+                        </div>
+                        <span class="text-amber-400 font-bold">${item.overall_score}%</span>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    <!-- API Key Settings Modal -->
+    <div id="api-key-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="minimal-card p-6 border border-indigo-500/30 max-w-md w-full space-y-4 bg-slate-950 shadow-2xl rounded-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
+                    <span>Configure Gemini API Key</span>
+                </h3>
+                <button onclick="closeApiKeyModal()" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Enter your Google Gemini API key to enable live AI German content generation &amp; speech evaluations.
+            </p>
+
+            <div class="space-y-2">
+                <input type="password" id="input-api-key" placeholder="AIzaSy..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white font-mono focus:border-indigo-500 focus:outline-none">
+                <div id="key-status-msg" class="text-[11px] font-mono text-slate-400">Key will be saved securely to backend .env file.</div>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3 pt-2">
+                <button onclick="closeApiKeyModal()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold font-mono">Cancel</button>
+                <button onclick="saveApiKey()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold font-mono shadow-lg shadow-indigo-600/30">Save Key</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function checkApiKeyStatus() {
+            try {
+                const res = await fetch(`${API_BASE}/api/config/key`);
+                const data = await res.json();
+                const btnText = document.getElementById('api-key-status-text');
+                if (btnText) {
+                    if (data.is_configured || data.has_key) {
+                        btnText.innerHTML = `<span class="text-emerald-400 font-bold">API Key: Active 🟢</span>`;
+                    } else {
+                        btnText.innerHTML = `<span class="text-amber-400 font-bold">API Key: Set Key 🔑</span>`;
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function openApiKeyModal() {
+            document.getElementById('api-key-modal').classList.remove('hidden');
+        }
+
+        function closeApiKeyModal() {
+            document.getElementById('api-key-modal').classList.add('hidden');
+        }
+
+        async function saveApiKey() {
+            const key = document.getElementById('input-api-key').value.trim();
+            if (!key) {
+                showToast("Please enter a valid API key.");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/api/config/key`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({api_key: key})
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast("Gemini API Key saved successfully!");
+                    closeApiKeyModal();
+                    checkApiKeyStatus();
+                    generateDailyVocab();
+                    loadNewGrammarExercise();
+                } else {
+                    showToast(data.detail || "Failed to save key.");
+                }
+            } catch (e) {
+                console.error(e);
+                showToast("Error saving key.");
+            }
+        }
+
+        // Initialize API key status on load
+        document.addEventListener('DOMContentLoaded', checkApiKeyStatus);
+    </script>
+</body>
+</html>
