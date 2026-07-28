@@ -14,6 +14,13 @@
     "example_sentence": "Er wohnt allein."
   },
   {
+    "german_word": "alt",
+    "cefr_level": "A1",
+    "english_translation": "old",
+    "urdu_translation": "پرانا / بوڑھا",
+    "example_sentence": "Das Wort 'alt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
     "german_word": "anfangen",
     "cefr_level": "A1",
     "english_translation": "to begin / start",
@@ -28,6 +35,13 @@
     "example_sentence": "Ich rufe dich später an."
   },
   {
+    "german_word": "arbeiten",
+    "cefr_level": "A1",
+    "english_translation": "to work",
+    "urdu_translation": "کام کرنا",
+    "example_sentence": "Das Wort 'arbeiten' gehört zum Goethe A1 Wortschatz."
+  },
+  {
     "german_word": "ausfüllen",
     "cefr_level": "A1",
     "english_translation": "to fill out (form)",
@@ -35,11 +49,165 @@
     "example_sentence": "Bitte füllen Sie das Formular aus."
   },
   {
+    "german_word": "bezahlen",
+    "cefr_level": "A1",
+    "english_translation": "to pay",
+    "urdu_translation": "ادائیگی کرنا",
+    "example_sentence": "Das Wort 'bezahlen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
     "german_word": "das Auto",
     "cefr_level": "A1",
     "english_translation": "the car",
     "urdu_translation": "گاڑی / کار",
     "example_sentence": "Das Auto ist neu."
+  },
+  {
+    "german_word": "das Bad",
+    "cefr_level": "A1",
+    "english_translation": "bathroom",
+    "urdu_translation": "غسل خانہ",
+    "example_sentence": "Das Wort 'das Bad' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Bett",
+    "cefr_level": "A1",
+    "english_translation": "bed",
+    "urdu_translation": "بستر",
+    "example_sentence": "Das Wort 'das Bett' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Bier",
+    "cefr_level": "A1",
+    "english_translation": "beer",
+    "urdu_translation": "بیئر",
+    "example_sentence": "Das Wort 'das Bier' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Buch",
+    "cefr_level": "A1",
+    "english_translation": "book",
+    "urdu_translation": "کتاب",
+    "example_sentence": "Das Wort 'das Buch' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Ei",
+    "cefr_level": "A1",
+    "english_translation": "egg",
+    "urdu_translation": "انڈا",
+    "example_sentence": "Das Wort 'das Ei' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Fahrrad",
+    "cefr_level": "A1",
+    "english_translation": "bicycle",
+    "urdu_translation": "سائیکل",
+    "example_sentence": "Das Wort 'das Fahrrad' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Fenster",
+    "cefr_level": "A1",
+    "english_translation": "window",
+    "urdu_translation": "کھڑکی",
+    "example_sentence": "Das Wort 'das Fenster' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Fleisch",
+    "cefr_level": "A1",
+    "english_translation": "meat",
+    "urdu_translation": "گوشت",
+    "example_sentence": "Das Wort 'das Fleisch' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Flugzeug",
+    "cefr_level": "A1",
+    "english_translation": "airplane",
+    "urdu_translation": "جہاز",
+    "example_sentence": "Das Wort 'das Flugzeug' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Geld",
+    "cefr_level": "A1",
+    "english_translation": "money",
+    "urdu_translation": "پیسہ",
+    "example_sentence": "Das Wort 'das Geld' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Gericht",
+    "cefr_level": "A1",
+    "english_translation": "dish / meal",
+    "urdu_translation": "کھانا",
+    "example_sentence": "Das Wort 'das Gericht' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Geschäft",
+    "cefr_level": "A1",
+    "english_translation": "shop / store",
+    "urdu_translation": "دکان",
+    "example_sentence": "Das Wort 'das Geschäft' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Haus",
+    "cefr_level": "A1",
+    "english_translation": "house",
+    "urdu_translation": "گھر",
+    "example_sentence": "Das Wort 'das Haus' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Jahr",
+    "cefr_level": "A1",
+    "english_translation": "year",
+    "urdu_translation": "سال",
+    "example_sentence": "Das Wort 'das Jahr' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Kind",
+    "cefr_level": "A1",
+    "english_translation": "child",
+    "urdu_translation": "بچہ",
+    "example_sentence": "Das Wort 'das Kind' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Land",
+    "cefr_level": "A1",
+    "english_translation": "country / countryside",
+    "urdu_translation": "ملک / دیہات",
+    "example_sentence": "Das Wort 'das Land' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Papier",
+    "cefr_level": "A1",
+    "english_translation": "paper",
+    "urdu_translation": "کاغذ",
+    "example_sentence": "Das Wort 'das Papier' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Salz",
+    "cefr_level": "A1",
+    "english_translation": "salt",
+    "urdu_translation": "نمک",
+    "example_sentence": "Das Wort 'das Salz' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Taxi",
+    "cefr_level": "A1",
+    "english_translation": "taxi",
+    "urdu_translation": "ٹیکسی",
+    "example_sentence": "Das Wort 'das Taxi' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "das Zimmer",
+    "cefr_level": "A1",
+    "english_translation": "room",
+    "urdu_translation": "کمرہ",
+    "example_sentence": "Das Wort 'das Zimmer' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Abend",
+    "cefr_level": "A1",
+    "english_translation": "evening",
+    "urdu_translation": "شام",
+    "example_sentence": "Das Wort 'der Abend' gehört zum Goethe A1 Wortschatz."
   },
   {
     "german_word": "der Abflug",
@@ -70,6 +238,244 @@
     "example_sentence": "Wir machen einen Ausflug."
   },
   {
+    "german_word": "der Bahnhof",
+    "cefr_level": "A1",
+    "english_translation": "train station",
+    "urdu_translation": "ریلوے اسٹیشن",
+    "example_sentence": "Das Wort 'der Bahnhof' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Beruf",
+    "cefr_level": "A1",
+    "english_translation": "profession",
+    "urdu_translation": "پیشہ",
+    "example_sentence": "Das Wort 'der Beruf' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Bruder",
+    "cefr_level": "A1",
+    "english_translation": "brother",
+    "urdu_translation": "بھائی",
+    "example_sentence": "Das Wort 'der Bruder' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Bus",
+    "cefr_level": "A1",
+    "english_translation": "bus",
+    "urdu_translation": "بس",
+    "example_sentence": "Das Wort 'der Bus' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Durst",
+    "cefr_level": "A1",
+    "english_translation": "thirst",
+    "urdu_translation": "پیاس",
+    "example_sentence": "Das Wort 'der Durst' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Euro",
+    "cefr_level": "A1",
+    "english_translation": "euro",
+    "urdu_translation": "یورو",
+    "example_sentence": "Das Wort 'der Euro' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Fisch",
+    "cefr_level": "A1",
+    "english_translation": "fish",
+    "urdu_translation": "مچھلی",
+    "example_sentence": "Das Wort 'der Fisch' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Flughafen",
+    "cefr_level": "A1",
+    "english_translation": "airport",
+    "urdu_translation": "ہوائی اڈہ",
+    "example_sentence": "Das Wort 'der Flughafen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Freund",
+    "cefr_level": "A1",
+    "english_translation": "friend (male)",
+    "urdu_translation": "دوست",
+    "example_sentence": "Das Wort 'der Freund' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Hunger",
+    "cefr_level": "A1",
+    "english_translation": "hunger",
+    "urdu_translation": "بھوک",
+    "example_sentence": "Das Wort 'der Hunger' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Käse",
+    "cefr_level": "A1",
+    "english_translation": "cheese",
+    "urdu_translation": "پنیر",
+    "example_sentence": "Das Wort 'der Käse' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Lehrer",
+    "cefr_level": "A1",
+    "english_translation": "teacher (male)",
+    "urdu_translation": "استاد",
+    "example_sentence": "Das Wort 'der Lehrer' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Mann",
+    "cefr_level": "A1",
+    "english_translation": "man / husband",
+    "urdu_translation": "آدمی / شوہر",
+    "example_sentence": "Das Wort 'der Mann' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Markt",
+    "cefr_level": "A1",
+    "english_translation": "market",
+    "urdu_translation": "بازار",
+    "example_sentence": "Das Wort 'der Markt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Monat",
+    "cefr_level": "A1",
+    "english_translation": "month",
+    "urdu_translation": "مہینہ",
+    "example_sentence": "Das Wort 'der Monat' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Morgen",
+    "cefr_level": "A1",
+    "english_translation": "morning",
+    "urdu_translation": "صبح",
+    "example_sentence": "Das Wort 'der Morgen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Platz",
+    "cefr_level": "A1",
+    "english_translation": "square / seat",
+    "urdu_translation": "چوک / جگہ",
+    "example_sentence": "Das Wort 'der Platz' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Preis",
+    "cefr_level": "A1",
+    "english_translation": "price",
+    "urdu_translation": "قیمت",
+    "example_sentence": "Das Wort 'der Preis' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Rechnungsbetrag",
+    "cefr_level": "A1",
+    "english_translation": "bill amount",
+    "urdu_translation": "بل کی رقم",
+    "example_sentence": "Das Wort 'der Rechnungsbetrag' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Reis",
+    "cefr_level": "A1",
+    "english_translation": "rice",
+    "urdu_translation": "چاول",
+    "example_sentence": "Das Wort 'der Reis' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Saft",
+    "cefr_level": "A1",
+    "english_translation": "juice",
+    "urdu_translation": "رس / جوس",
+    "example_sentence": "Das Wort 'der Saft' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Schlüssel",
+    "cefr_level": "A1",
+    "english_translation": "key",
+    "urdu_translation": "چابی",
+    "example_sentence": "Das Wort 'der Schlüssel' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Schrank",
+    "cefr_level": "A1",
+    "english_translation": "cupboard / wardrobe",
+    "urdu_translation": "الماری",
+    "example_sentence": "Das Wort 'der Schrank' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Sohn",
+    "cefr_level": "A1",
+    "english_translation": "son",
+    "urdu_translation": "بیٹا",
+    "example_sentence": "Das Wort 'der Sohn' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Stift",
+    "cefr_level": "A1",
+    "english_translation": "pen",
+    "urdu_translation": "قلم",
+    "example_sentence": "Das Wort 'der Stift' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Student",
+    "cefr_level": "A1",
+    "english_translation": "student (male)",
+    "urdu_translation": "طالب علم",
+    "example_sentence": "Das Wort 'der Student' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Stuhl",
+    "cefr_level": "A1",
+    "english_translation": "chair",
+    "urdu_translation": "کرسی",
+    "example_sentence": "Das Wort 'der Stuhl' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Supermarkt",
+    "cefr_level": "A1",
+    "english_translation": "supermarket",
+    "urdu_translation": "سپر مارکیٹ",
+    "example_sentence": "Das Wort 'der Supermarkt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Tag",
+    "cefr_level": "A1",
+    "english_translation": "day",
+    "urdu_translation": "دن",
+    "example_sentence": "Das Wort 'der Tag' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Tisch",
+    "cefr_level": "A1",
+    "english_translation": "table",
+    "urdu_translation": "میز",
+    "example_sentence": "Das Wort 'der Tisch' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Vater",
+    "cefr_level": "A1",
+    "english_translation": "father",
+    "urdu_translation": "والد",
+    "example_sentence": "Das Wort 'der Vater' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Wein",
+    "cefr_level": "A1",
+    "english_translation": "wine",
+    "urdu_translation": "شراب",
+    "example_sentence": "Das Wort 'der Wein' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Zucker",
+    "cefr_level": "A1",
+    "english_translation": "sugar",
+    "urdu_translation": "چینی",
+    "example_sentence": "Das Wort 'der Zucker' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "der Zug",
+    "cefr_level": "A1",
+    "english_translation": "train",
+    "urdu_translation": "ٹرین",
+    "example_sentence": "Das Wort 'der Zug' gehört zum Goethe A1 Wortschatz."
+  },
+  {
     "german_word": "die Adresse",
     "cefr_level": "A1",
     "english_translation": "the address",
@@ -91,11 +497,620 @@
     "example_sentence": "Er hat viel Arbeit."
   },
   {
+    "german_word": "die Banane",
+    "cefr_level": "A1",
+    "english_translation": "banana",
+    "urdu_translation": "کیلا",
+    "example_sentence": "Das Wort 'die Banane' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Butter",
+    "cefr_level": "A1",
+    "english_translation": "butter",
+    "urdu_translation": "مکھن",
+    "example_sentence": "Das Wort 'die Butter' gehört zum Goethe A1 Wortschatz."
+  },
+  {
     "german_word": "die Bäckerei",
     "cefr_level": "A1",
     "english_translation": "the bakery",
     "urdu_translation": "بیکری / نان بائی",
     "example_sentence": "Ich kaufe Brot in der Bäckerei."
+  },
+  {
+    "german_word": "die Fahrkarte",
+    "cefr_level": "A1",
+    "english_translation": "ticket",
+    "urdu_translation": "ٹکٹ",
+    "example_sentence": "Das Wort 'die Fahrkarte' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Familie",
+    "cefr_level": "A1",
+    "english_translation": "family",
+    "urdu_translation": "خاندان",
+    "example_sentence": "Das Wort 'die Familie' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Frau",
+    "cefr_level": "A1",
+    "english_translation": "woman / wife",
+    "urdu_translation": "عورت / بیوی",
+    "example_sentence": "Das Wort 'die Frau' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Freundin",
+    "cefr_level": "A1",
+    "english_translation": "friend (female)",
+    "urdu_translation": "سہیلی",
+    "example_sentence": "Das Wort 'die Freundin' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Haltestelle",
+    "cefr_level": "A1",
+    "english_translation": "bus/tram stop",
+    "urdu_translation": "بس اسٹاپ",
+    "example_sentence": "Das Wort 'die Haltestelle' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Küche",
+    "cefr_level": "A1",
+    "english_translation": "kitchen",
+    "urdu_translation": "باورچی خانہ",
+    "example_sentence": "Das Wort 'die Küche' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Lehrerin",
+    "cefr_level": "A1",
+    "english_translation": "teacher (female)",
+    "urdu_translation": "استانی",
+    "example_sentence": "Das Wort 'die Lehrerin' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Mutter",
+    "cefr_level": "A1",
+    "english_translation": "mother",
+    "urdu_translation": "والدہ",
+    "example_sentence": "Das Wort 'die Mutter' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Nacht",
+    "cefr_level": "A1",
+    "english_translation": "night",
+    "urdu_translation": "رات",
+    "example_sentence": "Das Wort 'die Nacht' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Schule",
+    "cefr_level": "A1",
+    "english_translation": "school",
+    "urdu_translation": "اسکول",
+    "example_sentence": "Das Wort 'die Schule' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Schwester",
+    "cefr_level": "A1",
+    "english_translation": "sister",
+    "urdu_translation": "بہن",
+    "example_sentence": "Das Wort 'die Schwester' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Stadt",
+    "cefr_level": "A1",
+    "english_translation": "city / town",
+    "urdu_translation": "شہر",
+    "example_sentence": "Das Wort 'die Stadt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Straße",
+    "cefr_level": "A1",
+    "english_translation": "street / road",
+    "urdu_translation": "سڑک",
+    "example_sentence": "Das Wort 'die Straße' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Studentin",
+    "cefr_level": "A1",
+    "english_translation": "student (female)",
+    "urdu_translation": "طالبہ",
+    "example_sentence": "Das Wort 'die Studentin' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Suppe",
+    "cefr_level": "A1",
+    "english_translation": "soup",
+    "urdu_translation": "سープ",
+    "example_sentence": "Das Wort 'die Suppe' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Tasche",
+    "cefr_level": "A1",
+    "english_translation": "bag",
+    "urdu_translation": "بیگ / تھیلا",
+    "example_sentence": "Das Wort 'die Tasche' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Tochter",
+    "cefr_level": "A1",
+    "english_translation": "daughter",
+    "urdu_translation": "بیٹی",
+    "example_sentence": "Das Wort 'die Tochter' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Tür",
+    "cefr_level": "A1",
+    "english_translation": "door",
+    "urdu_translation": "دروازہ",
+    "example_sentence": "Das Wort 'die Tür' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Universität",
+    "cefr_level": "A1",
+    "english_translation": "university",
+    "urdu_translation": "یونیورسٹی",
+    "example_sentence": "Das Wort 'die Universität' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Woche",
+    "cefr_level": "A1",
+    "english_translation": "week",
+    "urdu_translation": "ہفتہ",
+    "example_sentence": "Das Wort 'die Woche' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Wohnung",
+    "cefr_level": "A1",
+    "english_translation": "apartment",
+    "urdu_translation": "فلیٹ",
+    "example_sentence": "Das Wort 'die Wohnung' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "die Ärztin",
+    "cefr_level": "A1",
+    "english_translation": "doctor (female)",
+    "urdu_translation": "لیڈی ڈاکٹر",
+    "example_sentence": "Das Wort 'die Ärztin' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "dürfen",
+    "cefr_level": "A1",
+    "english_translation": "may / allowed to",
+    "urdu_translation": "اجازت ہونا",
+    "example_sentence": "Das Wort 'dürfen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "einfach",
+    "cefr_level": "A1",
+    "english_translation": "simple / easy",
+    "urdu_translation": "آسان",
+    "example_sentence": "Das Wort 'einfach' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "essen",
+    "cefr_level": "A1",
+    "english_translation": "to eat",
+    "urdu_translation": "کھانا",
+    "example_sentence": "Das Wort 'essen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "fahren",
+    "cefr_level": "A1",
+    "english_translation": "to drive / ride",
+    "urdu_translation": "گاڑی چلانا / سفر کرنا",
+    "example_sentence": "Das Wort 'fahren' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "falsch",
+    "cefr_level": "A1",
+    "english_translation": "wrong",
+    "urdu_translation": "غلط",
+    "example_sentence": "Das Wort 'falsch' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "früh",
+    "cefr_level": "A1",
+    "english_translation": "early",
+    "urdu_translation": "جلدی",
+    "example_sentence": "Das Wort 'früh' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "gehen",
+    "cefr_level": "A1",
+    "english_translation": "to go / walk",
+    "urdu_translation": "جانا / چلنا",
+    "example_sentence": "Das Wort 'gehen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "gestern",
+    "cefr_level": "A1",
+    "english_translation": "yesterday",
+    "urdu_translation": "کل (گزرا ہوا)",
+    "example_sentence": "Das Wort 'gestern' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "groß",
+    "cefr_level": "A1",
+    "english_translation": "big / tall",
+    "urdu_translation": "بڑا",
+    "example_sentence": "Das Wort 'groß' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "gut",
+    "cefr_level": "A1",
+    "english_translation": "good",
+    "urdu_translation": "اچھا",
+    "example_sentence": "Das Wort 'gut' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "haben",
+    "cefr_level": "A1",
+    "english_translation": "to have",
+    "urdu_translation": "پاس ہونا",
+    "example_sentence": "Das Wort 'haben' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "heiß",
+    "cefr_level": "A1",
+    "english_translation": "hot",
+    "urdu_translation": "گرم",
+    "example_sentence": "Das Wort 'heiß' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "heute",
+    "cefr_level": "A1",
+    "english_translation": "today",
+    "urdu_translation": "آج",
+    "example_sentence": "Das Wort 'heute' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "hässlich",
+    "cefr_level": "A1",
+    "english_translation": "ugly",
+    "urdu_translation": "بدصورت",
+    "example_sentence": "Das Wort 'hässlich' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "hören",
+    "cefr_level": "A1",
+    "english_translation": "to hear / listen",
+    "urdu_translation": "سننا",
+    "example_sentence": "Das Wort 'hören' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "immer",
+    "cefr_level": "A1",
+    "english_translation": "always",
+    "urdu_translation": "ہمیشہ",
+    "example_sentence": "Das Wort 'immer' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "jetzt",
+    "cefr_level": "A1",
+    "english_translation": "now",
+    "urdu_translation": "ابھی",
+    "example_sentence": "Das Wort 'jetzt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "kalt",
+    "cefr_level": "A1",
+    "english_translation": "cold",
+    "urdu_translation": "ٹھنڈا",
+    "example_sentence": "Das Wort 'kalt' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "kaufen",
+    "cefr_level": "A1",
+    "english_translation": "to buy",
+    "urdu_translation": "خریدنا",
+    "example_sentence": "Das Wort 'kaufen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "klein",
+    "cefr_level": "A1",
+    "english_translation": "small / short",
+    "urdu_translation": "چھوٹا",
+    "example_sentence": "Das Wort 'klein' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "kommen",
+    "cefr_level": "A1",
+    "english_translation": "to come",
+    "urdu_translation": "آنا",
+    "example_sentence": "Das Wort 'kommen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "kosten",
+    "cefr_level": "A1",
+    "english_translation": "to cost",
+    "urdu_translation": "قیمت ہونا",
+    "example_sentence": "Das Wort 'kosten' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "können",
+    "cefr_level": "A1",
+    "english_translation": "can / to be able to",
+    "urdu_translation": "سکنا",
+    "example_sentence": "Das Wort 'können' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "langsam",
+    "cefr_level": "A1",
+    "english_translation": "slow",
+    "urdu_translation": "سست",
+    "example_sentence": "Das Wort 'langsam' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "laut",
+    "cefr_level": "A1",
+    "english_translation": "loud",
+    "urdu_translation": "اونچی آواز",
+    "example_sentence": "Das Wort 'laut' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "leben",
+    "cefr_level": "A1",
+    "english_translation": "to live",
+    "urdu_translation": "زندہ رہنا",
+    "example_sentence": "Das Wort 'leben' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "leer",
+    "cefr_level": "A1",
+    "english_translation": "empty",
+    "urdu_translation": "خالی",
+    "example_sentence": "Das Wort 'leer' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "leise",
+    "cefr_level": "A1",
+    "english_translation": "quiet",
+    "urdu_translation": "خاموش",
+    "example_sentence": "Das Wort 'leise' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "lernen",
+    "cefr_level": "A1",
+    "english_translation": "to learn / study",
+    "urdu_translation": "سیکھنا",
+    "example_sentence": "Das Wort 'lernen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "lesen",
+    "cefr_level": "A1",
+    "english_translation": "to read",
+    "urdu_translation": "پڑھنا",
+    "example_sentence": "Das Wort 'lesen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "machen",
+    "cefr_level": "A1",
+    "english_translation": "to do / make",
+    "urdu_translation": "کرنا / بنانا",
+    "example_sentence": "Das Wort 'machen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "manchmal",
+    "cefr_level": "A1",
+    "english_translation": "sometimes",
+    "urdu_translation": "کبھی کبھی",
+    "example_sentence": "Das Wort 'manchmal' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "morgen",
+    "cefr_level": "A1",
+    "english_translation": "tomorrow",
+    "urdu_translation": "کل (آنے والا)",
+    "example_sentence": "Das Wort 'morgen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "möchten",
+    "cefr_level": "A1",
+    "english_translation": "would like to",
+    "urdu_translation": "پسند کرنا",
+    "example_sentence": "Das Wort 'möchten' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "müssen",
+    "cefr_level": "A1",
+    "english_translation": "must / to have to",
+    "urdu_translation": "لازمی ہونا",
+    "example_sentence": "Das Wort 'müssen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "neu",
+    "cefr_level": "A1",
+    "english_translation": "new",
+    "urdu_translation": "نیا",
+    "example_sentence": "Das Wort 'neu' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "nie",
+    "cefr_level": "A1",
+    "english_translation": "never",
+    "urdu_translation": "کبھی نہیں",
+    "example_sentence": "Das Wort 'nie' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "oft",
+    "cefr_level": "A1",
+    "english_translation": "often",
+    "urdu_translation": "اکثر",
+    "example_sentence": "Das Wort 'oft' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "richtig",
+    "cefr_level": "A1",
+    "english_translation": "correct",
+    "urdu_translation": "صحیح",
+    "example_sentence": "Das Wort 'richtig' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schlafen",
+    "cefr_level": "A1",
+    "english_translation": "to sleep",
+    "urdu_translation": "سونا",
+    "example_sentence": "Das Wort 'schlafen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schlecht",
+    "cefr_level": "A1",
+    "english_translation": "bad",
+    "urdu_translation": "برا",
+    "example_sentence": "Das Wort 'schlecht' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schnell",
+    "cefr_level": "A1",
+    "english_translation": "fast",
+    "urdu_translation": "تیز",
+    "example_sentence": "Das Wort 'schnell' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schreiben",
+    "cefr_level": "A1",
+    "english_translation": "to write",
+    "urdu_translation": "لکھنا",
+    "example_sentence": "Das Wort 'schreiben' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schwer",
+    "cefr_level": "A1",
+    "english_translation": "difficult / heavy",
+    "urdu_translation": "مشکل / بھاری",
+    "example_sentence": "Das Wort 'schwer' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "schön",
+    "cefr_level": "A1",
+    "english_translation": "beautiful",
+    "urdu_translation": "خوبصورت",
+    "example_sentence": "Das Wort 'schön' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "sehen",
+    "cefr_level": "A1",
+    "english_translation": "to see",
+    "urdu_translation": "دیکھنا",
+    "example_sentence": "Das Wort 'sehen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "sein",
+    "cefr_level": "A1",
+    "english_translation": "to be",
+    "urdu_translation": "ہونا",
+    "example_sentence": "Das Wort 'sein' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "sollen",
+    "cefr_level": "A1",
+    "english_translation": "should / supposed to",
+    "urdu_translation": "چاہیے",
+    "example_sentence": "Das Wort 'sollen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "sprechen",
+    "cefr_level": "A1",
+    "english_translation": "to speak",
+    "urdu_translation": "بولنا",
+    "example_sentence": "Das Wort 'sprechen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "spät",
+    "cefr_level": "A1",
+    "english_translation": "late",
+    "urdu_translation": "دیر",
+    "example_sentence": "Das Wort 'spät' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "später",
+    "cefr_level": "A1",
+    "english_translation": "later",
+    "urdu_translation": "بعد میں",
+    "example_sentence": "Das Wort 'später' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "suche",
+    "cefr_level": "A1",
+    "english_translation": "search / look for",
+    "urdu_translation": "تلاش کرنا",
+    "example_sentence": "Das Wort 'suche' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "trinken",
+    "cefr_level": "A1",
+    "english_translation": "to drink",
+    "urdu_translation": "پینا",
+    "example_sentence": "Das Wort 'trinken' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "verkaufen",
+    "cefr_level": "A1",
+    "english_translation": "to sell",
+    "urdu_translation": "بیچنا",
+    "example_sentence": "Das Wort 'verkaufen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "verstehen",
+    "cefr_level": "A1",
+    "english_translation": "to understand",
+    "urdu_translation": "سمجھنا",
+    "example_sentence": "Das Wort 'verstehen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "voll",
+    "cefr_level": "A1",
+    "english_translation": "full",
+    "urdu_translation": "بھرا ہوا",
+    "example_sentence": "Das Wort 'voll' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "werden",
+    "cefr_level": "A1",
+    "english_translation": "to become",
+    "urdu_translation": "بننا",
+    "example_sentence": "Das Wort 'werden' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "wohnen",
+    "cefr_level": "A1",
+    "english_translation": "to reside / live",
+    "urdu_translation": "رہنا",
+    "example_sentence": "Das Wort 'wohnen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "wollen",
+    "cefr_level": "A1",
+    "english_translation": "want to",
+    "urdu_translation": "چاہنا",
+    "example_sentence": "Das Wort 'wollen' gehört zum Goethe A1 Wortschatz."
+  },
+  {
+    "german_word": "Fieber",
+    "cefr_level": "A2",
+    "english_translation": "fever",
+    "urdu_translation": "بخار",
+    "example_sentence": "Das Wort 'Fieber' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "Husten",
+    "cefr_level": "A2",
+    "english_translation": "cough",
+    "urdu_translation": "کھانسی",
+    "example_sentence": "Das Wort 'Husten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "Schnupfen",
+    "cefr_level": "A2",
+    "english_translation": "runny nose / cold",
+    "urdu_translation": "زکام",
+    "example_sentence": "Das Wort 'Schnupfen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "abholen",
+    "cefr_level": "A2",
+    "english_translation": "to pick up",
+    "urdu_translation": "لینے جانا",
+    "example_sentence": "Das Wort 'abholen' gehört zum Goethe A2 Wortschatz."
   },
   {
     "german_word": "abmachen",
@@ -105,11 +1120,60 @@
     "example_sentence": "Wir haben einen Termin abgemacht."
   },
   {
+    "german_word": "anmachen",
+    "cefr_level": "A2",
+    "english_translation": "to turn on",
+    "urdu_translation": "آن کرنا",
+    "example_sentence": "Das Wort 'anmachen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
     "german_word": "anmelden",
     "cefr_level": "A2",
     "english_translation": "to register / sign up",
     "urdu_translation": "رجسٹریشن کرنا",
     "example_sentence": "Sie müssen sich anmelden."
+  },
+  {
+    "german_word": "antworten",
+    "cefr_level": "A2",
+    "english_translation": "to answer",
+    "urdu_translation": "جواب دینا",
+    "example_sentence": "Das Wort 'antworten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "anziehen",
+    "cefr_level": "A2",
+    "english_translation": "to put on clothes",
+    "urdu_translation": "کپڑے پہننا",
+    "example_sentence": "Das Wort 'anziehen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "aufhören",
+    "cefr_level": "A2",
+    "english_translation": "to stop / cease",
+    "urdu_translation": "روکنا / ختم کرنا",
+    "example_sentence": "Das Wort 'aufhören' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "aufräumen",
+    "cefr_level": "A2",
+    "english_translation": "to clean up",
+    "urdu_translation": "صفائی کرنا",
+    "example_sentence": "Das Wort 'aufräumen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "aufstehen",
+    "cefr_level": "A2",
+    "english_translation": "to get up",
+    "urdu_translation": "اٹھنا",
+    "example_sentence": "Das Wort 'aufstehen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "ausgeben",
+    "cefr_level": "A2",
+    "english_translation": "to spend money",
+    "urdu_translation": "خرچ کرنا",
+    "example_sentence": "Das Wort 'ausgeben' gehört zum Goethe A2 Wortschatz."
   },
   {
     "german_word": "ausleihen",
@@ -119,11 +1183,88 @@
     "example_sentence": "Ich leihe mir ein Buch aus."
   },
   {
+    "german_word": "ausmachen",
+    "cefr_level": "A2",
+    "english_translation": "to turn off",
+    "urdu_translation": "آف کرنا",
+    "example_sentence": "Das Wort 'ausmachen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
     "german_word": "ausziehen",
     "cefr_level": "A2",
     "english_translation": "to move out / undress",
     "urdu_translation": "مکان بدلنا / کپڑے اتارنا",
     "example_sentence": "Er zieht morgen aus."
+  },
+  {
+    "german_word": "backen",
+    "cefr_level": "A2",
+    "english_translation": "to bake",
+    "urdu_translation": "بیک کرنا",
+    "example_sentence": "Das Wort 'backen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "benutzen",
+    "cefr_level": "A2",
+    "english_translation": "to use",
+    "urdu_translation": "استعمال کرنا",
+    "example_sentence": "Das Wort 'benutzen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "beschreiben",
+    "cefr_level": "A2",
+    "english_translation": "to describe",
+    "urdu_translation": "بیان کرنا",
+    "example_sentence": "Das Wort 'beschreiben' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "bestellen",
+    "cefr_level": "A2",
+    "english_translation": "to order",
+    "urdu_translation": "آرڈر دینا",
+    "example_sentence": "Das Wort 'bestellen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "besuchen",
+    "cefr_level": "A2",
+    "english_translation": "to visit",
+    "urdu_translation": "ملاقات کرنا",
+    "example_sentence": "Das Wort 'besuchen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "bitten",
+    "cefr_level": "A2",
+    "english_translation": "to request",
+    "urdu_translation": "درخواست کرنا",
+    "example_sentence": "Das Wort 'bitten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "brauchen",
+    "cefr_level": "A2",
+    "english_translation": "to need",
+    "urdu_translation": "ضرورت ہونا",
+    "example_sentence": "Das Wort 'brauchen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "bringen",
+    "cefr_level": "A2",
+    "english_translation": "to bring",
+    "urdu_translation": "لانا",
+    "example_sentence": "Das Wort 'bringen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "buchen",
+    "cefr_level": "A2",
+    "english_translation": "to book / reserve",
+    "urdu_translation": "بک کرنا",
+    "example_sentence": "Das Wort 'buchen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "danken",
+    "cefr_level": "A2",
+    "english_translation": "to thank",
+    "urdu_translation": "شکریہ ادا کرنا",
+    "example_sentence": "Das Wort 'danken' gehört zum Goethe A2 Wortschatz."
   },
   {
     "german_word": "das Angebot",
@@ -133,11 +1274,102 @@
     "example_sentence": "Das Angebot gilt heute."
   },
   {
+    "german_word": "das Bewerbungsschreiben",
+    "cefr_level": "A2",
+    "english_translation": "job application",
+    "urdu_translation": "نوکری کی درخواست",
+    "example_sentence": "Das Wort 'das Bewerbungsschreiben' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Formular",
+    "cefr_level": "A2",
+    "english_translation": "form",
+    "urdu_translation": "فارم",
+    "example_sentence": "Das Wort 'das Formular' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Gehalt",
+    "cefr_level": "A2",
+    "english_translation": "salary",
+    "urdu_translation": "تنخواہ",
+    "example_sentence": "Das Wort 'das Gehalt' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Gepäck",
+    "cefr_level": "A2",
+    "english_translation": "luggage / baggage",
+    "urdu_translation": "سامان",
+    "example_sentence": "Das Wort 'das Gepäck' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Gleis",
+    "cefr_level": "A2",
+    "english_translation": "platform / track",
+    "urdu_translation": "پلیٹ فارم",
+    "example_sentence": "Das Wort 'das Gleis' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Hotel",
+    "cefr_level": "A2",
+    "english_translation": "hotel",
+    "urdu_translation": "ہوٹل",
+    "example_sentence": "Das Wort 'das Hotel' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Internet",
+    "cefr_level": "A2",
+    "english_translation": "internet",
+    "urdu_translation": "انٹرنیٹ",
+    "example_sentence": "Das Wort 'das Internet' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Krankenhaus",
+    "cefr_level": "A2",
+    "english_translation": "hospital",
+    "urdu_translation": "ہسپتال",
+    "example_sentence": "Das Wort 'das Krankenhaus' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Medikament",
+    "cefr_level": "A2",
+    "english_translation": "medicine",
+    "urdu_translation": "دوا",
+    "example_sentence": "Das Wort 'das Medikament' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "das Vorstellungsgespräch",
+    "cefr_level": "A2",
+    "english_translation": "job interview",
+    "urdu_translation": "انٹرویو",
+    "example_sentence": "Das Wort 'das Vorstellungsgespräch' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "denken",
+    "cefr_level": "A2",
+    "english_translation": "to think",
+    "urdu_translation": "سوچنا",
+    "example_sentence": "Das Wort 'denken' gehört zum Goethe A2 Wortschatz."
+  },
+  {
     "german_word": "der Angestellte",
     "cefr_level": "A2",
     "english_translation": "the employee",
     "urdu_translation": "ملازم / اہلکار",
     "example_sentence": "Er ist Angestellter bei BMW."
+  },
+  {
+    "german_word": "der Anschluss",
+    "cefr_level": "A2",
+    "english_translation": "connecting train/bus",
+    "urdu_translation": "کنیکٹنگ ٹرین",
+    "example_sentence": "Das Wort 'der Anschluss' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Antrag",
+    "cefr_level": "A2",
+    "english_translation": "application / motion",
+    "urdu_translation": "درخواست",
+    "example_sentence": "Das Wort 'der Antrag' gehört zum Goethe A2 Wortschatz."
   },
   {
     "german_word": "der Anzug",
@@ -147,11 +1379,123 @@
     "example_sentence": "Er trägt einen schwarzen Anzug."
   },
   {
+    "german_word": "der Arzttermin",
+    "cefr_level": "A2",
+    "english_translation": "doctor appointment",
+    "urdu_translation": "ڈاکٹر کی ملاقات",
+    "example_sentence": "Das Wort 'der Arzttermin' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Ausbildungsplatz",
+    "cefr_level": "A2",
+    "english_translation": "apprenticeship position",
+    "urdu_translation": "تربیت کی جگہ",
+    "example_sentence": "Das Wort 'der Ausbildungsplatz' gehört zum Goethe A2 Wortschatz."
+  },
+  {
     "german_word": "der Ausweis",
     "cefr_level": "A2",
     "english_translation": "ID card / passport",
     "urdu_translation": "شناختی کارڈ",
     "example_sentence": "Zeigen Sie Ihren Ausweis."
+  },
+  {
+    "german_word": "der Chef",
+    "cefr_level": "A2",
+    "english_translation": "boss (male)",
+    "urdu_translation": "بوس / سربراہ",
+    "example_sentence": "Das Wort 'der Chef' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Koffer",
+    "cefr_level": "A2",
+    "english_translation": "suitcase",
+    "urdu_translation": "سوٹ کیس",
+    "example_sentence": "Das Wort 'der Koffer' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Kollege",
+    "cefr_level": "A2",
+    "english_translation": "colleague (male)",
+    "urdu_translation": "ساتھی",
+    "example_sentence": "Das Wort 'der Kollege' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Lebenslauf",
+    "cefr_level": "A2",
+    "english_translation": "resume / CV",
+    "urdu_translation": "سی وی / تعلیمی ریکارڈ",
+    "example_sentence": "Das Wort 'der Lebenslauf' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Mietvertrag",
+    "cefr_level": "A2",
+    "english_translation": "rental lease contract",
+    "urdu_translation": "کرائے کا معاہدہ",
+    "example_sentence": "Das Wort 'der Mietvertrag' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Nachbar",
+    "cefr_level": "A2",
+    "english_translation": "neighbor (male)",
+    "urdu_translation": "پڑوسی",
+    "example_sentence": "Das Wort 'der Nachbar' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Pass",
+    "cefr_level": "A2",
+    "english_translation": "passport",
+    "urdu_translation": "پاسپورٹ",
+    "example_sentence": "Das Wort 'der Pass' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Strom",
+    "cefr_level": "A2",
+    "english_translation": "electricity",
+    "urdu_translation": "بجلی",
+    "example_sentence": "Das Wort 'der Strom' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Umstieg",
+    "cefr_level": "A2",
+    "english_translation": "transfer / change trains",
+    "urdu_translation": "ٹرین کی تبدیلی",
+    "example_sentence": "Das Wort 'der Umstieg' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "der Vertrag",
+    "cefr_level": "A2",
+    "english_translation": "contract",
+    "urdu_translation": "معاہدہ / ایگریمنٹ",
+    "example_sentence": "Das Wort 'der Vertrag' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Abfahrt",
+    "cefr_level": "A2",
+    "english_translation": "departure",
+    "urdu_translation": "روانگی",
+    "example_sentence": "Das Wort 'die Abfahrt' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Abmeldung",
+    "cefr_level": "A2",
+    "english_translation": "de-registration",
+    "urdu_translation": "رجسٹریشن کی منسوخی",
+    "example_sentence": "Das Wort 'die Abmeldung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Anmeldung",
+    "cefr_level": "A2",
+    "english_translation": "registration",
+    "urdu_translation": "رجسٹریشن",
+    "example_sentence": "Das Wort 'die Anmeldung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Apotheke",
+    "cefr_level": "A2",
+    "english_translation": "pharmacy",
+    "urdu_translation": "میڈیکل اسٹور",
+    "example_sentence": "Das Wort 'die Apotheke' gehört zum Goethe A2 Wortschatz."
   },
   {
     "german_word": "die Ausbildung",
@@ -168,6 +1512,622 @@
     "example_sentence": "Eine Auslandsreise ist geplant."
   },
   {
+    "german_word": "die Behörde",
+    "cefr_level": "A2",
+    "english_translation": "government authority",
+    "urdu_translation": "سرکاری دفتر / اتھارٹی",
+    "example_sentence": "Das Wort 'die Behörde' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Bestätigung",
+    "cefr_level": "A2",
+    "english_translation": "confirmation",
+    "urdu_translation": "تصدیق",
+    "example_sentence": "Das Wort 'die Bestätigung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Chefin",
+    "cefr_level": "A2",
+    "english_translation": "boss (female)",
+    "urdu_translation": "خاتون سربراہ",
+    "example_sentence": "Das Wort 'die Chefin' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Gesundheit",
+    "cefr_level": "A2",
+    "english_translation": "health",
+    "urdu_translation": "صحت",
+    "example_sentence": "Das Wort 'die Gesundheit' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Heizung",
+    "cefr_level": "A2",
+    "english_translation": "heating system",
+    "urdu_translation": "ہیٹنگ / گرمائش",
+    "example_sentence": "Das Wort 'die Heizung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Kaution",
+    "cefr_level": "A2",
+    "english_translation": "security deposit",
+    "urdu_translation": "ضمانتی رقم",
+    "example_sentence": "Das Wort 'die Kaution' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Kollegin",
+    "cefr_level": "A2",
+    "english_translation": "colleague (female)",
+    "urdu_translation": "خاتون ساتھی",
+    "example_sentence": "Das Wort 'die Kollegin' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Krankenversicherung",
+    "cefr_level": "A2",
+    "english_translation": "health insurance",
+    "urdu_translation": "صحت کی انشورنس",
+    "example_sentence": "Das Wort 'die Krankenversicherung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Kündigung",
+    "cefr_level": "A2",
+    "english_translation": "notice of termination",
+    "urdu_translation": "استعفیٰ / منسوخی",
+    "example_sentence": "Das Wort 'die Kündigung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Miete",
+    "cefr_level": "A2",
+    "english_translation": "rent",
+    "urdu_translation": "کراایہ",
+    "example_sentence": "Das Wort 'die Miete' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Nachbarin",
+    "cefr_level": "A2",
+    "english_translation": "neighbor (female)",
+    "urdu_translation": "خاتون پڑوسی",
+    "example_sentence": "Das Wort 'die Nachbarin' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Nebenkosten",
+    "cefr_level": "A2",
+    "english_translation": "utility costs",
+    "urdu_translation": "اضافی اخراجات",
+    "example_sentence": "Das Wort 'die Nebenkosten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Praxis",
+    "cefr_level": "A2",
+    "english_translation": "doctor's clinic",
+    "urdu_translation": "کلینک",
+    "example_sentence": "Das Wort 'die Praxis' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Reise",
+    "cefr_level": "A2",
+    "english_translation": "trip / journey",
+    "urdu_translation": "سفر",
+    "example_sentence": "Das Wort 'die Reise' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Rentenversicherung",
+    "cefr_level": "A2",
+    "english_translation": "pension insurance",
+    "urdu_translation": "پینشن انشورنس",
+    "example_sentence": "Das Wort 'die Rentenversicherung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Rezept",
+    "cefr_level": "A2",
+    "english_translation": "prescription / recipe",
+    "urdu_translation": "نسخہ / ترکیب",
+    "example_sentence": "Das Wort 'die Rezept' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Schmerzen",
+    "cefr_level": "A2",
+    "english_translation": "pain / aches",
+    "urdu_translation": "درد",
+    "example_sentence": "Das Wort 'die Schmerzen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Steuer",
+    "cefr_level": "A2",
+    "english_translation": "tax",
+    "urdu_translation": "ٹیکس",
+    "example_sentence": "Das Wort 'die Steuer' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Verspätung",
+    "cefr_level": "A2",
+    "english_translation": "delay",
+    "urdu_translation": "تاخیر / دیری",
+    "example_sentence": "Das Wort 'die Verspätung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "die Übernachtung",
+    "cefr_level": "A2",
+    "english_translation": "overnight stay",
+    "urdu_translation": "رات کا قیام",
+    "example_sentence": "Das Wort 'die Übernachtung' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "duschen",
+    "cefr_level": "A2",
+    "english_translation": "to shower",
+    "urdu_translation": "نہانا",
+    "example_sentence": "Das Wort 'duschen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "einladen",
+    "cefr_level": "A2",
+    "english_translation": "to invite",
+    "urdu_translation": "دعوت دینا",
+    "example_sentence": "Das Wort 'einladen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "einschlafen",
+    "cefr_level": "A2",
+    "english_translation": "to fall asleep",
+    "urdu_translation": "سو جانا",
+    "example_sentence": "Das Wort 'einschlafen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "empfehlen",
+    "cefr_level": "A2",
+    "english_translation": "to recommend",
+    "urdu_translation": "سفارش کرنا",
+    "example_sentence": "Das Wort 'empfehlen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "entscheiden",
+    "cefr_level": "A2",
+    "english_translation": "to decide",
+    "urdu_translation": "فیصلہ کرنا",
+    "example_sentence": "Das Wort 'entscheiden' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "erinnern",
+    "cefr_level": "A2",
+    "english_translation": "to remember",
+    "urdu_translation": "یاد کرنا",
+    "example_sentence": "Das Wort 'erinnern' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "erklären",
+    "cefr_level": "A2",
+    "english_translation": "to explain",
+    "urdu_translation": "وضاحت کرنا",
+    "example_sentence": "Das Wort 'erklären' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "finden",
+    "cefr_level": "A2",
+    "english_translation": "to find",
+    "urdu_translation": "پانا / ملنا",
+    "example_sentence": "Das Wort 'finden' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "fragen",
+    "cefr_level": "A2",
+    "english_translation": "to ask",
+    "urdu_translation": "پوچھنا",
+    "example_sentence": "Das Wort 'fragen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "freuen",
+    "cefr_level": "A2",
+    "english_translation": "to look forward / be glad",
+    "urdu_translation": "خوش ہونا",
+    "example_sentence": "Das Wort 'freuen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "frühstücken",
+    "cefr_level": "A2",
+    "english_translation": "to eat breakfast",
+    "urdu_translation": "ناشتہ کرنا",
+    "example_sentence": "Das Wort 'frühstücken' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "funktionieren",
+    "cefr_level": "A2",
+    "english_translation": "to function / work",
+    "urdu_translation": "کام کرنا",
+    "example_sentence": "Das Wort 'funktionieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "gefallen",
+    "cefr_level": "A2",
+    "english_translation": "to please / like",
+    "urdu_translation": "پسند آنا",
+    "example_sentence": "Das Wort 'gefallen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "gehören",
+    "cefr_level": "A2",
+    "english_translation": "to belong to",
+    "urdu_translation": "ملکیت ہونا",
+    "example_sentence": "Das Wort 'gehören' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "gesund",
+    "cefr_level": "A2",
+    "english_translation": "healthy",
+    "urdu_translation": "صحت مند",
+    "example_sentence": "Das Wort 'gesund' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "gewinnen",
+    "cefr_level": "A2",
+    "english_translation": "to win",
+    "urdu_translation": "جیتنا",
+    "example_sentence": "Das Wort 'gewinnen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "glauben",
+    "cefr_level": "A2",
+    "english_translation": "to believe / think",
+    "urdu_translation": "یقین رکھنا / سوچنا",
+    "example_sentence": "Das Wort 'glauben' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "gratulieren",
+    "cefr_level": "A2",
+    "english_translation": "to congratulate",
+    "urdu_translation": "مبارکباد دینا",
+    "example_sentence": "Das Wort 'gratulieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "heiraten",
+    "cefr_level": "A2",
+    "english_translation": "to marry",
+    "urdu_translation": "شادی کرنا",
+    "example_sentence": "Das Wort 'heiraten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "helfen",
+    "cefr_level": "A2",
+    "english_translation": "to help",
+    "urdu_translation": "مدد کرنا",
+    "example_sentence": "Das Wort 'helfen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "hoffen",
+    "cefr_level": "A2",
+    "english_translation": "to hope",
+    "urdu_translation": "امید کرنا",
+    "example_sentence": "Das Wort 'hoffen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "kennen",
+    "cefr_level": "A2",
+    "english_translation": "to know a person/place",
+    "urdu_translation": "شناسائی ہونا",
+    "example_sentence": "Das Wort 'kennen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "kennenlernen",
+    "cefr_level": "A2",
+    "english_translation": "to get to know",
+    "urdu_translation": "تعارف حاصل کرنا",
+    "example_sentence": "Das Wort 'kennenlernen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "kochen",
+    "cefr_level": "A2",
+    "english_translation": "to cook",
+    "urdu_translation": "پکانا",
+    "example_sentence": "Das Wort 'kochen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "krank",
+    "cefr_level": "A2",
+    "english_translation": "sick / ill",
+    "urdu_translation": "بیمار",
+    "example_sentence": "Das Wort 'krank' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "lachen",
+    "cefr_level": "A2",
+    "english_translation": "to laugh",
+    "urdu_translation": "ہنسنا",
+    "example_sentence": "Das Wort 'lachen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "leihen",
+    "cefr_level": "A2",
+    "english_translation": "to borrow",
+    "urdu_translation": "ادھار لینا",
+    "example_sentence": "Das Wort 'leihen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "meinen",
+    "cefr_level": "A2",
+    "english_translation": "to mean / think",
+    "urdu_translation": "مراد ہونا / خیال ہونا",
+    "example_sentence": "Das Wort 'meinen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "mitbringen",
+    "cefr_level": "A2",
+    "english_translation": "to bring along",
+    "urdu_translation": "ساتھ لانا",
+    "example_sentence": "Das Wort 'mitbringen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "mitkommen",
+    "cefr_level": "A2",
+    "english_translation": "to come along",
+    "urdu_translation": "ساتھ آنا",
+    "example_sentence": "Das Wort 'mitkommen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "mitmachen",
+    "cefr_level": "A2",
+    "english_translation": "to participate",
+    "urdu_translation": "حصہ لینا",
+    "example_sentence": "Das Wort 'mitmachen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "passen",
+    "cefr_level": "A2",
+    "english_translation": "to fit / suit",
+    "urdu_translation": "مناسب ہونا",
+    "example_sentence": "Das Wort 'passen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "planen",
+    "cefr_level": "A2",
+    "english_translation": "to plan",
+    "urdu_translation": "منصوبہ بنانا",
+    "example_sentence": "Das Wort 'planen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "probieren",
+    "cefr_level": "A2",
+    "english_translation": "to test / taste",
+    "urdu_translation": "آزمانا / چکھنا",
+    "example_sentence": "Das Wort 'probieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "pünktlich",
+    "cefr_level": "A2",
+    "english_translation": "punctual",
+    "urdu_translation": "وقت کا پابند",
+    "example_sentence": "Das Wort 'pünktlich' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "reisen",
+    "cefr_level": "A2",
+    "english_translation": "to travel",
+    "urdu_translation": "سفر کرنا",
+    "example_sentence": "Das Wort 'reisen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "reparieren",
+    "cefr_level": "A2",
+    "english_translation": "to repair",
+    "urdu_translation": "مرمت کرنا",
+    "example_sentence": "Das Wort 'reparieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "reservieren",
+    "cefr_level": "A2",
+    "english_translation": "to reserve",
+    "urdu_translation": "ریزرو کرنا",
+    "example_sentence": "Das Wort 'reservieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "saubermachen",
+    "cefr_level": "A2",
+    "english_translation": "to clean",
+    "urdu_translation": "صاف کرنا",
+    "example_sentence": "Das Wort 'saubermachen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "schließen",
+    "cefr_level": "A2",
+    "english_translation": "to close",
+    "urdu_translation": "بند کرنا",
+    "example_sentence": "Das Wort 'schließen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "schmecken",
+    "cefr_level": "A2",
+    "english_translation": "to taste good",
+    "urdu_translation": "ذائقہ دار ہونا",
+    "example_sentence": "Das Wort 'schmecken' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "schwimmen",
+    "cefr_level": "A2",
+    "english_translation": "to swim",
+    "urdu_translation": "تیرنا",
+    "example_sentence": "Das Wort 'schwimmen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "singe",
+    "cefr_level": "A2",
+    "english_translation": "sing",
+    "urdu_translation": "گانا",
+    "example_sentence": "Das Wort 'singe' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "sparen",
+    "cefr_level": "A2",
+    "english_translation": "to save money",
+    "urdu_translation": "بچت کرنا",
+    "example_sentence": "Das Wort 'sparen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "spielen",
+    "cefr_level": "A2",
+    "english_translation": "to play",
+    "urdu_translation": "کھیلنا",
+    "example_sentence": "Das Wort 'spielen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "stornieren",
+    "cefr_level": "A2",
+    "english_translation": "to cancel",
+    "urdu_translation": "منسوخ کرنا",
+    "example_sentence": "Das Wort 'stornieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "streiten",
+    "cefr_level": "A2",
+    "english_translation": "to argue",
+    "urdu_translation": "جھگڑا کرنا",
+    "example_sentence": "Das Wort 'streiten' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "suchen",
+    "cefr_level": "A2",
+    "english_translation": "to search",
+    "urdu_translation": "تلاش کرنا",
+    "example_sentence": "Das Wort 'suchen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "tanzen",
+    "cefr_level": "A2",
+    "english_translation": "to dance",
+    "urdu_translation": "رقص کرنا",
+    "example_sentence": "Das Wort 'tanzen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "treffen",
+    "cefr_level": "A2",
+    "english_translation": "to meet",
+    "urdu_translation": "ملنا",
+    "example_sentence": "Das Wort 'treffen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "träumen",
+    "cefr_level": "A2",
+    "english_translation": "to dream",
+    "urdu_translation": "خواب دیکھنا",
+    "example_sentence": "Das Wort 'träumen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "umziehen",
+    "cefr_level": "A2",
+    "english_translation": "to move house / change clothes",
+    "urdu_translation": "مکان بدلنا",
+    "example_sentence": "Das Wort 'umziehen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "unterscheiden",
+    "cefr_level": "A2",
+    "english_translation": "to distinguish",
+    "urdu_translation": "فرق کرنا",
+    "example_sentence": "Das Wort 'unterscheiden' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "vergessen",
+    "cefr_level": "A2",
+    "english_translation": "to forget",
+    "urdu_translation": "بھولنا",
+    "example_sentence": "Das Wort 'vergessen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "vergleichen",
+    "cefr_level": "A2",
+    "english_translation": "to compare",
+    "urdu_translation": "موازنہ کرنا",
+    "example_sentence": "Das Wort 'vergleichen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "verleihen",
+    "cefr_level": "A2",
+    "english_translation": "to lend",
+    "urdu_translation": "ادھار دینا",
+    "example_sentence": "Das Wort 'verleihen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "verlieren",
+    "cefr_level": "A2",
+    "english_translation": "to lose",
+    "urdu_translation": "کھونا / ہارنا",
+    "example_sentence": "Das Wort 'verlieren' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "versuchen",
+    "cefr_level": "A2",
+    "english_translation": "to try / attempt",
+    "urdu_translation": "کوشش کرنا",
+    "example_sentence": "Das Wort 'versuchen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "wandern",
+    "cefr_level": "A2",
+    "english_translation": "to hike",
+    "urdu_translation": "پہاڑی پیدل سفر",
+    "example_sentence": "Das Wort 'wandern' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "waschen",
+    "cefr_level": "A2",
+    "english_translation": "to wash",
+    "urdu_translation": "دھونا",
+    "example_sentence": "Das Wort 'waschen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "weinen",
+    "cefr_level": "A2",
+    "english_translation": "to cry",
+    "urdu_translation": "رونا",
+    "example_sentence": "Das Wort 'weinen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "wissen",
+    "cefr_level": "A2",
+    "english_translation": "to know a fact",
+    "urdu_translation": "جاننا",
+    "example_sentence": "Das Wort 'wissen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "wünschen",
+    "cefr_level": "A2",
+    "english_translation": "to wish",
+    "urdu_translation": "خواہش کرنا",
+    "example_sentence": "Das Wort 'wünschen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "zahlen",
+    "cefr_level": "A2",
+    "english_translation": "to pay",
+    "urdu_translation": "ادائیگی کرنا",
+    "example_sentence": "Das Wort 'zahlen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "ärgern",
+    "cefr_level": "A2",
+    "english_translation": "to annoy / get angry",
+    "urdu_translation": "ناراض ہونا",
+    "example_sentence": "Das Wort 'ärgern' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "öffnen",
+    "cefr_level": "A2",
+    "english_translation": "to open",
+    "urdu_translation": "کھولنا",
+    "example_sentence": "Das Wort 'öffnen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "überweisen",
+    "cefr_level": "A2",
+    "english_translation": "to transfer money",
+    "urdu_translation": "رقم منتقل کرنا",
+    "example_sentence": "Das Wort 'überweisen' gehört zum Goethe A2 Wortschatz."
+  },
+  {
+    "german_word": "abhängen von",
+    "cefr_level": "B1",
+    "english_translation": "to depend on",
+    "urdu_translation": "انحصار ہونا",
+    "example_sentence": "Das Wort 'abhängen von' gehört zum Goethe B1 Wortschatz."
+  },
+  {
     "german_word": "ablehnen",
     "cefr_level": "B1",
     "english_translation": "to reject / decline",
@@ -182,11 +2142,81 @@
     "example_sentence": "Das war nicht absichtlich."
   },
   {
+    "german_word": "achten auf",
+    "cefr_level": "B1",
+    "english_translation": "to pay attention to",
+    "urdu_translation": "دھیان دینا",
+    "example_sentence": "Das Wort 'achten auf' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "annehmen",
+    "cefr_level": "B1",
+    "english_translation": "to assume / accept",
+    "urdu_translation": "فرض کرنا / قبول کرنا",
+    "example_sentence": "Das Wort 'annehmen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "aufpassen auf",
+    "cefr_level": "B1",
+    "english_translation": "to look after",
+    "urdu_translation": "دیکھ بھال کرنا",
+    "example_sentence": "Das Wort 'aufpassen auf' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "beeinflussen",
+    "cefr_level": "B1",
+    "english_translation": "to influence",
+    "urdu_translation": "متاثر کرنا",
+    "example_sentence": "Das Wort 'beeinflussen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "behaupten",
+    "cefr_level": "B1",
+    "english_translation": "to claim",
+    "urdu_translation": "دعویٰ کرنا",
+    "example_sentence": "Das Wort 'behaupten' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "beitragen zu",
+    "cefr_level": "B1",
+    "english_translation": "to contribute to",
+    "urdu_translation": "حصہ ڈالنا",
+    "example_sentence": "Das Wort 'beitragen zu' gehört zum Goethe B1 Wortschatz."
+  },
+  {
     "german_word": "berücksichtigen",
     "cefr_level": "B1",
     "english_translation": "to consider / take into account",
     "urdu_translation": "مدنظر رکھنا",
     "example_sentence": "Wir müssen das berücksichtigen."
+  },
+  {
+    "german_word": "beschließen",
+    "cefr_level": "B1",
+    "english_translation": "to decide / resolve",
+    "urdu_translation": "فیصلہ کرنا",
+    "example_sentence": "Das Wort 'beschließen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "beseitigen",
+    "cefr_level": "B1",
+    "english_translation": "to eliminate",
+    "urdu_translation": "ختم کرنا",
+    "example_sentence": "Das Wort 'beseitigen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "bestätigen",
+    "cefr_level": "B1",
+    "english_translation": "to confirm",
+    "urdu_translation": "تصدیق کرنا",
+    "example_sentence": "Das Wort 'bestätigen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "bewirken",
+    "cefr_level": "B1",
+    "english_translation": "to bring about",
+    "urdu_translation": "اثر انداز ہونا",
+    "example_sentence": "Das Wort 'bewirken' gehört zum Goethe B1 Wortschatz."
   },
   {
     "german_word": "das Abenteuer",
@@ -196,11 +2226,95 @@
     "example_sentence": "Die Reise war ein Abenteuer."
   },
   {
+    "german_word": "das Argument",
+    "cefr_level": "B1",
+    "english_translation": "argument",
+    "urdu_translation": "دلیل",
+    "example_sentence": "Das Wort 'das Argument' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "das Ergebnis",
+    "cefr_level": "B1",
+    "english_translation": "result / outcome",
+    "urdu_translation": "نتیجہ",
+    "example_sentence": "Das Wort 'das Ergebnis' gehört zum Goethe B1 Wortschatz."
+  },
+  {
     "german_word": "der Abschied",
     "cefr_level": "B1",
     "english_translation": "farewell / parting",
     "urdu_translation": "الوداع",
     "example_sentence": "Der Abschied war traurig."
+  },
+  {
+    "german_word": "der Beweis",
+    "cefr_level": "B1",
+    "english_translation": "proof / evidence",
+    "urdu_translation": "ثبوت",
+    "example_sentence": "Das Wort 'der Beweis' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Einfluss",
+    "cefr_level": "B1",
+    "english_translation": "influence",
+    "urdu_translation": "اثر و رسوخ",
+    "example_sentence": "Das Wort 'der Einfluss' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Klimawandel",
+    "cefr_level": "B1",
+    "english_translation": "climate change",
+    "urdu_translation": "موسمیاتی تبدیلی",
+    "example_sentence": "Das Wort 'der Klimawandel' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Nachteil",
+    "cefr_level": "B1",
+    "english_translation": "disadvantage",
+    "urdu_translation": "نقصان / کمی",
+    "example_sentence": "Das Wort 'der Nachteil' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Standpunkt",
+    "cefr_level": "B1",
+    "english_translation": "point of view",
+    "urdu_translation": "موقف / نقطہ نظر",
+    "example_sentence": "Das Wort 'der Standpunkt' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Umweltschutz",
+    "cefr_level": "B1",
+    "english_translation": "environmental protection",
+    "urdu_translation": "ماحولیاتی تحفظ",
+    "example_sentence": "Das Wort 'der Umweltschutz' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Unterschied",
+    "cefr_level": "B1",
+    "english_translation": "difference",
+    "urdu_translation": "فرق",
+    "example_sentence": "Das Wort 'der Unterschied' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Vergleich",
+    "cefr_level": "B1",
+    "english_translation": "comparison",
+    "urdu_translation": "موازنہ",
+    "example_sentence": "Das Wort 'der Vergleich' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Vorteil",
+    "cefr_level": "B1",
+    "english_translation": "advantage",
+    "urdu_translation": "فائدہ",
+    "example_sentence": "Das Wort 'der Vorteil' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "der Zusammenhang",
+    "cefr_level": "B1",
+    "english_translation": "context / connection",
+    "urdu_translation": "تعلق / سیاق و سباق",
+    "example_sentence": "Das Wort 'der Zusammenhang' gehört zum Goethe B1 Wortschatz."
   },
   {
     "german_word": "die Abhängigkeit",
@@ -210,6 +2324,34 @@
     "example_sentence": "Medienabhängigkeit ist ein Thema."
   },
   {
+    "german_word": "die Ablehnung",
+    "cefr_level": "B1",
+    "english_translation": "rejection / refusal",
+    "urdu_translation": "انکار / مستردگی",
+    "example_sentence": "Das Wort 'die Ablehnung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Abnahme",
+    "cefr_level": "B1",
+    "english_translation": "decrease / decline",
+    "urdu_translation": "کمی",
+    "example_sentence": "Das Wort 'die Abnahme' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Arbeitslosigkeit",
+    "cefr_level": "B1",
+    "english_translation": "unemployment",
+    "urdu_translation": "بے روزگاری",
+    "example_sentence": "Das Wort 'die Arbeitslosigkeit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Ausnahme",
+    "cefr_level": "B1",
+    "english_translation": "exception",
+    "urdu_translation": "استثنیٰ",
+    "example_sentence": "Das Wort 'die Ausnahme' gehört zum Goethe B1 Wortschatz."
+  },
+  {
     "german_word": "die Auswirkung",
     "cefr_level": "B1",
     "english_translation": "effect / impact",
@@ -217,11 +2359,25 @@
     "example_sentence": "Die Auswirkung ist positiv."
   },
   {
+    "german_word": "die Bedingung",
+    "cefr_level": "B1",
+    "english_translation": "condition / terms",
+    "urdu_translation": "شرط",
+    "example_sentence": "Das Wort 'die Bedingung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
     "german_word": "die Begeisterung",
     "cefr_level": "B1",
     "english_translation": "enthusiasm",
     "urdu_translation": "جوش و جذبہ",
     "example_sentence": "Sie zeigte große Begeisterung."
+  },
+  {
+    "german_word": "die Begründung",
+    "cefr_level": "B1",
+    "english_translation": "justification / reason",
+    "urdu_translation": "جواز / وجہ",
+    "example_sentence": "Das Wort 'die Begründung' gehört zum Goethe B1 Wortschatz."
   },
   {
     "german_word": "die Behauptung",
@@ -236,5 +2392,789 @@
     "english_translation": "relationship",
     "urdu_translation": "تعلق / رشتہ",
     "example_sentence": "Sie haben eine gute Beziehung."
+  },
+  {
+    "german_word": "die Eigenschaft",
+    "cefr_level": "B1",
+    "english_translation": "property / quality",
+    "urdu_translation": "خصوصیت",
+    "example_sentence": "Das Wort 'die Eigenschaft' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Entscheidung",
+    "cefr_level": "B1",
+    "english_translation": "decision",
+    "urdu_translation": "فیصلہ",
+    "example_sentence": "Das Wort 'die Entscheidung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Entwicklung",
+    "cefr_level": "B1",
+    "english_translation": "development",
+    "urdu_translation": "ترقی / پیش رفت",
+    "example_sentence": "Das Wort 'die Entwicklung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Erfahrung",
+    "cefr_level": "B1",
+    "english_translation": "experience",
+    "urdu_translation": "تجربہ",
+    "example_sentence": "Das Wort 'die Erfahrung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Erwärmung",
+    "cefr_level": "B1",
+    "english_translation": "warming",
+    "urdu_translation": "شدتِ حرارت",
+    "example_sentence": "Das Wort 'die Erwärmung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Fähigkeit",
+    "cefr_level": "B1",
+    "english_translation": "ability / capability",
+    "urdu_translation": "صلاحیت / قابلیت",
+    "example_sentence": "Das Wort 'die Fähigkeit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Gegenwart",
+    "cefr_level": "B1",
+    "english_translation": "present / current time",
+    "urdu_translation": "موجودہ دور",
+    "example_sentence": "Das Wort 'die Gegenwart' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Gelegenheit",
+    "cefr_level": "B1",
+    "english_translation": "opportunity / occasion",
+    "urdu_translation": "موقع",
+    "example_sentence": "Das Wort 'die Gelegenheit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Gesellschaft",
+    "cefr_level": "B1",
+    "english_translation": "society",
+    "urdu_translation": "معاشرہ",
+    "example_sentence": "Das Wort 'die Gesellschaft' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Herausforderung",
+    "cefr_level": "B1",
+    "english_translation": "challenge",
+    "urdu_translation": "چیلنج / مشکل",
+    "example_sentence": "Das Wort 'die Herausforderung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Kenntnis",
+    "cefr_level": "B1",
+    "english_translation": "knowledge / skill",
+    "urdu_translation": "معلومات / مہارت",
+    "example_sentence": "Das Wort 'die Kenntnis' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Lösung",
+    "cefr_level": "B1",
+    "english_translation": "solution",
+    "urdu_translation": "حل",
+    "example_sentence": "Das Wort 'die Lösung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Maßnahme",
+    "cefr_level": "B1",
+    "english_translation": "measure / action",
+    "urdu_translation": "اقدام",
+    "example_sentence": "Das Wort 'die Maßnahme' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Meinung",
+    "cefr_level": "B1",
+    "english_translation": "opinion",
+    "urdu_translation": "رائے",
+    "example_sentence": "Das Wort 'die Meinung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Nachhaltigkeit",
+    "cefr_level": "B1",
+    "english_translation": "sustainability",
+    "urdu_translation": "پائیداری",
+    "example_sentence": "Das Wort 'die Nachhaltigkeit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Ursache",
+    "cefr_level": "B1",
+    "english_translation": "cause / reason",
+    "urdu_translation": "وجہ / سبب",
+    "example_sentence": "Das Wort 'die Ursache' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Verantwortung",
+    "cefr_level": "B1",
+    "english_translation": "responsibility",
+    "urdu_translation": "ذمہ داری",
+    "example_sentence": "Das Wort 'die Verantwortung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Vergangenheit",
+    "cefr_level": "B1",
+    "english_translation": "past",
+    "urdu_translation": "مضی",
+    "example_sentence": "Das Wort 'die Vergangenheit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Verhandlung",
+    "cefr_level": "B1",
+    "english_translation": "negotiation",
+    "urdu_translation": "مذاکرات / بات چیت",
+    "example_sentence": "Das Wort 'die Verhandlung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Verpflichtung",
+    "cefr_level": "B1",
+    "english_translation": "obligation / commitment",
+    "urdu_translation": "فرائض / پابندی",
+    "example_sentence": "Das Wort 'die Verpflichtung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Voraussetzung",
+    "cefr_level": "B1",
+    "english_translation": "requirement / prerequisite",
+    "urdu_translation": "شرط / بنیادی ضرورت",
+    "example_sentence": "Das Wort 'die Voraussetzung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Wirkung",
+    "cefr_level": "B1",
+    "english_translation": "effect / response",
+    "urdu_translation": "اثر",
+    "example_sentence": "Das Wort 'die Wirkung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Wirtschaft",
+    "cefr_level": "B1",
+    "english_translation": "economy",
+    "urdu_translation": "معیشت",
+    "example_sentence": "Das Wort 'die Wirtschaft' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Zukunft",
+    "cefr_level": "B1",
+    "english_translation": "future",
+    "urdu_translation": "مستقبل",
+    "example_sentence": "Das Wort 'die Zukunft' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Zunahme",
+    "cefr_level": "B1",
+    "english_translation": "increase / growth",
+    "urdu_translation": "اضافہ",
+    "example_sentence": "Das Wort 'die Zunahme' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Zustimmung",
+    "cefr_level": "B1",
+    "english_translation": "agreement / consent",
+    "urdu_translation": "رضامندی",
+    "example_sentence": "Das Wort 'die Zustimmung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Öffentlichkeit",
+    "cefr_level": "B1",
+    "english_translation": "public",
+    "urdu_translation": "عوام / پبلک",
+    "example_sentence": "Das Wort 'die Öffentlichkeit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "die Überzeugung",
+    "cefr_level": "B1",
+    "english_translation": "conviction / belief",
+    "urdu_translation": "پختہ یقین",
+    "example_sentence": "Das Wort 'die Überzeugung' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "diskutieren",
+    "cefr_level": "B1",
+    "english_translation": "to discuss",
+    "urdu_translation": "بحث کرنا",
+    "example_sentence": "Das Wort 'diskutieren' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "entstehen",
+    "cefr_level": "B1",
+    "english_translation": "to originate / arise",
+    "urdu_translation": "وجود میں آنا",
+    "example_sentence": "Das Wort 'entstehen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "entwickeln",
+    "cefr_level": "B1",
+    "english_translation": "to develop",
+    "urdu_translation": "ترقی دینا",
+    "example_sentence": "Das Wort 'entwickeln' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "erreichen",
+    "cefr_level": "B1",
+    "english_translation": "to achieve / reach",
+    "urdu_translation": "حاصل کرنا / پہنچنا",
+    "example_sentence": "Das Wort 'erreichen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "fordern",
+    "cefr_level": "B1",
+    "english_translation": "to demand",
+    "urdu_translation": "مطالبہ کرنا",
+    "example_sentence": "Das Wort 'fordern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "fördern",
+    "cefr_level": "B1",
+    "english_translation": "to promote / encourage",
+    "urdu_translation": "ترغیب دینا",
+    "example_sentence": "Das Wort 'fördern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "führen zu",
+    "cefr_level": "B1",
+    "english_translation": "to lead to",
+    "urdu_translation": "سبب بننا",
+    "example_sentence": "Das Wort 'führen zu' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "gehören zu",
+    "cefr_level": "B1",
+    "english_translation": "to belong to",
+    "urdu_translation": "شامل ہونا",
+    "example_sentence": "Das Wort 'gehören zu' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "geschehen",
+    "cefr_level": "B1",
+    "english_translation": "to happen",
+    "urdu_translation": "واقع ہونا",
+    "example_sentence": "Das Wort 'geschehen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "kümern um",
+    "cefr_level": "B1",
+    "english_translation": "to care for",
+    "urdu_translation": "فکر کرنا",
+    "example_sentence": "Das Wort 'kümern um' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "lösen",
+    "cefr_level": "B1",
+    "english_translation": "to solve",
+    "urdu_translation": "حل کرنا",
+    "example_sentence": "Das Wort 'lösen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "passieren",
+    "cefr_level": "B1",
+    "english_translation": "to occur",
+    "urdu_translation": "پیش آنا",
+    "example_sentence": "Das Wort 'passieren' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "reagieren auf",
+    "cefr_level": "B1",
+    "english_translation": "to react to",
+    "urdu_translation": "ردعمل دینا",
+    "example_sentence": "Das Wort 'reagieren auf' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "rechnen mit",
+    "cefr_level": "B1",
+    "english_translation": "to reckon with / expect",
+    "urdu_translation": "توقع رکھنا",
+    "example_sentence": "Das Wort 'rechnen mit' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "scheitern",
+    "cefr_level": "B1",
+    "english_translation": "to fail / collapse",
+    "urdu_translation": "ناکام ہونا",
+    "example_sentence": "Das Wort 'scheitern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "sich beteiligen an",
+    "cefr_level": "B1",
+    "english_translation": "to take part in",
+    "urdu_translation": "شامل ہونا",
+    "example_sentence": "Das Wort 'sich beteiligen an' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "sorgen für",
+    "cefr_level": "B1",
+    "english_translation": "to provide for",
+    "urdu_translation": "انتظام کرنا",
+    "example_sentence": "Das Wort 'sorgen für' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "teilnehmen an",
+    "cefr_level": "B1",
+    "english_translation": "to participate in",
+    "urdu_translation": "شرکت کرنا",
+    "example_sentence": "Das Wort 'teilnehmen an' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "unterstützen",
+    "cefr_level": "B1",
+    "english_translation": "to support / assist",
+    "urdu_translation": "حمایت کرنا",
+    "example_sentence": "Das Wort 'unterstützen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verbessern",
+    "cefr_level": "B1",
+    "english_translation": "to improve",
+    "urdu_translation": "بہتر بنانا",
+    "example_sentence": "Das Wort 'verbessern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "vergehen",
+    "cefr_level": "B1",
+    "english_translation": "to pass time",
+    "urdu_translation": "وقت گزرنا",
+    "example_sentence": "Das Wort 'vergehen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verhandeln",
+    "cefr_level": "B1",
+    "english_translation": "to negotiate",
+    "urdu_translation": "مذاکرات کرنا",
+    "example_sentence": "Das Wort 'verhandeln' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verhindern",
+    "cefr_level": "B1",
+    "english_translation": "to prevent / stop",
+    "urdu_translation": "روکنا / بچانا",
+    "example_sentence": "Das Wort 'verhindern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verlangen",
+    "cefr_level": "B1",
+    "english_translation": "to demand / require",
+    "urdu_translation": "تقاضا کرنا",
+    "example_sentence": "Das Wort 'verlangen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "vermuten",
+    "cefr_level": "B1",
+    "english_translation": "to suspect / presume",
+    "urdu_translation": "گمان کرنا",
+    "example_sentence": "Das Wort 'vermuten' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verschlechtern",
+    "cefr_level": "B1",
+    "english_translation": "to worsen",
+    "urdu_translation": "خراب ہونا",
+    "example_sentence": "Das Wort 'verschlechtern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verursachen",
+    "cefr_level": "B1",
+    "english_translation": "to cause",
+    "urdu_translation": "سبب بننا",
+    "example_sentence": "Das Wort 'verursachen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verzichten auf",
+    "cefr_level": "B1",
+    "english_translation": "to do without",
+    "urdu_translation": "دستبردار ہونا",
+    "example_sentence": "Das Wort 'verzichten auf' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "verändern",
+    "cefr_level": "B1",
+    "english_translation": "to alter / change",
+    "urdu_translation": "تبدیل کرنا",
+    "example_sentence": "Das Wort 'verändern' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "widerlegen",
+    "cefr_level": "B1",
+    "english_translation": "to refute",
+    "urdu_translation": "تردید کرنا",
+    "example_sentence": "Das Wort 'widerlegen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "widersprechen",
+    "cefr_level": "B1",
+    "english_translation": "to contradict",
+    "urdu_translation": "مخالفت کرنا",
+    "example_sentence": "Das Wort 'widersprechen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "zustimmen",
+    "cefr_level": "B1",
+    "english_translation": "to agree",
+    "urdu_translation": "متفق ہونا",
+    "example_sentence": "Das Wort 'zustimmen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "überreden",
+    "cefr_level": "B1",
+    "english_translation": "to persuade",
+    "urdu_translation": "راضی کرنا",
+    "example_sentence": "Das Wort 'überreden' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "überwinden",
+    "cefr_level": "B1",
+    "english_translation": "to overcome",
+    "urdu_translation": "قابو پانا",
+    "example_sentence": "Das Wort 'überwinden' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "überzeugen",
+    "cefr_level": "B1",
+    "english_translation": "to convince",
+    "urdu_translation": "قائل کرنا",
+    "example_sentence": "Das Wort 'überzeugen' gehört zum Goethe B1 Wortschatz."
+  },
+  {
+    "german_word": "Acht",
+    "cefr_level": "ZERO",
+    "english_translation": "Eight",
+    "urdu_translation": "آٹھ",
+    "example_sentence": "Das Wort 'Acht' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Auf Wiedersehen",
+    "cefr_level": "ZERO",
+    "english_translation": "Goodbye (formal)",
+    "urdu_translation": "الوداع",
+    "example_sentence": "Das Wort 'Auf Wiedersehen' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Bitte",
+    "cefr_level": "ZERO",
+    "english_translation": "Please / You're welcome",
+    "urdu_translation": "برائے مہربانی / خوش آمدید",
+    "example_sentence": "Das Wort 'Bitte' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Danke",
+    "cefr_level": "ZERO",
+    "english_translation": "Thank you",
+    "urdu_translation": "شکریہ",
+    "example_sentence": "Das Wort 'Danke' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Danke schön",
+    "cefr_level": "ZERO",
+    "english_translation": "Thank you very much",
+    "urdu_translation": "بہت بہت شکریہ",
+    "example_sentence": "Das Wort 'Danke schön' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Dienstag",
+    "cefr_level": "ZERO",
+    "english_translation": "Tuesday",
+    "urdu_translation": "منگل",
+    "example_sentence": "Das Wort 'Dienstag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Donnerstag",
+    "cefr_level": "ZERO",
+    "english_translation": "Thursday",
+    "urdu_translation": "جمعرات",
+    "example_sentence": "Das Wort 'Donnerstag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Drei",
+    "cefr_level": "ZERO",
+    "english_translation": "Three",
+    "urdu_translation": "تین",
+    "example_sentence": "Das Wort 'Drei' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Du",
+    "cefr_level": "ZERO",
+    "english_translation": "You (informal)",
+    "urdu_translation": "تم",
+    "example_sentence": "Das Wort 'Du' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Eins",
+    "cefr_level": "ZERO",
+    "english_translation": "One",
+    "urdu_translation": "ایک",
+    "example_sentence": "Das Wort 'Eins' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Entschuldigung",
+    "cefr_level": "ZERO",
+    "english_translation": "Excuse me / Sorry",
+    "urdu_translation": "معاف کیجیے گا",
+    "example_sentence": "Das Wort 'Entschuldigung' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Frau",
+    "cefr_level": "ZERO",
+    "english_translation": "Mrs. / Ms. / Woman",
+    "urdu_translation": "محترمہ / خاتون",
+    "example_sentence": "Das Wort 'Frau' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Freitag",
+    "cefr_level": "ZERO",
+    "english_translation": "Friday",
+    "urdu_translation": "جمعہ",
+    "example_sentence": "Das Wort 'Freitag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Fünf",
+    "cefr_level": "ZERO",
+    "english_translation": "Five",
+    "urdu_translation": "پانچ",
+    "example_sentence": "Das Wort 'Fünf' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Gut",
+    "cefr_level": "ZERO",
+    "english_translation": "Good",
+    "urdu_translation": "اچھا",
+    "example_sentence": "Das Wort 'Gut' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Gute Nacht",
+    "cefr_level": "ZERO",
+    "english_translation": "Good night",
+    "urdu_translation": "شب بخیر",
+    "example_sentence": "Das Wort 'Gute Nacht' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Guten Abend",
+    "cefr_level": "ZERO",
+    "english_translation": "Good evening",
+    "urdu_translation": "شام بخیر",
+    "example_sentence": "Das Wort 'Guten Abend' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Guten Morgen",
+    "cefr_level": "ZERO",
+    "english_translation": "Good morning",
+    "urdu_translation": "صبح بخیر",
+    "example_sentence": "Das Wort 'Guten Morgen' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Guten Tag",
+    "cefr_level": "ZERO",
+    "english_translation": "Good day / Hello",
+    "urdu_translation": "دن بخیر",
+    "example_sentence": "Das Wort 'Guten Tag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Hallo",
+    "cefr_level": "ZERO",
+    "english_translation": "Hello",
+    "urdu_translation": "ہیلو / سلام",
+    "example_sentence": "Das Wort 'Hallo' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Herr",
+    "cefr_level": "ZERO",
+    "english_translation": "Mr. / Sir",
+    "urdu_translation": "محترم",
+    "example_sentence": "Das Wort 'Herr' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Ich",
+    "cefr_level": "ZERO",
+    "english_translation": "I",
+    "urdu_translation": "میں",
+    "example_sentence": "Das Wort 'Ich' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Ja",
+    "cefr_level": "ZERO",
+    "english_translation": "Yes",
+    "urdu_translation": "جی ہاں",
+    "example_sentence": "Das Wort 'Ja' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Mittwoch",
+    "cefr_level": "ZERO",
+    "english_translation": "Wednesday",
+    "urdu_translation": "بدھ",
+    "example_sentence": "Das Wort 'Mittwoch' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Montag",
+    "cefr_level": "ZERO",
+    "english_translation": "Monday",
+    "urdu_translation": "پیر",
+    "example_sentence": "Das Wort 'Montag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Nein",
+    "cefr_level": "ZERO",
+    "english_translation": "No",
+    "urdu_translation": "نہیں",
+    "example_sentence": "Das Wort 'Nein' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Neun",
+    "cefr_level": "ZERO",
+    "english_translation": "Nine",
+    "urdu_translation": "نو",
+    "example_sentence": "Das Wort 'Neun' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Samstag",
+    "cefr_level": "ZERO",
+    "english_translation": "Saturday",
+    "urdu_translation": "ہفتہ",
+    "example_sentence": "Das Wort 'Samstag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Sechs",
+    "cefr_level": "ZERO",
+    "english_translation": "Six",
+    "urdu_translation": "چھ",
+    "example_sentence": "Das Wort 'Sechs' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Sehr gut",
+    "cefr_level": "ZERO",
+    "english_translation": "Very good",
+    "urdu_translation": "بہت اچھا",
+    "example_sentence": "Das Wort 'Sehr gut' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Sie",
+    "cefr_level": "ZERO",
+    "english_translation": "You (formal)",
+    "urdu_translation": "آپ",
+    "example_sentence": "Das Wort 'Sie' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Sieben",
+    "cefr_level": "ZERO",
+    "english_translation": "Seven",
+    "urdu_translation": "سات",
+    "example_sentence": "Das Wort 'Sieben' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Sonntag",
+    "cefr_level": "ZERO",
+    "english_translation": "Sunday",
+    "urdu_translation": "اتوار",
+    "example_sentence": "Das Wort 'Sonntag' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Tschüss",
+    "cefr_level": "ZERO",
+    "english_translation": "Bye",
+    "urdu_translation": "خدا حافظ",
+    "example_sentence": "Das Wort 'Tschüss' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Vier",
+    "cefr_level": "ZERO",
+    "english_translation": "Four",
+    "urdu_translation": "چار",
+    "example_sentence": "Das Wort 'Vier' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Warum?",
+    "cefr_level": "ZERO",
+    "english_translation": "Why?",
+    "urdu_translation": "کیوں؟",
+    "example_sentence": "Das Wort 'Warum?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Was?",
+    "cefr_level": "ZERO",
+    "english_translation": "What?",
+    "urdu_translation": "کیا؟",
+    "example_sentence": "Das Wort 'Was?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Wer?",
+    "cefr_level": "ZERO",
+    "english_translation": "Who?",
+    "urdu_translation": "کون؟",
+    "example_sentence": "Das Wort 'Wer?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Wie geht's?",
+    "cefr_level": "ZERO",
+    "english_translation": "How are you?",
+    "urdu_translation": "آپ کا کیا حال ہے؟",
+    "example_sentence": "Das Wort 'Wie geht's?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Wie?",
+    "cefr_level": "ZERO",
+    "english_translation": "How?",
+    "urdu_translation": "کیسے؟",
+    "example_sentence": "Das Wort 'Wie?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Wir",
+    "cefr_level": "ZERO",
+    "english_translation": "We",
+    "urdu_translation": "ہم",
+    "example_sentence": "Das Wort 'Wir' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Wo?",
+    "cefr_level": "ZERO",
+    "english_translation": "Where?",
+    "urdu_translation": "کہاں؟",
+    "example_sentence": "Das Wort 'Wo?' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Zehn",
+    "cefr_level": "ZERO",
+    "english_translation": "Ten",
+    "urdu_translation": "دس",
+    "example_sentence": "Das Wort 'Zehn' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "Zwei",
+    "cefr_level": "ZERO",
+    "english_translation": "Two",
+    "urdu_translation": "دو",
+    "example_sentence": "Das Wort 'Zwei' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "das Brot",
+    "cefr_level": "ZERO",
+    "english_translation": "bread",
+    "urdu_translation": "روٹی / بریڈ",
+    "example_sentence": "Das Wort 'das Brot' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "das Wasser",
+    "cefr_level": "ZERO",
+    "english_translation": "water",
+    "urdu_translation": "پانی",
+    "example_sentence": "Das Wort 'das Wasser' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "der Kaffee",
+    "cefr_level": "ZERO",
+    "english_translation": "coffee",
+    "urdu_translation": "کافی",
+    "example_sentence": "Das Wort 'der Kaffee' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "der Tee",
+    "cefr_level": "ZERO",
+    "english_translation": "tea",
+    "urdu_translation": "چائے",
+    "example_sentence": "Das Wort 'der Tee' gehört zum Goethe ZERO Wortschatz."
+  },
+  {
+    "german_word": "die Milch",
+    "cefr_level": "ZERO",
+    "english_translation": "milk",
+    "urdu_translation": "دھودھ",
+    "example_sentence": "Das Wort 'die Milch' gehört zum Goethe ZERO Wortschatz."
   }
 ]
