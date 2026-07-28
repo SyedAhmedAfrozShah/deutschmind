@@ -141,25 +141,25 @@
             <!-- Status Badges & XP / Streak System -->
             <div class="flex items-center space-x-2 sm:space-x-3">
                 <!-- XP Badge -->
-                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300" title="Experience Points">
-                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i>
+                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300 shrink-0" title="Experience Points">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400 shrink-0 inline-block"></i>
                     <span id="header-xp-val" class="font-bold">0 XP</span>
                 </div>
 
                 <!-- Streak Badge -->
-                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-xs font-mono text-rose-300" title="Daily Login Streak">
-                    <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-400"></i>
+                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-xs font-mono text-rose-300 shrink-0" title="Daily Login Streak">
+                    <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-400 shrink-0 inline-block"></i>
                     <span id="header-streak-val" class="font-bold">1 Days</span>
                 </div>
 
-                <!-- Level Badge -->
-                <div class="flex items-center space-x-2 bg-indigo-950/40 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-mono text-indigo-300">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <!-- Clickable Level Badge -->
+                <button onclick="switchTab('dashboard')" class="flex items-center space-x-1.5 bg-indigo-950/40 hover:bg-indigo-900/50 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-mono text-indigo-300 transition-all cursor-pointer shrink-0">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
                     <span>Level: <span id="header-level-badge" class="font-bold text-white">A1</span></span>
-                </div>
+                </button>
 
-                <button onclick="openApiKeyModal()" id="btn-api-key" class="hidden sm:flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all cursor-pointer">
-                    <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+                <button onclick="openApiKeyModal()" id="btn-api-key" class="hidden sm:flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all cursor-pointer shrink-0">
+                    <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400 shrink-0 inline-block"></i>
                     <span id="api-key-status-text">API Key</span>
                 </button>
             </div>
@@ -814,8 +814,16 @@
 
         async function setUserLevel(level) {
             currentLevel = level;
-            document.getElementById('current-tier-badge').innerText = level;
-            document.getElementById('hero-tier-title').innerText = `${level} Tier`;
+
+            // Use .textContent on specific text spans, preserving parent buttons & onclick listeners
+            const headerLevel = document.getElementById('header-level-badge');
+            if (headerLevel) headerLevel.textContent = level;
+
+            const currentBadge = document.getElementById('current-tier-badge');
+            if (currentBadge) currentBadge.textContent = level;
+
+            const heroTitle = document.getElementById('hero-tier-title');
+            if (heroTitle) heroTitle.textContent = `${level} Tier`;
 
             document.querySelectorAll('.level-select-btn').forEach(btn => {
                 btn.className = 'level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-slate-400 hover:text-white';
@@ -825,10 +833,19 @@
                 activeBtn.className = 'level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
             }
 
+            // Sync with persistent state manager
+            if (typeof unlockLevel === "function") {
+                unlockLevel(level);
+            }
+
             const defaultSpeeds = { "ZERO": 0.75, "A1": 0.75, "A2": 0.9, "B1": 1.0 };
             currentListeningSpeed = defaultSpeeds[level] || 0.85;
             const valText = document.getElementById('speed-val-text');
             if (valText) valText.innerText = `${currentListeningSpeed}x`;
+
+            generateDailyVocab();
+            loadNewGrammarExercise();
+        }
 
             try {
                 await fetch(`${API_BASE}/api/users`, {
@@ -1183,8 +1200,9 @@
         function renderGrammarExercise(ex) {
             currentGrammarExercise = ex;
 
-            const enMeaning = ex.english || ex.instructions_en || "";
-            const urMeaning = ex.urdu || ex.instructions_ur || "";
+            // Robust multi-key translation mapping
+            const enMeaning = ex.english || ex.english_translation || ex.definition_en || ex.instructions_en || "";
+            const urMeaning = ex.urdu || ex.urdu_translation || ex.definition_ur || ex.instructions_ur || "";
 
             document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
             document.getElementById('grammar-cefr-tag').innerText = currentLevel;
