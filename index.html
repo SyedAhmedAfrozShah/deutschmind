@@ -1105,29 +1105,52 @@
             const fTargetSentence = document.getElementById('full-grammar-target');
             if (fTargetSentence) fTargetSentence.innerText = "Loading new sentence...";
 
+            // 1. Try Live Backend Endpoint
             try {
                 const res = await fetchWithTimeout(`${API_BASE}/api/grammar/generate`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
-                }, 3500);
-                if (!res.ok) throw new Error("Server timeout");
-                const data = await res.json();
-                const ex = data.exercise;
-                renderGrammarExercise(ex);
-            } catch (e) {
-                console.warn(`Using Goethe-Institut CEFR level ${currentLevel} grammar bank:`, e);
-                const pool = GOETHE_GRAMMAR_BANK[currentLevel] || GOETHE_GRAMMAR_BANK.A1;
-                let seenKey = `seen_grammar_${currentLevel}`;
-                let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
-                let available = pool.filter((_, idx) => !seen.includes(idx));
-                if (available.length === 0) { seen = []; available = pool; }
-                const pickedIdx = pool.indexOf(available[Math.floor(Math.random() * available.length)]);
-                seen.push(pickedIdx);
-                localStorage.setItem(seenKey, JSON.stringify(seen));
+                }, 2000);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.exercise) {
+                        renderGrammarExercise(data.exercise);
+                        return;
+                    }
+                }
+            } catch (e) {}
 
-                renderGrammarExercise(pool[pickedIdx]);
+            // 2. Try Static Exported JSON (Dataset 2 grammar.json)
+            const staticExport = await fetchStaticJsonData('grammar.json');
+            let pool = GOETHE_GRAMMAR_BANK[currentLevel] || GOETHE_GRAMMAR_BANK.A1;
+            if (staticExport && Array.isArray(staticExport) && staticExport.length > 0) {
+                const filtered = staticExport.filter(item => (item.cefr || item.cefr_level || 'A1').toUpperCase() === currentLevel.toUpperCase());
+                if (filtered.length > 0) {
+                    pool = filtered.map(item => ({
+                        target_concept: item.topic || item.target_concept || "German Grammar",
+                        incorrect_sentence: item.german || item.incorrect_sentence,
+                        correct_sentence: item.german || item.correct_sentence,
+                        instructions_en: item.english || item.instructions_en || "Grammar Analysis:",
+                        instructions_ur: item.urdu || item.instructions_ur || "گرامر کا تجزیہ:",
+                        hint_en: item.rule_hint || item.hint_en || "",
+                        hint_ur: item.urdu || item.hint_ur || "",
+                        english: item.english,
+                        urdu: item.urdu
+                    }));
+                }
             }
+
+            // 3. Render Level-Aware Unseen Items
+            let seenKey = `seen_grammar_${currentLevel}`;
+            let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
+            let available = pool.filter((_, idx) => !seen.includes(idx));
+            if (available.length === 0) { seen = []; available = pool; }
+            const pickedIdx = pool.indexOf(available[Math.floor(Math.random() * available.length)]);
+            seen.push(pickedIdx);
+            localStorage.setItem(seenKey, JSON.stringify(seen));
+
+            renderGrammarExercise(pool[pickedIdx]);
         }
 
         function renderGrammarExercise(ex) {
@@ -1135,18 +1158,18 @@
 
             document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
             document.getElementById('grammar-cefr-tag').innerText = currentLevel;
-            document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || "Correct the German sentence below:";
-            document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
-            document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence;
-            document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ''}`;
-            document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ''}`;
+            document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || ex.english || "Analyze the German sentence structure:";
+            document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || ex.urdu || "درج ذیل جرمن جملے کا جائزہ لیں:";
+            document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence || ex.german;
+            document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ex.rule_hint || ex.english || ''}`;
+            document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ex.urdu || ''}`;
 
             const fConcept = document.getElementById('full-grammar-concept');
             if (fConcept) fConcept.innerText = ex.target_concept || "German Grammar";
             const fLevel = document.getElementById('full-grammar-level');
             if (fLevel) fLevel.innerText = currentLevel;
             const fInstEn = document.getElementById('full-grammar-instructions-en');
-            if (fInstEn) fInstEn.innerText = ex.instructions_en || "Correct the German sentence below:";
+            if (fInstEn) fInstEn.innerText = ex.instructions_en || ex.english || "Analyze the German sentence structure:";
             const fInstUr = document.getElementById('full-grammar-instructions-ur');
             if (fInstUr) fInstUr.innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
             const fTargetSentence = document.getElementById('full-grammar-target');

@@ -1,4 +1,19 @@
-[
+import os
+import sqlite3
+import json
+import asyncio
+from backend.models import get_db_connection
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+FRONTEND_DATA_DIR = os.path.join(BASE_DIR, "frontend", "data")
+
+# =========================================================================
+# GOETHE-INSTITUT CERTIFIED GRAMMAR LAB DATASET (CEFR A1, A2, B1)
+# =========================================================================
+
+GRAMMAR_DATASET = [
+  # --- A1 LEVEL GRAMMAR ---
   {
     "id": "g_a1_001",
     "german": "Ich kaufe keinen Apfel, sondern eine Birne.",
@@ -89,6 +104,8 @@
     "topic": "Core Modal Verbs (möchten)",
     "rule_hint": "Modal verb 'möchte' goes to position 2 and main verb 'trinken' goes to the clause end."
   },
+
+  # --- A2 LEVEL GRAMMAR ---
   {
     "id": "g_a2_001",
     "german": "Er stellt das Buch auf den Tisch, weil er lesen will.",
@@ -179,6 +196,8 @@
     "topic": "Subordinate Clauses with 'weil'",
     "rule_hint": "'weil' sends verb 'ist' to the end of the subordinate clause."
   },
+
+  # --- B1 LEVEL GRAMMAR ---
   {
     "id": "g_b1_001",
     "german": "Obwohl es stark regnete, ging er ohne Schirm spazieren.",
@@ -270,3 +289,73 @@
     "rule_hint": "Relative clause incorporates preposition + relative pronoun ('über das'), pushing conjugated 'haben' to the end."
   }
 ]
+
+def init_grammar_schema():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS grammar_sentences (
+        id TEXT PRIMARY KEY,
+        german TEXT NOT NULL,
+        english TEXT NOT NULL,
+        urdu TEXT NOT NULL,
+        cefr TEXT NOT NULL,
+        topic TEXT NOT NULL,
+        rule_hint TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """)
+
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_grammar_cefr ON grammar_sentences(cefr);")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_grammar_topic ON grammar_sentences(topic);")
+
+    conn.commit()
+    conn.close()
+
+def seed_grammar_sentences():
+    init_grammar_schema()
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    inserted = 0
+    for item in GRAMMAR_DATASET:
+        try:
+            cursor.execute("""
+            INSERT OR REPLACE INTO grammar_sentences (id, german, english, urdu, cefr, topic, rule_hint)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+            """, (
+                item["id"],
+                item["german"],
+                item["english"],
+                item["urdu"],
+                item["cefr"],
+                item["topic"],
+                item["rule_hint"]
+            ))
+            inserted += 1
+        except sqlite3.Error as e:
+            print(f"Error inserting grammar sentence {item['id']}: {e}")
+
+    conn.commit()
+    conn.close()
+
+    # Save to data/grammar.json and frontend/data/grammar.json
+    os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(FRONTEND_DATA_DIR, exist_ok=True)
+
+    paths = [
+        os.path.join(DATA_DIR, "grammar.json"),
+        os.path.join(FRONTEND_DATA_DIR, "grammar.json")
+    ]
+
+    for p in paths:
+        with open(p, "w", encoding="utf-8") as f:
+            json.dump(GRAMMAR_DATASET, f, ensure_ascii=False, indent=2)
+        safe_p = p.encode('ascii', 'replace').decode('ascii')
+        print(f"Exported static grammar dataset -> {safe_p} ({len(GRAMMAR_DATASET)} items)")
+
+    print(f"\n[Success] Grammar Lab Dataset 2 Seeding Complete! Total sentences: {inserted}")
+
+if __name__ == "__main__":
+    seed_grammar_sentences()

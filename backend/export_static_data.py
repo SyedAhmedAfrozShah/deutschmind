@@ -45,9 +45,9 @@ def export_sqlite_to_static_json():
     grammar_list = []
     if grammar_table_exists:
         cursor.execute("""
-        SELECT target_concept, incorrect_sentence, correct_sentence, instructions_en, instructions_ur, hint_en, hint_ur, cefr_level 
+        SELECT id, german, english, urdu, cefr, topic, rule_hint 
         FROM grammar_sentences 
-        ORDER BY cefr_level;
+        ORDER BY cefr, id;
         """)
         grammar_rows = cursor.fetchall()
         grammar_list = [dict(row) for row in grammar_rows]
