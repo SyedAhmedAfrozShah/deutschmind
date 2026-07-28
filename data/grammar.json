@@ -1,0 +1,32 @@
+[
+  {
+    "target_concept": "Goethe A1: V2 Word Order",
+    "incorrect_sentence": "Heute ich fahre nach Frankfurt.",
+    "correct_sentence": "Heute fahre ich nach Frankfurt.",
+    "instructions_en": "Place verb in position 2:",
+    "instructions_ur": "فعل کو دوسری جگہ رکھیں:",
+    "hint_en": "Verb 'fahre' MUST be Pos 2.",
+    "hint_ur": "فعل 'fahre' لازمی دوسری جگہ ہونا چاہیے۔",
+    "cefr_level": "A1"
+  },
+  {
+    "target_concept": "Goethe A2: Perfekt mit sein",
+    "incorrect_sentence": "Gestern ich habe nach München geflogen.",
+    "correct_sentence": "Gestern bin ich nach München geflogen.",
+    "instructions_en": "Movement verbs use auxiliary 'sein':",
+    "instructions_ur": "حرکت ظاہر کرنے والے افعال کے ساتھ 'sein' کا استعمال کریں:",
+    "hint_en": "Movement verb requires 'bin'.",
+    "hint_ur": "'sein' (bin) کا استعمال کریں۔",
+    "cefr_level": "A2"
+  },
+  {
+    "target_concept": "Goethe B1: Nebensatz mit weil",
+    "incorrect_sentence": "Ich lerne Deutsch, weil ich will in Deutschland arbeiten.",
+    "correct_sentence": "Ich lerne Deutsch, weil ich in Deutschland arbeiten will.",
+    "instructions_en": "Subordinate clause pushes conjugated verb to the end:",
+    "instructions_ur": "تابع جملے میں فعل کو آخر میں بھیجیں:",
+    "hint_en": "Verb 'will' goes to the very end.",
+    "hint_ur": "فعل 'will' بالکل آخر میں جاتا ہے۔",
+    "cefr_level": "B1"
+  }
+]

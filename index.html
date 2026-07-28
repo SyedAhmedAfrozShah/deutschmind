@@ -940,6 +940,19 @@
             }
         }
 
+        // Static JSON Data Loader for Serverless GitHub Pages Deployment
+        async function fetchStaticJsonData(filename) {
+            try {
+                const res = await fetchWithTimeout(`data/${filename}`, {}, 2000);
+                if (res.ok) return await res.json();
+            } catch(e) {}
+            try {
+                const res = await fetchWithTimeout(`frontend/data/${filename}`, {}, 2000);
+                if (res.ok) return await res.json();
+            } catch(e) {}
+            return null;
+        }
+
         async function generateDailyVocab() {
             const activeLevel = currentLevel;
             const container = document.getElementById('vocab-card-container');
@@ -951,36 +964,56 @@
             `;
             lucide.createIcons();
 
+            // 1. Try Live Backend Endpoint
             try {
                 const res = await fetchWithTimeout(`${API_BASE}/api/vocabulary/generate`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_id: currentUserId, cefr_level: activeLevel, count: 4})
-                }, 3500);
+                }, 2500);
                 
-                if (!res.ok) throw new Error("Server response error");
-                const data = await res.json();
-                const items = data.vocabulary || [];
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.vocabulary && data.vocabulary.length > 0) {
+                        renderVocabCards(data.vocabulary, activeLevel);
+                        return;
+                    }
+                }
+            } catch (e) {}
 
-                renderVocabCards(items, activeLevel);
-            } catch (e) {
-                console.warn(`Using Goethe-Institut CEFR level ${activeLevel} vocabulary bank:`, e);
-                const pool = GOETHE_VOCAB_BANK[activeLevel] || GOETHE_VOCAB_BANK.A1;
-                let seenKey = `seen_vocab_${activeLevel}`;
-                let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
-                let available = pool.filter((_, idx) => !seen.includes(idx));
-                if (available.length < 4) { seen = []; available = pool; }
-                
-                let shuffled = [...available].sort(() => 0.5 - Math.random());
-                let selected = shuffled.slice(0, Math.min(4, shuffled.length));
-                selected.forEach(item => {
-                    let idx = pool.indexOf(item);
-                    if (idx !== -1 && !seen.includes(idx)) seen.push(idx);
-                });
-                localStorage.setItem(seenKey, JSON.stringify(seen));
-
-                renderVocabCards(selected, activeLevel);
+            // 2. Try Pre-Seeded Exported Static JSON (from SQLite DB export)
+            const staticExport = await fetchStaticJsonData('vocab.json');
+            let pool = GOETHE_VOCAB_BANK[activeLevel] || GOETHE_VOCAB_BANK.A1;
+            if (staticExport && Array.isArray(staticExport) && staticExport.length > 0) {
+                const filtered = staticExport.filter(item => (item.cefr_level || 'A1').toUpperCase() === activeLevel.toUpperCase());
+                if (filtered.length > 0) {
+                    pool = filtered.map(item => ({
+                        word: item.german_word || item.word,
+                        definition_en: item.english_translation || item.definition_en,
+                        definition_ur: item.urdu_translation || item.definition_ur,
+                        example_sentence: item.example_sentence || '',
+                        example_translation_en: item.english_translation || '',
+                        example_translation_ur: item.urdu_translation || '',
+                        cefr_level: item.cefr_level || activeLevel
+                    }));
+                }
             }
+
+            // 3. Render Level-Aware Unseen Items
+            let seenKey = `seen_vocab_${activeLevel}`;
+            let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
+            let available = pool.filter((_, idx) => !seen.includes(idx));
+            if (available.length < 4) { seen = []; available = pool; }
+            
+            let shuffled = [...available].sort(() => 0.5 - Math.random());
+            let selected = shuffled.slice(0, Math.min(4, shuffled.length));
+            selected.forEach(item => {
+                let idx = pool.indexOf(item);
+                if (idx !== -1 && !seen.includes(idx)) seen.push(idx);
+            });
+            localStorage.setItem(seenKey, JSON.stringify(seen));
+
+            renderVocabCards(selected, activeLevel);
         }
 
         function renderVocabCards(items, activeLevel) {

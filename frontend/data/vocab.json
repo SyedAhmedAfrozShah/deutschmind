@@ -1,0 +1,240 @@
+[
+  {
+    "german_word": "abfahren",
+    "cefr_level": "A1",
+    "english_translation": "to depart / leave",
+    "urdu_translation": "روانہ ہونا",
+    "example_sentence": "Der Zug fährt um 09:00 Uhr ab."
+  },
+  {
+    "german_word": "allein",
+    "cefr_level": "A1",
+    "english_translation": "alone",
+    "urdu_translation": "اکیلا / تنہا",
+    "example_sentence": "Er wohnt allein."
+  },
+  {
+    "german_word": "anfangen",
+    "cefr_level": "A1",
+    "english_translation": "to begin / start",
+    "urdu_translation": "شروع کرنا",
+    "example_sentence": "Der Kurs fängt morgen an."
+  },
+  {
+    "german_word": "anrufen",
+    "cefr_level": "A1",
+    "english_translation": "to call (phone)",
+    "urdu_translation": "فون کرنا",
+    "example_sentence": "Ich rufe dich später an."
+  },
+  {
+    "german_word": "ausfüllen",
+    "cefr_level": "A1",
+    "english_translation": "to fill out (form)",
+    "urdu_translation": "فارم پر کرنا",
+    "example_sentence": "Bitte füllen Sie das Formular aus."
+  },
+  {
+    "german_word": "das Auto",
+    "cefr_level": "A1",
+    "english_translation": "the car",
+    "urdu_translation": "گاڑی / کار",
+    "example_sentence": "Das Auto ist neu."
+  },
+  {
+    "german_word": "der Abflug",
+    "cefr_level": "A1",
+    "english_translation": "the departure (flight)",
+    "urdu_translation": "پرواز کی روانگی",
+    "example_sentence": "Der Abflug ist pünktlich."
+  },
+  {
+    "german_word": "der Apfel",
+    "cefr_level": "A1",
+    "english_translation": "the apple",
+    "urdu_translation": "سیب",
+    "example_sentence": "Ich esse einen Apfel."
+  },
+  {
+    "german_word": "der Arzt",
+    "cefr_level": "A1",
+    "english_translation": "the doctor",
+    "urdu_translation": "ڈاکٹر / طبیب",
+    "example_sentence": "Ich muss zum Arzt."
+  },
+  {
+    "german_word": "der Ausflug",
+    "cefr_level": "A1",
+    "english_translation": "the excursion / trip",
+    "urdu_translation": "سیر و تفریح",
+    "example_sentence": "Wir machen einen Ausflug."
+  },
+  {
+    "german_word": "die Adresse",
+    "cefr_level": "A1",
+    "english_translation": "the address",
+    "urdu_translation": "پتہ",
+    "example_sentence": "Wie ist Ihre Adresse?"
+  },
+  {
+    "german_word": "die Ankunft",
+    "cefr_level": "A1",
+    "english_translation": "the arrival",
+    "urdu_translation": "آمد",
+    "example_sentence": "Die Ankunft ist um 14 Uhr."
+  },
+  {
+    "german_word": "die Arbeit",
+    "cefr_level": "A1",
+    "english_translation": "the work / job",
+    "urdu_translation": "کام / ملازمت",
+    "example_sentence": "Er hat viel Arbeit."
+  },
+  {
+    "german_word": "die Bäckerei",
+    "cefr_level": "A1",
+    "english_translation": "the bakery",
+    "urdu_translation": "بیکری / نان بائی",
+    "example_sentence": "Ich kaufe Brot in der Bäckerei."
+  },
+  {
+    "german_word": "abmachen",
+    "cefr_level": "A2",
+    "english_translation": "to agree / arrange",
+    "urdu_translation": "متفق ہونا / طے کرنا",
+    "example_sentence": "Wir haben einen Termin abgemacht."
+  },
+  {
+    "german_word": "anmelden",
+    "cefr_level": "A2",
+    "english_translation": "to register / sign up",
+    "urdu_translation": "رجسٹریشن کرنا",
+    "example_sentence": "Sie müssen sich anmelden."
+  },
+  {
+    "german_word": "ausleihen",
+    "cefr_level": "A2",
+    "english_translation": "to borrow / lend",
+    "urdu_translation": "عاریتاً لینا / ادھار لینا",
+    "example_sentence": "Ich leihe mir ein Buch aus."
+  },
+  {
+    "german_word": "ausziehen",
+    "cefr_level": "A2",
+    "english_translation": "to move out / undress",
+    "urdu_translation": "مکان بدلنا / کپڑے اتارنا",
+    "example_sentence": "Er zieht morgen aus."
+  },
+  {
+    "german_word": "das Angebot",
+    "cefr_level": "A2",
+    "english_translation": "the offer / deal",
+    "urdu_translation": "پیشکش / رعایت",
+    "example_sentence": "Das Angebot gilt heute."
+  },
+  {
+    "german_word": "der Angestellte",
+    "cefr_level": "A2",
+    "english_translation": "the employee",
+    "urdu_translation": "ملازم / اہلکار",
+    "example_sentence": "Er ist Angestellter bei BMW."
+  },
+  {
+    "german_word": "der Anzug",
+    "cefr_level": "A2",
+    "english_translation": "the suit",
+    "urdu_translation": "سوٹ / لباس",
+    "example_sentence": "Er trägt einen schwarzen Anzug."
+  },
+  {
+    "german_word": "der Ausweis",
+    "cefr_level": "A2",
+    "english_translation": "ID card / passport",
+    "urdu_translation": "شناختی کارڈ",
+    "example_sentence": "Zeigen Sie Ihren Ausweis."
+  },
+  {
+    "german_word": "die Ausbildung",
+    "cefr_level": "A2",
+    "english_translation": "vocational training / apprenticeship",
+    "urdu_translation": "پیشہ ورانہ تربیت / آوسبلڈنگ",
+    "example_sentence": "Sie macht eine Ausbildung."
+  },
+  {
+    "german_word": "die Auslandsreise",
+    "cefr_level": "A2",
+    "english_translation": "trip abroad",
+    "urdu_translation": "غیر ملکی سفر",
+    "example_sentence": "Eine Auslandsreise ist geplant."
+  },
+  {
+    "german_word": "ablehnen",
+    "cefr_level": "B1",
+    "english_translation": "to reject / decline",
+    "urdu_translation": "مسترد کرنا",
+    "example_sentence": "Sie hat das Angebot abgelehnt."
+  },
+  {
+    "german_word": "absichtlich",
+    "cefr_level": "B1",
+    "english_translation": "intentional / deliberate",
+    "urdu_translation": "جان بوجھ کر",
+    "example_sentence": "Das war nicht absichtlich."
+  },
+  {
+    "german_word": "berücksichtigen",
+    "cefr_level": "B1",
+    "english_translation": "to consider / take into account",
+    "urdu_translation": "مدنظر رکھنا",
+    "example_sentence": "Wir müssen das berücksichtigen."
+  },
+  {
+    "german_word": "das Abenteuer",
+    "cefr_level": "B1",
+    "english_translation": "the adventure",
+    "urdu_translation": "مہم جوئی",
+    "example_sentence": "Die Reise war ein Abenteuer."
+  },
+  {
+    "german_word": "der Abschied",
+    "cefr_level": "B1",
+    "english_translation": "farewell / parting",
+    "urdu_translation": "الوداع",
+    "example_sentence": "Der Abschied war traurig."
+  },
+  {
+    "german_word": "die Abhängigkeit",
+    "cefr_level": "B1",
+    "english_translation": "addiction / dependence",
+    "urdu_translation": "انحصار / لت",
+    "example_sentence": "Medienabhängigkeit ist ein Thema."
+  },
+  {
+    "german_word": "die Auswirkung",
+    "cefr_level": "B1",
+    "english_translation": "effect / impact",
+    "urdu_translation": "اثر / نتیجہ",
+    "example_sentence": "Die Auswirkung ist positiv."
+  },
+  {
+    "german_word": "die Begeisterung",
+    "cefr_level": "B1",
+    "english_translation": "enthusiasm",
+    "urdu_translation": "جوش و جذبہ",
+    "example_sentence": "Sie zeigte große Begeisterung."
+  },
+  {
+    "german_word": "die Behauptung",
+    "cefr_level": "B1",
+    "english_translation": "claim / assertion",
+    "urdu_translation": "دعویٰ",
+    "example_sentence": "Die Behauptung ist falsch."
+  },
+  {
+    "german_word": "die Beziehung",
+    "cefr_level": "B1",
+    "english_translation": "relationship",
+    "urdu_translation": "تعلق / رشتہ",
+    "example_sentence": "Sie haben eine gute Beziehung."
+  }
+]
