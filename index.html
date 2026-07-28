@@ -1833,34 +1833,7 @@
                 console.error(e);
             }
         }
-    <!-- API Key Settings Modal -->
-    <div id="api-key-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="minimal-card p-6 border border-indigo-500/30 max-w-md w-full space-y-4 bg-slate-950 shadow-2xl rounded-2xl">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 class="text-base font-bold text-white flex items-center space-x-2">
-                    <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
-                    <span>Configure Gemini API Key</span>
-                </h3>
-                <button onclick="closeApiKeyModal()" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-            </div>
-            
-            <p class="text-xs text-slate-300 leading-relaxed">
-                Enter your Google Gemini API key to enable live AI German content generation &amp; speech evaluations.
-            </p>
 
-            <div class="space-y-2">
-                <input type="password" id="input-api-key" placeholder="AIzaSy..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white font-mono focus:border-indigo-500 focus:outline-none">
-                <div id="key-status-msg" class="text-[11px] font-mono text-slate-400">Key will be saved securely to backend .env file.</div>
-            </div>
-
-            <div class="flex items-center justify-end space-x-3 pt-2">
-                <button onclick="closeApiKeyModal()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold font-mono">Cancel</button>
-                <button onclick="saveApiKey()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold font-mono shadow-lg shadow-indigo-600/30">Save Key</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
         async function checkApiKeyStatus() {
             try {
                 const res = await fetch(`${API_BASE}/api/config/key`);
@@ -1914,9 +1887,33 @@
                 showToast("Error saving key.");
             }
         }
-
-        // Initialize API key status on load
-        document.addEventListener('DOMContentLoaded', checkApiKeyStatus);
     </script>
+
+    <!-- API Key Settings Modal -->
+    <div id="api-key-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="minimal-card p-6 border border-indigo-500/30 max-w-md w-full space-y-4 bg-slate-950 shadow-2xl rounded-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
+                    <span>Configure Gemini API Key</span>
+                </h3>
+                <button onclick="closeApiKeyModal()" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Enter your Google Gemini API key to enable live AI German content generation &amp; speech evaluations.
+            </p>
+
+            <div class="space-y-2">
+                <input type="password" id="input-api-key" placeholder="AIzaSy..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white font-mono focus:border-indigo-500 focus:outline-none">
+                <div id="key-status-msg" class="text-[11px] font-mono text-slate-400">Key will be saved securely to backend .env file.</div>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3 pt-2">
+                <button onclick="closeApiKeyModal()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold font-mono">Cancel</button>
+                <button onclick="saveApiKey()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold font-mono shadow-lg shadow-indigo-600/30">Save Key</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
