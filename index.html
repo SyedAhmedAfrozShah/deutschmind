@@ -256,11 +256,19 @@
                             <p id="grammar-instruction-ur" class="text-xs text-emerald-400 font-urdu">درج ذیل جرمن جملے میں غلطی درست کریں:</p>
                         </div>
 
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-rose-950/30 border border-rose-500/30">
-                            <span id="grammar-target-sentence" class="text-rose-300 font-mono text-xs font-semibold">Ich kommt aus Deutschland.</span>
-                            <button onclick="speakGerman(document.getElementById('grammar-target-sentence').innerText)" title="Listen to German sentence" class="p-1.5 rounded bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
-                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-                            </button>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between p-3 rounded-lg bg-rose-950/30 border border-rose-500/30">
+                                <span id="grammar-target-sentence" class="text-rose-300 font-mono text-xs font-semibold">Ich kommt aus Deutschland.</span>
+                                <button onclick="speakGerman(document.getElementById('grammar-target-sentence').innerText)" title="Listen to German sentence" class="p-1.5 rounded bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
+                                    <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Dual Language Sentence Meaning (EN & UR) -->
+                            <div id="grammar-meaning-box" class="space-y-1 bg-slate-950/80 p-2.5 rounded-lg border border-slate-800/80 text-xs">
+                                <div class="text-slate-300 font-sans"><span class="text-slate-400 font-mono text-[10px] font-bold">EN:</span> <span id="grammar-meaning-en">I come from Germany.</span></div>
+                                <div class="text-emerald-400 font-urdu"><span class="text-slate-400 font-mono text-[10px] font-sans font-bold">UR:</span> <span id="grammar-meaning-ur">میں جرمنی سے ہوں۔</span></div>
+                            </div>
                         </div>
 
                         <!-- Dual Language Hint -->
@@ -356,11 +364,19 @@
                     <p id="full-grammar-instructions-en" class="text-sm text-white font-medium">Correct the grammatical error in the German sentence below:</p>
                     <p id="full-grammar-instructions-ur" class="text-sm text-emerald-400 font-urdu">درج ذیل جرمن جملے میں گرائمر کی غلطی کو درست کریں:</p>
                     
-                    <div class="flex items-center justify-between p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
-                        <span id="full-grammar-target" class="text-rose-300 font-mono text-sm font-bold">Ich kommt aus Deutschland.</span>
-                        <button onclick="speakGerman(document.getElementById('full-grammar-target').innerText)" title="Listen to German sentence" class="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
-                            <i data-lucide="volume-2" class="w-4 h-4"></i>
-                        </button>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
+                            <span id="full-grammar-target" class="text-rose-300 font-mono text-sm font-bold">Ich kommt aus Deutschland.</span>
+                            <button onclick="speakGerman(document.getElementById('full-grammar-target').innerText)" title="Listen to German sentence" class="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-all flex-shrink-0 ml-2">
+                                <i data-lucide="volume-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Dual Language Sentence Meaning (EN & UR) -->
+                        <div id="full-grammar-translations" class="space-y-1.5 bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs">
+                            <div class="text-slate-300 font-sans"><span class="text-slate-400 font-mono text-[11px] font-bold">EN:</span> <span id="full-grammar-en">I come from Germany.</span></div>
+                            <div class="text-emerald-400 font-urdu"><span class="text-slate-400 font-mono text-[11px] font-sans font-bold">UR:</span> <span id="full-grammar-ur">میں جرمنی سے ہوں۔</span></div>
+                        </div>
                     </div>
 
                     <div class="space-y-2">
@@ -1167,24 +1183,39 @@
         function renderGrammarExercise(ex) {
             currentGrammarExercise = ex;
 
+            const enMeaning = ex.english || ex.instructions_en || "";
+            const urMeaning = ex.urdu || ex.instructions_ur || "";
+
             document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
             document.getElementById('grammar-cefr-tag').innerText = currentLevel;
-            document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || ex.english || "Analyze the German sentence structure:";
-            document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || ex.urdu || "درج ذیل جرمن جملے کا جائزہ لیں:";
+            document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || "Analyze the German sentence structure:";
+            document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || "درج ذیل جرمن جملے کا جائزہ لیں:";
             document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence || ex.german;
-            document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ex.rule_hint || ex.english || ''}`;
-            document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ex.urdu || ''}`;
+            
+            // Inject English & Urdu translations directly below German sentence box
+            const gEn = document.getElementById('grammar-meaning-en');
+            if (gEn) gEn.innerText = enMeaning;
+            const gUr = document.getElementById('grammar-meaning-ur');
+            if (gUr) gUr.innerText = urMeaning;
+
+            document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ex.rule_hint || enMeaning || ''}`;
+            document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || urMeaning || ''}`;
 
             const fConcept = document.getElementById('full-grammar-concept');
             if (fConcept) fConcept.innerText = ex.target_concept || "German Grammar";
             const fLevel = document.getElementById('full-grammar-level');
             if (fLevel) fLevel.innerText = currentLevel;
             const fInstEn = document.getElementById('full-grammar-instructions-en');
-            if (fInstEn) fInstEn.innerText = ex.instructions_en || ex.english || "Analyze the German sentence structure:";
+            if (fInstEn) fInstEn.innerText = ex.instructions_en || "Analyze the German sentence structure:";
             const fInstUr = document.getElementById('full-grammar-instructions-ur');
             if (fInstUr) fInstUr.innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
             const fTargetSentence = document.getElementById('full-grammar-target');
-            if (fTargetSentence) fTargetSentence.innerText = ex.incorrect_sentence;
+            if (fTargetSentence) fTargetSentence.innerText = ex.incorrect_sentence || ex.german;
+
+            const fEn = document.getElementById('full-grammar-en');
+            if (fEn) fEn.innerText = enMeaning;
+            const fUr = document.getElementById('full-grammar-ur');
+            if (fUr) fUr.innerText = urMeaning;
 
             lucide.createIcons();
             showToast(`Loaded new German grammar sentence!`);
