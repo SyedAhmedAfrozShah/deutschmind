@@ -867,7 +867,66 @@
             }
         }
 
-        // Timeout-guarded fetch helper to prevent any UI hangs or unresponsiveness
+        
+        // =========================================================================
+        // GOETHE-INSTITUT CEFR EXAM BLUEPRINT QUESTION BANK (ZERO, A1, A2, B1)
+        // =========================================================================
+        const GOETHE_VOCAB_BANK = {
+            ZERO: [
+                { word: "Hallo", definition_en: "Hello", definition_ur: "ہیلو / سلام", example_sentence: "Hallo, wie heißen Sie?", example_translation_en: "Hello, what is your name?", example_translation_ur: "ہیلو، آپ کا نام کیا ہے؟", cefr_level: "ZERO" },
+                { word: "Tschüss", definition_en: "Bye", definition_ur: "خدا حافظ", example_sentence: "Tschüss, bis morgen!", example_translation_en: "Bye, see you tomorrow!", example_translation_ur: "خدا حافظ، کل ملیں گے!", cefr_level: "ZERO" },
+                { word: "Danke", definition_en: "Thank you", definition_ur: "شکریہ", example_sentence: "Danke für die Hilfe.", example_translation_en: "Thank you for the help.", example_translation_ur: "مدد کا شکریہ۔", cefr_level: "ZERO" },
+                { word: "Bitte", definition_en: "Please / You're welcome", definition_ur: "برائے مہربانی / خوش آمدید", example_sentence: "Eine Tasse Tee, bitte.", example_translation_en: "A cup of tea, please.", example_translation_ur: "ایک کپ چائے، برائے مہربانی۔", cefr_level: "ZERO" }
+            ],
+            A1: [
+                { word: "der Frühstückstisch", definition_en: "Breakfast table", definition_ur: "ناشتے کی میز", example_sentence: "Wir sitzen am Frühstückstisch.", example_translation_en: "We are sitting at the breakfast table.", example_translation_ur: "ہم ناشتے کی میز پر بیٹھے ہیں۔", cefr_level: "A1" },
+                { word: "die Fahrkarte", definition_en: "Train/Bus ticket", definition_ur: "سفر کا ٹکٹ", example_sentence: "Ich muss eine Fahrkarte kaufen.", example_translation_en: "I need to buy a train ticket.", example_translation_ur: "مجھے ٹرین کا ٹکٹ خریدنا ہے۔", cefr_level: "A1" },
+                { word: "der Bahnhof", definition_en: "Railway station", definition_ur: "ریلوے اسٹیشن", example_sentence: "Wo ist der Hauptbahnhof?", example_translation_en: "Where is the main train station?", example_translation_ur: "مرکزی ریلوے اسٹیشن کہاں ہے؟", cefr_level: "A1" },
+                { word: "die Uhrzeit", definition_en: "Time of day", definition_ur: "وقت / گھڑی", example_sentence: "Wie viel Uhr ist es jetzt?", example_translation_en: "What time is it right now?", example_translation_ur: "ابھی کیا وقت ہوا ہے؟", cefr_level: "A1" },
+                { word: "einkaufen", definition_en: "To go shopping", definition_ur: "خریداری کرنا", example_sentence: "Am Samstag kaufe ich im Supermarkt ein.", example_translation_en: "On Saturday I shop at the supermarket.", example_translation_ur: "ہفتے کو میں سپر مارکیٹ سے خریداری کرتا ہوں۔", cefr_level: "A1" },
+                { word: "der Termin", definition_en: "Appointment", definition_ur: "ملاقات کا وقت", example_sentence: "Ich habe morgen einen Termin beim Arzt.", example_translation_en: "I have a doctor appointment tomorrow.", example_translation_ur: "کل ڈاکٹر کے پاس میری ملاقات کا وقت ہے۔", cefr_level: "A1" },
+                { word: "die Wohnung", definition_en: "Apartment / Flat", definition_ur: "رہائشی فلیٹ", example_sentence: "Meine Wohnung ist hell und groß.", example_translation_en: "My apartment is bright and big.", example_translation_ur: "میرا فلیٹ روشن اور بڑا ہے۔", cefr_level: "A1" },
+                { word: "das Wörterbuch", definition_en: "Dictionary", definition_ur: "لغت", example_sentence: "Ich brauche ein deutsches Wörterbuch.", example_translation_en: "I need a German dictionary.", example_translation_ur: "مجھے ایک جرمن لغت کی ضرورت ہے۔", cefr_level: "A1" }
+            ],
+            A2: [
+                { word: "die Versicherung", definition_en: "Insurance", definition_ur: "انشورنس / بیمہ", example_sentence: "Haben Sie eine Krankenversicherung?", example_translation_en: "Do you have health insurance?", example_translation_ur: "کیا آپ کے پاس صحت کی انشورنس ہے؟", cefr_level: "A2" },
+                { word: "das Bewerbungsschreiben", definition_en: "Job application letter", definition_ur: "نوکری کی درخواست", example_sentence: "Er schreibt ein Bewerbungsschreiben.", example_translation_en: "He is writing a job application letter.", example_translation_ur: "وہ نوکری کی درخواست لکھ رہا ہے۔", cefr_level: "A2" },
+                { word: "der Ausbildungsplatz", definition_en: "Apprenticeship position", definition_ur: "تربیت کی جگہ / آوسبلڈنگ", example_sentence: "Sie sucht einen Ausbildungsplatz als Mechatronikerin.", example_translation_en: "She is looking for an apprenticeship as a mechatronics technician.", example_translation_ur: "وہ میکاٹرانکس ٹیکنیشن کی تربیت کی جگہ تلاش کر رہی ہے۔", cefr_level: "A2" },
+                { word: "pünktlich", definition_en: "Punctual / On time", definition_ur: "وقت کا پابند", example_sentence: "Züge in Deutschland sollten pünktlich sein.", example_translation_en: "Trains in Germany should be punctual.", example_translation_ur: "جرمنی میں ٹرینوں کو وقت کا پابند ہونا چاہیے۔", cefr_level: "A2" },
+                { word: "das Zeugnis", definition_en: "Certificate / Report card", definition_ur: "سند / تعلیمی ریکارڈ", example_sentence: "Ich habe mein Goethe-Zertifikat Zeugnis erhalten.", example_translation_en: "I received my Goethe Certificate report card.", example_translation_ur: "مجھے اپنا گوئٹے سرٹیفکیٹ مل گیا ہے۔", cefr_level: "A2" }
+            ],
+            B1: [
+                { word: "die Arbeitslosigkeit", definition_en: "Unemployment", definition_ur: "بے روزگاری", example_sentence: "Die Arbeitslosigkeit sinkt kontinuierlich.", example_translation_en: "Unemployment is continuously dropping.", example_translation_ur: "بے روزگاری میں مسلسل کمی آ رہی ہے۔", cefr_level: "B1" },
+                { word: "die Herausforderung", definition_en: "Challenge", definition_ur: "چیلنج / مشکل", example_sentence: "Das Projekt ist eine große Herausforderung.", example_translation_en: "The project is a major challenge.", example_translation_ur: "یہ پروجیکٹ ایک بڑا چیلنج ہے۔", cefr_level: "B1" },
+                { word: "die Nachhaltigkeit", definition_en: "Sustainability", definition_ur: "پائیداری", example_sentence: "Nachhaltigkeit spielt in der Wirtschaft eine Rolle.", example_translation_en: "Sustainability plays a role in the economy.", example_translation_ur: "معیشت میں پائیداری کا اہم کردار ہے۔", cefr_level: "B1" }
+            ]
+        };
+
+        const GOETHE_GRAMMAR_BANK = {
+            ZERO: [
+                { target_concept: "Alphabet & Greetings", incorrect_sentence: "Guten Tag, wie du heißen?", correct_sentence: "Guten Tag, wie heißen Sie?", instructions_en: "Correct the formal greeting:", instructions_ur: "باقاعدہ سلام میں درستگی کریں:", hint_en: "Formal 'Sie' takes 'heißen'.", hint_ur: "باقاعدہ 'Sie' کے ساتھ 'heißen' آتا ہے۔" }
+            ],
+            A1: [
+                { target_concept: "Goethe A1: V2 Word Order", incorrect_sentence: "Heute ich fahre nach Frankfurt.", correct_sentence: "Heute fahre ich nach Frankfurt.", instructions_en: "Goethe A1 Standard: Place verb in position 2:", instructions_ur: "گوئٹے A1 معیار: فعل کو دوسری جگہ رکھیں:", hint_en: "Adverb 'Heute' is Pos 1; verb 'fahre' MUST be Pos 2.", hint_ur: "ظرف 'Heute' پہلی جگہ ہے؛ فعل 'fahre' لازمی دوسری جگہ ہونا چاہیے۔" },
+                { target_concept: "Goethe A1: Akkusativ Artikel", incorrect_sentence: "Ich trinke der Kaffee ohne Zucker.", correct_sentence: "Ich trinke den Kaffee ohne Zucker.", instructions_en: "Goethe A1 Standard: Correct masculine accusative article:", instructions_ur: "گوئٹے A1 معیار: مفعولی حالت میں مذکر اسم کا مادہ درست کریں:", hint_en: "'der Kaffee' changes to 'den Kaffee' in accusative.", hint_ur: "'der Kaffee' مفعولی حالت میں 'den Kaffee' میں بدل جاتا ہے۔" },
+                { target_concept: "Goethe A1: Modalverb 'können'", incorrect_sentence: "Er kann spricht sehr gut Deutsch.", correct_sentence: "Er kann sehr gut Deutsch sprechen.", instructions_en: "Goethe A1 Standard: Position infinitive at the sentence end:", instructions_ur: "گوئٹے A1 معیار: مصدر کو جملے کے آخر میں رکھیں:", hint_en: "Modal 'kann' conjugate at Pos 2; main verb 'sprechen' goes to the end in infinitive.", hint_ur: "ماڈل 'kann' دوسری جگہ پر اور اصل فعل 'sprechen' مصدر کی شکل میں آخر میں۔" },
+                { target_concept: "Goethe A1: Negation 'nicht' vs 'kein'", incorrect_sentence: "Ich habe nicht Zeit heute.", correct_sentence: "Ich habe keine Zeit heute.", instructions_en: "Goethe A1 Standard: Use 'kein' to negate nouns:", instructions_ur: "گوئٹے A1 معیار: اسماء کی نفی کے لیے 'kein' استعمال کریں:", hint_en: "Nouns without definite article are negated with 'kein/keine'.", hint_ur: "بغیر معرفہ اسماء کی نفی 'kein/keine' سے ہوتی ہے۔" },
+                { target_concept: "Goethe A1: Subjekt-Verb-Kongruenz", incorrect_sentence: "Wir wohnt in Berlin seit einem Jahr.", correct_sentence: "Wir wohnen in Berlin seit einem Jahr.", instructions_en: "Goethe A1 Standard: Fix subject-verb agreement for 'wir':", instructions_ur: "گوئٹے A1 معیار: 'wir' کے ساتھ فعل کی مطابقت درست کریں:", hint_en: "Plural subject 'Wir' requires ending -en (wohnen).", hint_ur: "جمع فاعل 'Wir' کے ساتھ فعل کا خاتمہ -en ہوتا ہے۔" }
+            ],
+            A2: [
+                { target_concept: "Goethe A2: Perfekt mit 'sein'", incorrect_sentence: "Gestern ich habe nach München geflogen.", correct_sentence: "Gestern bin ich nach München geflogen.", instructions_en: "Goethe A2 Standard: Movement verbs use auxiliary 'sein':", instructions_ur: "گوئٹے A2 معیار: حرکت ظاہر کرنے والے افعال کے ساتھ 'sein' کا استعمال کریں:", hint_en: "Movement verb 'fliegen' requires 'sein' (bin) as auxiliary.", hint_ur: "حرکت ظاہر کرنے والے فعل 'fliegen' کے ساتھ 'sein' (bin) آتا ہے۔" },
+                { target_concept: "Goethe A2: Dativ Präposition 'mit'", incorrect_sentence: "Ich fahre mit der Zug zur Arbeit.", correct_sentence: "Ich fahre mit dem Zug zur Arbeit.", instructions_en: "Goethe A2 Standard: Preposition 'mit' requires Dative:", instructions_ur: "گوئٹے A2 معیار: حرفِ جار 'mit' کے ساتھ حالتِ نِدا (Dative) درست کریں:", hint_en: "'mit' always takes Dative: 'der Zug' -> 'dem Zug'.", hint_ur: "'mit' کے ساتھ ہمیشہ Dative آتا ہے: 'der Zug' -> 'dem Zug'۔" },
+                { target_concept: "Goethe A2: Trennbare Verben im Satz", incorrect_sentence: "Der Zug ankommt um acht Uhr.", correct_sentence: "Der Zug kommt um acht Uhr an.", instructions_en: "Goethe A2 Standard: Move separable prefix to clause end:", instructions_ur: "گوئٹے A2 معیار: قابل تقسیم سابقہ کو جملے کے آخر میں رکھیں:", hint_en: "Prefix 'an-' separates and goes to the sentence end.", hint_ur: "سابقہ 'an-' الگ ہو کر جملے کے آخر میں چلا جاتا ہے۔" },
+                { target_concept: "Goethe A2: Reflexivpronomen (sich freuen)", incorrect_sentence: "Ich freue dich auf den Urlaub.", correct_sentence: "Ich freue mich auf den Urlaub.", instructions_en: "Goethe A2 Standard: Correct reflexive pronoun for 'ich':", instructions_ur: "گوئٹے A2 معیار: 'ich' کے لیے انعکاسی اسمِ ضمیر درست کریں:", hint_en: "Reflexive pronoun for 'ich' is 'mich'.", hint_ur: "'ich' کے لیے انعکاسی ضمیر 'mich' ہے۔" }
+            ],
+            B1: [
+                { target_concept: "Goethe B1: Nebensatz mit 'weil'", incorrect_sentence: "Ich lerne Deutsch, weil ich will in Deutschland arbeiten.", correct_sentence: "Ich lerne Deutsch, weil ich in Deutschland arbeiten will.", instructions_en: "Goethe B1 Standard: Subordinate clause pushes conjugated verb to the end:", instructions_ur: "گوئٹے B1 معیار: تابع جملے (weil) میں فعل کو بالکل آخر میں بھیجیں:", hint_en: "In 'weil' clauses, conjugated verb 'will' goes to the very end.", hint_ur: "تابع جملے 'weil' میں فعل 'will' بالکل آخر میں جاتا ہے۔" },
+                { target_concept: "Goethe B1: Passiv Präsens", incorrect_sentence: "Das Auto repariert von dem Mechaniker.", correct_sentence: "Das Auto wird von dem Mechaniker repariert.", instructions_en: "Goethe B1 Standard: Form passive voice with 'werden + Partizip II':", instructions_ur: "گوئٹے B1 معیار: فعلِ مجہول (Passive) تشکیل دیں:", hint_en: "Passive requires 'wird' + Partizip II ('repariert').", hint_ur: "فعلِ مجہول میں 'wird' اور Partizip II آتا ہے۔" },
+                { target_concept: "Goethe B1: Konjunktiv II (Höflichkeit)", incorrect_sentence: "Können Sie mir helfen bitte?", correct_sentence: "Könnten Sie mir bitte helfen?", instructions_en: "Goethe B1 Standard: Use Konjunktiv II for polite request:", instructions_ur: "گوئٹے B1 معیار: شائستہ درخواست کے لیے Konjunktiv II استعمال کریں:", hint_en: "Polite request uses 'Könnten' instead of 'Können'.", hint_ur: "شائستہ درخواست میں 'Können' کی جگہ 'Könnten' آتا ہے۔" }
+            ]
+        };
+
+// Timeout-guarded fetch helper to prevent any UI hangs or unresponsiveness
         async function fetchWithTimeout(url, options = {}, timeoutMs = 3500) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -905,15 +964,22 @@
 
                 renderVocabCards(items, activeLevel);
             } catch (e) {
-                console.warn("API unavailable or timed out, rendering dynamic local vocabulary pool:", e);
-                // Dynamic Client-side fallback pool
-                const localPool = [
-                    { word: "Guten Morgen", definition_en: "Good morning", definition_ur: "صبح بخیر", example_sentence: "Guten Morgen, wie geht es Ihnen?", example_translation_en: "Good morning, how are you?", example_translation_ur: "صبح بخیر، آپ کا کیا حال ہے؟", cefr_level: activeLevel },
-                    { word: "Danke schön", definition_en: "Thank you very much", definition_ur: "بہت بہت شکریہ", example_sentence: "Vielen Dank für Ihre Unterstützung!", example_translation_en: "Thank you very much for your support!", example_translation_ur: "آپ کا بہت بہت شکریہ!", cefr_level: activeLevel },
-                    { word: "das Wasser", definition_en: "The water", definition_ur: "پانی", example_sentence: "Ich möchte ein Glas Wasser trinken.", example_translation_en: "I would like to drink a glass of water.", example_translation_ur: "میں ایک گلاس پانی پینا چاہتا ہوں۔", cefr_level: activeLevel },
-                    { word: "Entschuldigung", definition_en: "Excuse me / Sorry", definition_ur: "معاف کیجیے گا", example_sentence: "Entschuldigung, wo ist die U-Bahn?", example_translation_en: "Excuse me, where is the subway?", example_translation_ur: "معاف کیجیے گا، سب وے کہاں ہے؟", cefr_level: activeLevel }
-                ];
-                renderVocabCards(localPool, activeLevel);
+                console.warn(`Using Goethe-Institut CEFR level ${activeLevel} vocabulary bank:`, e);
+                const pool = GOETHE_VOCAB_BANK[activeLevel] || GOETHE_VOCAB_BANK.A1;
+                let seenKey = `seen_vocab_${activeLevel}`;
+                let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
+                let available = pool.filter((_, idx) => !seen.includes(idx));
+                if (available.length < 4) { seen = []; available = pool; }
+                
+                let shuffled = [...available].sort(() => 0.5 - Math.random());
+                let selected = shuffled.slice(0, Math.min(4, shuffled.length));
+                selected.forEach(item => {
+                    let idx = pool.indexOf(item);
+                    if (idx !== -1 && !seen.includes(idx)) seen.push(idx);
+                });
+                localStorage.setItem(seenKey, JSON.stringify(seen));
+
+                renderVocabCards(selected, activeLevel);
             }
         }
 
@@ -1017,20 +1083,15 @@
                 const ex = data.exercise;
                 renderGrammarExercise(ex);
             } catch (e) {
-                console.warn("Using dynamic client-side unseen grammar pool:", e);
-                const pool = [
-                    { target_concept: "Verb Position (V2)", incorrect_sentence: "Ich gestern bin nach Berlin gefahren.", correct_sentence: "Ich bin gestern nach Berlin gefahren.", instructions_en: "Correct the verb placement in this German sentence:", instructions_ur: "اس جرمن جملے میں فعل کی جگہ درست کریں:", hint_en: "The conjugated auxiliary verb 'bin' must be in position 2.", hint_ur: "معاون فعل 'bin' دوسری جگہ پر ہونا چاہیے۔" },
-                    { target_concept: "Subject-Verb Agreement", incorrect_sentence: "Er kommen heute Spät nach Hause.", correct_sentence: "Er kommt heute spät nach Hause.", instructions_en: "Fix the subject-verb agreement:", instructions_ur: "فعل اور فاعل کی مطابقت کو درست کریں:", hint_en: "'Er' takes the ending -t (kommt).", hint_ur: "'Er' کے ساتھ فعل کے آخر میں -t آتا ہے۔" },
-                    { target_concept: "Modal Verb Structure", incorrect_sentence: "Wir müssen lernen Deutsch jeden Tag.", correct_sentence: "Wir müssen jeden Tag Deutsch lernen.", instructions_en: "Correct the infinitive modal verb position:", instructions_ur: "ماڈل فعل کے مصدر کی جگہ درست کریں:", hint_en: "The main infinitive 'lernen' goes to the very end of the clause.", hint_ur: "مصدر 'lernen' جملے کے بالکل آخر میں جاتا ہے۔" },
-                    { target_concept: "Accusative Article", incorrect_sentence: "Ich habe ein Hund und eine Katze.", correct_sentence: "Ich habe einen Hund und eine Katze.", instructions_en: "Fix the masculine article in the accusative case:", instructions_ur: "مفعولی حالت میں مذکر اسم کا مادہ درست کریں:", hint_en: "Masculine 'der Hund' becomes 'einen Hund' in the accusative.", hint_ur: "مذکر 'der Hund' مفعولی حالت میں 'einen Hund' بن جاتا ہے۔" },
-                    { target_concept: "Separable Verbs (Trennbare Verben)", incorrect_sentence: "Sie anruft ihre Mutter jeden Abend.", correct_sentence: "Sie ruft ihre Mutter jeden Abend an.", instructions_en: "Fix the separable verb prefix placement:", instructions_ur: "قابل تقسیم فعل کے سابقہ کو درست کریں:", hint_en: "The prefix 'an-' moves to the end of the sentence.", hint_ur: "سابقہ 'an-' جملے کے آخر میں چلا جاتا ہے۔" }
-                ];
-                let seen = JSON.parse(localStorage.getItem('seen_grammar_idxs') || '[]');
+                console.warn(`Using Goethe-Institut CEFR level ${currentLevel} grammar bank:`, e);
+                const pool = GOETHE_GRAMMAR_BANK[currentLevel] || GOETHE_GRAMMAR_BANK.A1;
+                let seenKey = `seen_grammar_${currentLevel}`;
+                let seen = JSON.parse(localStorage.getItem(seenKey) || '[]');
                 let available = pool.filter((_, idx) => !seen.includes(idx));
                 if (available.length === 0) { seen = []; available = pool; }
                 const pickedIdx = pool.indexOf(available[Math.floor(Math.random() * available.length)]);
                 seen.push(pickedIdx);
-                localStorage.setItem('seen_grammar_idxs', JSON.stringify(seen));
+                localStorage.setItem(seenKey, JSON.stringify(seen));
 
                 renderGrammarExercise(pool[pickedIdx]);
             }
