@@ -815,7 +815,18 @@
         async function setUserLevel(level) {
             currentLevel = level;
 
-            // Use .textContent on specific text spans, preserving parent buttons & onclick listeners
+            // REQUIREMENT 1: Save new level to localStorage using exact progress.js key
+            if (typeof unlockLevel === "function") {
+                unlockLevel(level);
+            } else {
+                try {
+                    const data = JSON.parse(localStorage.getItem("deutschmind_user_progress") || "{}");
+                    data.currentLevel = level;
+                    localStorage.setItem("deutschmind_user_progress", JSON.stringify(data));
+                } catch(e) {}
+            }
+
+            // REQUIREMENT 2: Global UI Updates across Header, Dashboard & Hero
             const headerLevel = document.getElementById('header-level-badge');
             if (headerLevel) headerLevel.textContent = level;
 
@@ -833,32 +844,16 @@
                 activeBtn.className = 'level-select-btn px-3.5 py-1.5 rounded-lg text-xs font-bold font-mono transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
             }
 
-            // Sync with persistent state manager
-            if (typeof unlockLevel === "function") {
-                unlockLevel(level);
-            }
-
             const defaultSpeeds = { "ZERO": 0.75, "A1": 0.75, "A2": 0.9, "B1": 1.0 };
             currentListeningSpeed = defaultSpeeds[level] || 0.85;
             const valText = document.getElementById('speed-val-text');
             if (valText) valText.innerText = `${currentListeningSpeed}x`;
 
+            showToast(`German CEFR level set to ${level}`);
+
+            // Trigger vocabulary and grammar re-fetching for newly selected level
             generateDailyVocab();
             loadNewGrammarExercise();
-        }
-
-            try {
-                await fetch(`${API_BASE}/api/users`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({user_id: currentUserId, current_level: level})
-                });
-                showToast(`German learning level updated to ${level}`);
-                generateDailyVocab();
-                loadNewGrammarExercise();
-            } catch (e) {
-                console.error(e);
-            }
         }
 
         async function fetchUserData() {
