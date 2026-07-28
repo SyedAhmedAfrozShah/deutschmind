@@ -138,23 +138,30 @@
                 </button>
             </nav>
 
-            <!-- Status Badges & API Key Button -->
-            <div class="flex items-center space-x-3">
-                <button onclick="openApiKeyModal()" id="btn-api-key" class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all cursor-pointer">
-                    <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
-                    <span id="api-key-status-text">Check API Key</span>
-                </button>
+            <!-- Status Badges & XP / Streak System -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- XP Badge -->
+                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300" title="Experience Points">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span id="header-xp-val" class="font-bold">0 XP</span>
+                </div>
+
+                <!-- Streak Badge -->
+                <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-xs font-mono text-rose-300" title="Daily Login Streak">
+                    <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-400"></i>
+                    <span id="header-streak-val" class="font-bold">1 Days</span>
+                </div>
+
+                <!-- Level Badge -->
                 <div class="flex items-center space-x-2 bg-indigo-950/40 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-mono text-indigo-300">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Level: <span id="current-tier-badge" class="font-bold text-white">ZERO</span></span>
+                    <span>Level: <span id="header-level-badge" class="font-bold text-white">A1</span></span>
                 </div>
-                <div class="hidden sm:inline-flex items-center space-x-1.5 text-xs text-slate-400 font-mono bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-lg">
-                    <span class="text-indigo-400 font-bold">DE</span>
-                    <span>◄</span>
-                    <span class="text-slate-200">EN</span>
-                    <span>+</span>
-                    <span class="text-emerald-400 font-urdu font-bold">اردو</span>
-                </div>
+
+                <button onclick="openApiKeyModal()" id="btn-api-key" class="hidden sm:flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all cursor-pointer">
+                    <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span id="api-key-status-text">API Key</span>
+                </button>
             </div>
         </div>
     </header>
@@ -665,6 +672,10 @@
         <i data-lucide="check-circle" class="w-4 h-4 text-indigo-400"></i>
         <span id="toast-msg">Action completed!</span>
     </div>
+
+    <!-- Core Engine Scripts -->
+    <script src="js/progress.js"></script>
+    <script src="js/quizEngine.js"></script>
 
     <!-- Application Javascript Logic -->
     <script>
@@ -1563,7 +1574,6 @@
                             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
                                 <div class="text-[10px] text-slate-400">2. Vocabulary Range</div>
                                 <div class="text-base font-bold text-violet-400">${ev.vocabulary_range}/100</div>
-                            </div>
                             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
                                 <div class="text-[10px] text-slate-400">3. Task Relevance</div>
                                 <div class="text-base font-bold text-emerald-400">${ev.task_relevance}/100</div>
@@ -1596,348 +1606,171 @@
             }
         }
 
-        // --- PHASE 4: PROMOTION EXAM GATEWAY FUNCTIONS ---
-        let currentExamPayload = null;
+        // --- PHASE 4: DYNAMIC PROMOTION EXAM & STATE MANAGER GATEWAY ---
+        let currentQuizAnswers = {};
 
         async function startPromotionExam() {
             const container = document.getElementById('exam-active-container');
             const startCard = document.getElementById('exam-start-card');
             const scoreboard = document.getElementById('exam-scoreboard-container');
 
-            startCard.classList.add('hidden');
-            scoreboard.classList.add('hidden');
-            container.classList.remove('hidden');
-
-            container.innerHTML = `
-                <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
-                    <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
-                    <div class="text-sm font-bold">Generating German CEFR ${currentLevel} Promotion Exam...</div>
-                    <div class="text-slate-400">Creating 4 modules: Vocab (10 Qs), Grammar (10 Qs), Listening (5 MCQs), Speaking Prompt</div>
-                </div>
-            `;
-            lucide.createIcons();
-
-            try {
-                const res = await fetch(`${API_BASE}/api/exam/generate`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
-                });
-                const data = await res.json();
-                currentExamPayload = data.exam;
-
-                const ex = data.exam;
-                const m1 = ex.module1_vocab || [];
-                const m2 = ex.module2_grammar || [];
-                const m3 = ex.module3_listening || {};
-                const m4 = ex.module4_speaking || {};
-
+            if (startCard) startCard.classList.add('hidden');
+            if (scoreboard) scoreboard.classList.add('hidden');
+            if (container) {
+                container.classList.remove('hidden');
                 container.innerHTML = `
-                    <div class="space-y-8">
-                        
-                        <!-- Exam Header -->
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                            <div>
-                                <span class="text-xs font-mono text-amber-400 font-bold">OFFICIAL PROMOTION EXAM</span>
-                                <h3 class="text-xl font-bold text-white">CEFR Level: ${currentLevel} ➔ ${data.target_promotion_level}</h3>
-                            </div>
-                            <div class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">
-                                Minimum Pass: 80% Overall (≥70% per module)
-                            </div>
-                        </div>
-
-                        <!-- MODULE 1: VOCABULARY TEST (20% Weight) -->
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-2 text-indigo-400 font-bold text-base border-b border-indigo-500/20 pb-2">
-                                <i data-lucide="book-open" class="w-5 h-5"></i>
-                                <span>Module 1: Vocabulary Test (20% Weight &bull; 10 Questions)</span>
-                            </div>
-                            
-                            <div class="space-y-4">
-                                ${m1.map((q, idx) => `
-                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-mono text-indigo-400 font-bold">Q${idx+1}: "${q.question_sentence}"</span>
-                                            <button onclick="speakGerman('${q.question_sentence.replace(/'/g, "\\'")}')" class="p-1 rounded bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30">
-                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-                                            </button>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            ${q.options.map((opt, oIdx) => `
-                                                <label class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-indigo-500/40 text-xs">
-                                                    <div class="flex items-center space-x-2">
-                                                        <input type="radio" name="exam_vocab_${idx}" value="${oIdx}" class="text-indigo-500 bg-slate-950 border-slate-700">
-                                                        <span class="text-slate-200">${opt}</span>
-                                                    </div>
-                                                    <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakGerman('${opt.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-indigo-300">
-                                                        <i data-lucide="volume-2" class="w-3 h-3"></i>
-                                                    </button>
-                                                </label>
-                                            `).join('')}
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- MODULE 2: WRITTEN GRAMMAR TEST (20% Weight) -->
-                        <div class="space-y-4 pt-4 border-t border-slate-800">
-                            <div class="flex items-center space-x-2 text-violet-400 font-bold text-base border-b border-violet-500/20 pb-2">
-                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
-                                <span>Module 2: Written Grammar Test (20% Weight &bull; 10 Sentence Corrections)</span>
-                            </div>
-
-                            <div class="space-y-4">
-                                ${m2.map((g, idx) => `
-                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-                                        <div class="flex items-center justify-between text-xs font-mono">
-                                            <span class="text-violet-400 font-bold">Task ${idx+1}: ${g.target_concept}</span>
-                                            <button onclick="speakGerman('${g.incorrect_sentence.replace(/'/g, "\\'")}')" class="p-1 rounded bg-violet-500/20 text-violet-300">
-                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-                                            </button>
-                                        </div>
-                                        <div class="p-2.5 rounded bg-rose-950/30 border border-rose-500/30 text-rose-300 font-mono text-xs font-semibold">
-                                            Incorrect: "${g.incorrect_sentence}"
-                                        </div>
-                                        <input type="text" id="exam_grammar_input_${idx}" placeholder="Type correct German sentence..." class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs text-white font-mono focus:border-violet-500/60">
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- MODULE 3: LISTENING COMPREHENSION (30% Weight) -->
-                        <div class="space-y-4 pt-4 border-t border-slate-800">
-                            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base border-b border-emerald-500/20 pb-2">
-                                <i data-lucide="headphones" class="w-5 h-5"></i>
-                                <span>Module 3: Listening Comprehension (30% Weight &bull; 5 MCQs)</span>
-                            </div>
-
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 text-center">
-                                <div class="text-sm font-bold text-white">${m3.title || 'German Audio Scenario'}</div>
-                                <div class="text-xs text-slate-400">Audio playback only (text hidden during official exam).</div>
-                                <button onclick="speakGerman('${(m3.narrative_de || '').replace(/'/g, "\\'")}')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 mx-auto inline-flex items-center space-x-2">
-                                    <i data-lucide="volume-2" class="w-4 h-4"></i>
-                                    <span>Play Listening Audio Scenario</span>
-                                </button>
-                            </div>
-
-                            <div class="space-y-4">
-                                ${(m3.questions || []).map((q, idx) => `
-                                    <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-mono text-emerald-400 font-bold">Listening Q${idx+1}: ${q.question_de}</span>
-                                            <button onclick="speakGerman('${q.question_de.replace(/'/g, "\\'")}')" class="p-1 rounded bg-emerald-500/20 text-emerald-300">
-                                                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-                                            </button>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            ${q.options.map((opt, oIdx) => `
-                                                <label class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-emerald-500/40 text-xs">
-                                                    <div class="flex items-center space-x-2">
-                                                        <input type="radio" name="exam_listening_${idx}" value="${oIdx}" class="text-emerald-500 bg-slate-950 border-slate-700">
-                                                        <span class="text-slate-200">${opt}</span>
-                                                    </div>
-                                                    <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakGerman('${opt.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-emerald-300">
-                                                        <i data-lucide="volume-2" class="w-3 h-3"></i>
-                                                    </button>
-                                                </label>
-                                            `).join('')}
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- MODULE 4: SPEAKING & PRONUNCIATION (30% Weight) -->
-                        <div class="space-y-4 pt-4 border-t border-slate-800">
-                            <div class="flex items-center space-x-2 text-rose-400 font-bold text-base border-b border-rose-500/20 pb-2">
-                                <i data-lucide="mic" class="w-5 h-5"></i>
-                                <span>Module 4: Speaking &amp; Pronunciation Test (30% Weight)</span>
-                            </div>
-
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-                                <div class="flex items-start justify-between">
-                                    <div>
-                                        <div class="text-xs font-mono text-rose-400 font-bold">Task: ${m4.topic || 'Speaking Response'}</div>
-                                        <h4 id="exam-speaking-prompt-text" class="text-sm font-bold text-white mt-1">${m4.prompt_de}</h4>
-                                        <p class="text-xs text-slate-400">${m4.prompt_en}</p>
-                                    </div>
-                                    <button onclick="speakGerman('${(m4.prompt_de || '').replace(/'/g, "\\'")}')" class="p-1.5 rounded-lg bg-rose-500/20 text-rose-300">
-                                        <i data-lucide="volume-2" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-
-                                <div class="text-center pt-2 space-y-3">
-                                    <button onclick="toggleSpeechRecording()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 inline-flex items-center space-x-2">
-                                        <i data-lucide="mic" class="w-4 h-4"></i>
-                                        <span>Record Microphone Speech</span>
-                                    </button>
-
-                                    <textarea id="exam_speaking_transcript" rows="3" placeholder="Speak into mic or type your German response..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white font-mono focus:border-rose-500/60"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SUBMIT EXAM BUTTON -->
-                        <button onclick="submitPromotionExam()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-base transition-all shadow-xl shadow-amber-500/30 flex items-center justify-center space-x-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-                            <span>Submit Complete 4-Module Exam for AI Gateway Evaluation</span>
-                        </button>
+                    <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
+                        <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
+                        <div class="text-sm font-bold">Generating Dynamic CEFR ${currentLevel} Promotion Exam...</div>
+                        <div class="text-slate-400">Fetching 10 MCQ questions with distractor options...</div>
                     </div>
                 `;
-
                 lucide.createIcons();
-            } catch (e) {
-                console.error(e);
             }
+
+            currentQuizAnswers = {};
+            await generateQuiz(currentLevel);
+            renderQuizQuestion(0);
         }
 
-        async function submitPromotionExam() {
-            if (!currentExamPayload) return;
-            const ex = currentExamPayload;
-            const m1 = ex.module1_vocab || [];
-            const m2 = ex.module2_grammar || [];
-            const m3 = ex.module3_listening || {};
-            const m4 = ex.module4_speaking || {};
+        function renderQuizQuestion(index) {
+            const session = activeQuizSession;
+            if (!session || !session.questions || session.questions.length === 0) return;
 
-            const vocab_user_answers = [];
-            const vocab_correct_answers = m1.map(q => q.correct_option);
-            for (let i = 0; i < m1.length; i++) {
-                const sel = document.querySelector(`input[name="exam_vocab_${i}"]:checked`);
-                vocab_user_answers.push(sel ? parseInt(sel.value) : -1);
-            }
-
-            const grammar_user_answers = [];
-            const grammar_correct_sentences = m2.map(g => g.correct_sentence);
-            for (let i = 0; i < m2.length; i++) {
-                const val = document.getElementById(`exam_grammar_input_${i}`).value.trim();
-                grammar_user_answers.push(val);
-            }
-
-            const listening_user_answers = [];
-            const listening_questions = m3.questions || [];
-            const listening_correct_answers = listening_questions.map(q => q.correct_option);
-            for (let i = 0; i < listening_questions.length; i++) {
-                const sel = document.querySelector(`input[name="exam_listening_${i}"]:checked`);
-                listening_user_answers.push(sel ? parseInt(sel.value) : -1);
-            }
-
-            const speaking_transcript = document.getElementById('exam_speaking_transcript').value.trim();
+            session.currentIndex = index;
+            const q = session.questions[index];
+            const total = session.questions.length;
+            const progressPercent = Math.round(((index + 1) / total) * 100);
 
             const container = document.getElementById('exam-active-container');
             container.innerHTML = `
-                <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
-                    <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
-                    <div class="text-base font-bold">Grading 4 Exam Modules &amp; Computing CEFR Gatekeeper Scores...</div>
-                    <div class="text-slate-400">Evaluating Vocab (20%), Grammar (20%), Listening (30%), Speaking (30%)</div>
+                <div class="space-y-6">
+                    <!-- Header Progress & CEFR Badge -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">CEFR Level: ${session.cefrLevel}</span>
+                            <span class="text-xs font-mono text-slate-400">${q.topic}</span>
+                        </div>
+                        <div class="text-xs font-mono text-amber-400 font-bold">
+                            Question ${index + 1} of ${total} (${progressPercent}%)
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                        <div class="h-full bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-300 shadow-lg shadow-amber-500/30" style="width: ${progressPercent}%;"></div>
+                    </div>
+
+                    <!-- German Prompt Box -->
+                    <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 relative overflow-hidden">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <div class="text-[10px] font-mono text-amber-400/80 uppercase tracking-widest font-semibold">German Exam Prompt</div>
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white mt-1 font-sans">${q.germanPrompt}</h3>
+                                ${q.urduSubtext ? `<p class="text-xs text-emerald-400 font-urdu mt-1">${q.urduSubtext}</p>` : ''}
+                            </div>
+                            <button onclick="speakGerman('${(q.germanPrompt || '').replace(/'/g, "\\'")}')" title="Listen" class="p-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 transition-all">
+                                <i data-lucide="volume-2" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        ${q.ruleHint ? `<div class="text-[11px] text-slate-400 italic bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80">&bull; ${q.ruleHint}</div>` : ''}
+                    </div>
+
+                    <!-- 4 Clickable Distractor Options -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        ${q.options.map((opt, oIdx) => {
+                            const isSelected = currentQuizAnswers[index] === opt;
+                            const letter = String.fromCharCode(65 + oIdx);
+                            return `
+                                <button onclick="selectQuizOption(${index}, '${opt.replace(/'/g, "\\'")}')" 
+                                        class="p-4 rounded-xl text-left border transition-all flex items-start space-x-3 ${isSelected ? 'bg-amber-500/20 border-amber-500 text-white shadow-lg shadow-amber-500/10' : 'bg-slate-950 border-slate-800 hover:border-amber-500/40 text-slate-200'}">
+                                    <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-amber-500 text-slate-950 font-extrabold' : 'bg-slate-900 text-slate-400'} flex items-center justify-center text-xs font-mono shrink-0">${letter}</span>
+                                    <span class="text-xs sm:text-sm leading-snug font-sans">${opt}</span>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- Navigation Footer -->
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                        <button onclick="renderQuizQuestion(${index - 1})" ${index === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-4 py-2.5 rounded-xl bg-slate-900 text-slate-500 text-xs font-bold"' : 'class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition-all"'}>
+                            &larr; Previous Question
+                        </button>
+
+                        ${index < total - 1 ? `
+                            <button onclick="renderQuizQuestion(${index + 1})" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition-all shadow-md shadow-amber-500/20">
+                                Next Question &rarr;
+                            </button>
+                        ` : `
+                            <button onclick="submitDynamicQuiz()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-extrabold text-xs transition-all shadow-lg shadow-emerald-500/30 flex items-center space-x-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                <span>Submit Promotion Exam</span>
+                            </button>
+                        `}
+                    </div>
                 </div>
             `;
             lucide.createIcons();
+        }
 
-            try {
-                const res = await fetch(`${API_BASE}/api/exam/evaluate`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        user_id: currentUserId,
-                        cefr_level: currentLevel,
-                        vocab_user_answers: vocab_user_answers,
-                        vocab_correct_answers: vocab_correct_answers,
-                        grammar_user_answers: grammar_user_answers,
-                        grammar_correct_sentences: grammar_correct_sentences,
-                        listening_user_answers: listening_user_answers,
-                        listening_correct_answers: listening_correct_answers,
-                        speaking_prompt_text: m4.prompt_de || "Speaking Prompt",
-                        speaking_user_transcript: speaking_transcript
-                    })
-                });
-                const data = await res.json();
-                const diag = data.evaluation;
+        function selectQuizOption(qIndex, optionText) {
+            currentQuizAnswers[qIndex] = optionText;
+            renderQuizQuestion(qIndex);
+        }
 
-                container.classList.add('hidden');
-                const scoreboard = document.getElementById('exam-scoreboard-container');
-                scoreboard.classList.remove('hidden');
+        function submitDynamicQuiz() {
+            const session = activeQuizSession;
+            if (!session) return;
 
-                if (diag.passed) {
-                    setUserLevel(diag.promoted_level);
-                }
+            const userAnswersArr = session.questions.map((_, idx) => currentQuizAnswers[idx] || "");
+            const result = gradeQuiz(userAnswersArr);
 
-                const mods = diag.module_scores || {};
-                scoreboard.innerHTML = `
-                    <div class="minimal-card p-8 border ${diag.passed ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-rose-500/40 bg-rose-950/20'} space-y-6">
-                        
-                        <!-- Header Score Banner -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-                            <div>
-                                <span class="text-xs font-mono font-bold ${diag.passed ? 'text-emerald-400' : 'text-rose-400'}">
-                                    ${diag.passed ? '🎉 EXAM PASSED - LEVEL PROMOTED!' : '⚠ EXAM NOT PASSED'}
-                                </span>
-                                <h3 class="text-2xl font-extrabold text-white">Overall Score: ${diag.overall_score}%</h3>
-                                <p class="text-xs text-slate-300 font-mono mt-1">Rule: ≥80% Overall &amp; ≥70% per module required.</p>
-                            </div>
+            const activeContainer = document.getElementById('exam-active-container');
+            const scoreboardContainer = document.getElementById('exam-scoreboard-container');
 
-                            <div class="px-5 py-3 rounded-2xl ${diag.passed ? 'bg-emerald-600 text-white' : 'bg-rose-950/80 border border-rose-500/40 text-rose-300'} font-mono text-center">
-                                <div class="text-[10px] uppercase tracking-wider">Account Level</div>
-                                <div class="text-xl font-black">${diag.promoted_level}</div>
-                            </div>
+            if (activeContainer) activeContainer.classList.add('hidden');
+            if (scoreboardContainer) {
+                scoreboardContainer.classList.remove('hidden');
+                scoreboardContainer.innerHTML = `
+                    <div class="minimal-card p-8 border ${result.passed ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-rose-500/40 bg-rose-950/20'} space-y-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl ${result.passed ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400' : 'bg-rose-500/20 border border-rose-500/40 text-rose-400'} mx-auto flex items-center justify-center">
+                            <i data-lucide="${result.passed ? 'trophy' : 'alert-triangle'}" class="w-8 h-8"></i>
                         </div>
 
-                        <!-- 4-Module Score Breakdown -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="text-indigo-400 font-bold">1. Vocab (20%)</span>
-                                    <span class="${mods.vocab.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.vocab.passed ? 'PASS' : 'FAIL'}</span>
-                                </div>
-                                <div class="text-xl font-bold text-white">${mods.vocab.score}%</div>
-                                <div class="text-[10px] text-slate-400">Raw: ${mods.vocab.raw}</div>
-                            </div>
-
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="text-violet-400 font-bold">2. Grammar (20%)</span>
-                                    <span class="${mods.grammar.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.grammar.passed ? 'PASS' : 'FAIL'}</span>
-                                </div>
-                                <div class="text-xl font-bold text-white">${mods.grammar.score}%</div>
-                                <div class="text-[10px] text-slate-400">Raw: ${mods.grammar.raw}</div>
-                            </div>
-
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="text-emerald-400 font-bold">3. Listening (30%)</span>
-                                    <span class="${mods.listening.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.listening.passed ? 'PASS' : 'FAIL'}</span>
-                                </div>
-                                <div class="text-xl font-bold text-white">${mods.listening.score}%</div>
-                                <div class="text-[10px] text-slate-400">Raw: ${mods.listening.raw}</div>
-                            </div>
-
-                            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 font-mono">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="text-rose-400 font-bold">4. Speaking (30%)</span>
-                                    <span class="${mods.speaking.passed ? 'text-emerald-400' : 'text-rose-400'} text-[10px]">${mods.speaking.passed ? 'PASS' : 'FAIL'}</span>
-                                </div>
-                                <div class="text-xl font-bold text-white">${mods.speaking.score}%</div>
-                                <div class="text-[10px] text-slate-400">Raw: ${mods.speaking.raw}</div>
-                            </div>
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-extrabold text-white">${result.passed ? '🎉 CONGRATULATIONS! LEVEL PROMOTED!' : 'EXAM ATTEMPT COMPLETE'}</h3>
+                            <p class="text-xs text-slate-300">
+                                Final Score: <span class="font-bold text-amber-400 text-sm">${result.scorePercent}%</span> (${result.correctCount} of ${result.totalQuestions} correct)
+                            </p>
                         </div>
 
-                        <!-- Trilingual Diagnostic Report -->
-                        <div class="space-y-2 pt-2 border-t border-slate-800 text-xs">
-                            <div class="text-slate-100 font-medium"><strong>Diagnostic Report (EN):</strong> ${diag.feedback_en}</div>
-                            <div class="text-emerald-400 font-urdu"><strong>رپورٹ (اردو):</strong> ${diag.feedback_ur}</div>
-                        </div>
+                        ${result.passed ? `
+                            <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-mono space-y-1">
+                                <div>+500 XP Earned &bull; New CEFR Tier Unlocked: <span class="font-extrabold text-white">${result.nextLevel}</span></div>
+                                <div class="text-[10px] text-emerald-400/80">Saved to client-side localStorage state manager!</div>
+                            </div>
+                        ` : `
+                            <div class="p-4 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-300 text-xs font-mono">
+                                Minimum pass score is 80%. Review your vocabulary &amp; grammar and try again!
+                            </div>
+                        `}
 
-                        <button onclick="startPromotionExam()" class="px-5 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-amber-600/20">
-                            Retake Promotion Exam
-                        </button>
+                        <div class="flex items-center justify-center space-x-4 pt-2">
+                            <button onclick="startPromotionExam()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow-md shadow-amber-500/20">
+                                Retake Exam
+                            </button>
+                            <button onclick="switchTab('dashboard')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs transition-all border border-slate-700">
+                                Return to Dashboard
+                            </button>
+                        </div>
                     </div>
                 `;
-
                 lucide.createIcons();
-                fetchExamHistory();
-            } catch (e) {
-                console.error(e);
             }
+
+            // Sync user state across UI header
+            const state = getUserState();
+            currentLevel = state.currentLevel;
         }
 
         async function fetchExamHistory() {
