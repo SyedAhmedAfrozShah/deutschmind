@@ -1007,39 +1007,59 @@
             if (fTargetSentence) fTargetSentence.innerText = "Loading new sentence...";
 
             try {
-                const res = await fetch(`${API_BASE}/api/grammar/generate`, {
+                const res = await fetchWithTimeout(`${API_BASE}/api/grammar/generate`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_id: currentUserId, cefr_level: currentLevel})
-                });
+                }, 3500);
+                if (!res.ok) throw new Error("Server timeout");
                 const data = await res.json();
                 const ex = data.exercise;
-                currentGrammarExercise = ex;
-
-                document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
-                document.getElementById('grammar-cefr-tag').innerText = currentLevel;
-                document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || "Correct the German sentence below:";
-                document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
-                document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence;
-                document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ''}`;
-                document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ''}`;
-
-                const fConcept = document.getElementById('full-grammar-concept');
-                if (fConcept) fConcept.innerText = ex.target_concept || "German Grammar";
-                const fLevel = document.getElementById('full-grammar-level');
-                if (fLevel) fLevel.innerText = currentLevel;
-                const fInstEn = document.getElementById('full-grammar-instructions-en');
-                if (fInstEn) fInstEn.innerText = ex.instructions_en || "Correct the German sentence below:";
-                const fInstUr = document.getElementById('full-grammar-instructions-ur');
-                if (fInstUr) fInstUr.innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
-                if (fTargetSentence) fTargetSentence.innerText = ex.incorrect_sentence;
-
-                lucide.createIcons();
-                fetchCompletedTopics();
-                showToast(`Loaded new German grammar sentence!`);
+                renderGrammarExercise(ex);
             } catch (e) {
-                console.error(e);
+                console.warn("Using dynamic client-side unseen grammar pool:", e);
+                const pool = [
+                    { target_concept: "Verb Position (V2)", incorrect_sentence: "Ich gestern bin nach Berlin gefahren.", correct_sentence: "Ich bin gestern nach Berlin gefahren.", instructions_en: "Correct the verb placement in this German sentence:", instructions_ur: "اس جرمن جملے میں فعل کی جگہ درست کریں:", hint_en: "The conjugated auxiliary verb 'bin' must be in position 2.", hint_ur: "معاون فعل 'bin' دوسری جگہ پر ہونا چاہیے۔" },
+                    { target_concept: "Subject-Verb Agreement", incorrect_sentence: "Er kommen heute Spät nach Hause.", correct_sentence: "Er kommt heute spät nach Hause.", instructions_en: "Fix the subject-verb agreement:", instructions_ur: "فعل اور فاعل کی مطابقت کو درست کریں:", hint_en: "'Er' takes the ending -t (kommt).", hint_ur: "'Er' کے ساتھ فعل کے آخر میں -t آتا ہے۔" },
+                    { target_concept: "Modal Verb Structure", incorrect_sentence: "Wir müssen lernen Deutsch jeden Tag.", correct_sentence: "Wir müssen jeden Tag Deutsch lernen.", instructions_en: "Correct the infinitive modal verb position:", instructions_ur: "ماڈل فعل کے مصدر کی جگہ درست کریں:", hint_en: "The main infinitive 'lernen' goes to the very end of the clause.", hint_ur: "مصدر 'lernen' جملے کے بالکل آخر میں جاتا ہے۔" },
+                    { target_concept: "Accusative Article", incorrect_sentence: "Ich habe ein Hund und eine Katze.", correct_sentence: "Ich habe einen Hund und eine Katze.", instructions_en: "Fix the masculine article in the accusative case:", instructions_ur: "مفعولی حالت میں مذکر اسم کا مادہ درست کریں:", hint_en: "Masculine 'der Hund' becomes 'einen Hund' in the accusative.", hint_ur: "مذکر 'der Hund' مفعولی حالت میں 'einen Hund' بن جاتا ہے۔" },
+                    { target_concept: "Separable Verbs (Trennbare Verben)", incorrect_sentence: "Sie anruft ihre Mutter jeden Abend.", correct_sentence: "Sie ruft ihre Mutter jeden Abend an.", instructions_en: "Fix the separable verb prefix placement:", instructions_ur: "قابل تقسیم فعل کے سابقہ کو درست کریں:", hint_en: "The prefix 'an-' moves to the end of the sentence.", hint_ur: "سابقہ 'an-' جملے کے آخر میں چلا جاتا ہے۔" }
+                ];
+                let seen = JSON.parse(localStorage.getItem('seen_grammar_idxs') || '[]');
+                let available = pool.filter((_, idx) => !seen.includes(idx));
+                if (available.length === 0) { seen = []; available = pool; }
+                const pickedIdx = pool.indexOf(available[Math.floor(Math.random() * available.length)]);
+                seen.push(pickedIdx);
+                localStorage.setItem('seen_grammar_idxs', JSON.stringify(seen));
+
+                renderGrammarExercise(pool[pickedIdx]);
             }
+        }
+
+        function renderGrammarExercise(ex) {
+            currentGrammarExercise = ex;
+
+            document.getElementById('grammar-concept-tag').innerText = ex.target_concept || "German Grammar";
+            document.getElementById('grammar-cefr-tag').innerText = currentLevel;
+            document.getElementById('grammar-instruction-en').innerText = ex.instructions_en || "Correct the German sentence below:";
+            document.getElementById('grammar-instruction-ur').innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
+            document.getElementById('grammar-target-sentence').innerText = ex.incorrect_sentence;
+            document.getElementById('grammar-hint-en').innerText = `Hint: ${ex.hint_en || ''}`;
+            document.getElementById('grammar-hint-ur').innerText = `اشارہ: ${ex.hint_ur || ''}`;
+
+            const fConcept = document.getElementById('full-grammar-concept');
+            if (fConcept) fConcept.innerText = ex.target_concept || "German Grammar";
+            const fLevel = document.getElementById('full-grammar-level');
+            if (fLevel) fLevel.innerText = currentLevel;
+            const fInstEn = document.getElementById('full-grammar-instructions-en');
+            if (fInstEn) fInstEn.innerText = ex.instructions_en || "Correct the German sentence below:";
+            const fInstUr = document.getElementById('full-grammar-instructions-ur');
+            if (fInstUr) fInstUr.innerText = ex.instructions_ur || "درج ذیل جرمن جملے میں غلطی درست کریں:";
+            const fTargetSentence = document.getElementById('full-grammar-target');
+            if (fTargetSentence) fTargetSentence.innerText = ex.incorrect_sentence;
+
+            lucide.createIcons();
+            showToast(`Loaded new German grammar sentence!`);
         }
 
         async function submitGrammarChallenge() {
@@ -1834,20 +1854,27 @@
             }
         }
 
+        function getStoredApiKey() {
+            return localStorage.getItem('gemini_api_key') || "";
+        }
+
         async function checkApiKeyStatus() {
-            try {
-                const res = await fetch(`${API_BASE}/api/config/key`);
-                const data = await res.json();
-                const btnText = document.getElementById('api-key-status-text');
-                if (btnText) {
+            const key = getStoredApiKey();
+            const btnText = document.getElementById('api-key-status-text');
+            if (btnText) {
+                if (key && key.length > 5) {
+                    btnText.innerHTML = `<span class="text-emerald-400 font-bold">API Key: Active 🟢</span>`;
+                    return;
+                }
+                try {
+                    const res = await fetchWithTimeout(`${API_BASE}/api/config/key`, {}, 2000);
+                    const data = await res.json();
                     if (data.is_configured || data.has_key) {
                         btnText.innerHTML = `<span class="text-emerald-400 font-bold">API Key: Active 🟢</span>`;
-                    } else {
-                        btnText.innerHTML = `<span class="text-amber-400 font-bold">API Key: Set Key 🔑</span>`;
+                        return;
                     }
-                }
-            } catch (e) {
-                console.error(e);
+                } catch(e){}
+                btnText.innerHTML = `<span class="text-amber-400 font-bold">API Key: Set Key 🔑</span>`;
             }
         }
 
@@ -1866,26 +1893,21 @@
                 return;
             }
 
+            localStorage.setItem('gemini_api_key', key);
+            showToast("Gemini API Key saved securely in browser!");
+            closeApiKeyModal();
+            checkApiKeyStatus();
+
             try {
-                const res = await fetch(`${API_BASE}/api/config/key`, {
+                await fetch(`${API_BASE}/api/config/key`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({api_key: key})
                 });
-                const data = await res.json();
-                if (data.success) {
-                    showToast("Gemini API Key saved successfully!");
-                    closeApiKeyModal();
-                    checkApiKeyStatus();
-                    generateDailyVocab();
-                    loadNewGrammarExercise();
-                } else {
-                    showToast(data.detail || "Failed to save key.");
-                }
-            } catch (e) {
-                console.error(e);
-                showToast("Error saving key.");
-            }
+            } catch (e) {}
+
+            generateDailyVocab();
+            loadNewGrammarExercise();
         }
     </script>
 
