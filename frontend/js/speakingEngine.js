@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Implements Event Delegation using .closest() for SVG/icon click bubbling.
+ * Diagnostic & Force-Fix Edition with explicit alert notifications and console logging.
  */
 
 let speakingPromptsList = [];
@@ -10,16 +10,20 @@ let speakingRecognition = null;
 let isSpeakingRecording = false;
 
 // =========================================================================
-// PHASE 1: BULLETPROOF GLOBAL EVENT DELEGATION
+// STEP 2: GLOBAL CLICK DIAGNOSTICS & EVENT DELEGATION
 // =========================================================================
 document.addEventListener("click", function(event) {
+    console.log("Global click detected on: ", event.target);
+
     // 1. Handle Mic Button Clicks (Catches SVG icons and paths inside the mic button)
     const micBtn = event.target.closest("#btn-toggle-mic") || event.target.closest("#btn-mic-record");
     if (micBtn) {
         event.preventDefault();
-        console.log("[EventDelegation] Mic button click detected via closest()");
+        console.log("Mic button successfully targeted via closest().");
         if (typeof window.toggleSpeakingMic === "function") {
             window.toggleSpeakingMic();
+        } else {
+            alert("ERROR: window.toggleSpeakingMic is undefined!");
         }
         return;
     }
@@ -135,48 +139,54 @@ function initSpeechRecognition() {
     if (warningBanner) warningBanner.classList.add("hidden");
 
     if (!speakingRecognition) {
-        speakingRecognition = new SpeechRecognition();
-        speakingRecognition.continuous = false;
-        speakingRecognition.interimResults = true;
-        speakingRecognition.lang = "de-DE";
+        try {
+            speakingRecognition = new SpeechRecognition();
+            speakingRecognition.continuous = false;
+            speakingRecognition.interimResults = true;
+            speakingRecognition.lang = "de-DE";
 
-        speakingRecognition.onstart = () => {
-            console.log("[SpeakingEngine] Speech recognition started.");
-            isSpeakingRecording = true;
-            updateMicUIState(true);
-        };
+            speakingRecognition.onstart = () => {
+                console.log("[SpeakingEngine] Speech recognition started.");
+                isSpeakingRecording = true;
+                updateMicUIState(true);
+            };
 
-        speakingRecognition.onresult = (event) => {
-            let finalTranscript = "";
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                finalTranscript += event.results[i][0].transcript;
-            }
-            console.log("[SpeakingEngine] Speech captured:", finalTranscript);
-            const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
-            if (outputArea && finalTranscript) {
-                outputArea.value = finalTranscript;
-            }
-        };
+            speakingRecognition.onresult = (event) => {
+                let finalTranscript = "";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    finalTranscript += event.results[i][0].transcript;
+                }
+                console.log("[SpeakingEngine] Speech captured:", finalTranscript);
+                const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
+                if (outputArea && finalTranscript) {
+                    outputArea.value = finalTranscript;
+                }
+            };
 
-        speakingRecognition.onerror = (event) => {
-            console.error("[SpeakingEngine] STT Error:", event.error);
-            isSpeakingRecording = false;
-            updateMicUIState(false);
-            if (typeof showToast === "function") {
-                showToast(`Mic Notice (${event.error}): You can speak again or type German text manually.`);
-            }
-        };
+            speakingRecognition.onerror = (event) => {
+                console.error("[SpeakingEngine] STT Error:", event.error);
+                isSpeakingRecording = false;
+                updateMicUIState(false);
+                if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+                    alert("Microphone Access Denied: Please allow microphone permissions in your browser settings to record audio.");
+                } else if (typeof showToast === "function") {
+                    showToast(`Mic Notice (${event.error}): You can speak again or type German text manually.`);
+                }
+            };
 
-        speakingRecognition.onend = () => {
-            console.log("[SpeakingEngine] STT session ended.");
-            isSpeakingRecording = false;
-            updateMicUIState(false);
-        };
+            speakingRecognition.onend = () => {
+                console.log("[SpeakingEngine] STT session ended.");
+                isSpeakingRecording = false;
+                updateMicUIState(false);
+            };
+        } catch (e) {
+            console.error("[SpeakingEngine] Failed to construct SpeechRecognition:", e);
+        }
     }
 }
 
 /**
- * Global Microphone Toggle Function attached to window.
+ * STEP 3: AUDIT SPEECH RECOGNITION TOGGLE WITH TRY/CATCH & DIAGNOSTIC ALERTS
  */
 window.toggleSpeakingMic = function() {
     console.log("[SpeakingEngine] window.toggleSpeakingMic called!");
@@ -188,9 +198,7 @@ window.toggleSpeakingMic = function() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
         console.error("[SpeakingEngine] STT Unsupported when clicking mic.");
-        if (typeof showToast === "function") {
-            showToast("Speech Recognition unsupported in this browser. Please type text manually.");
-        }
+        alert("STT Notice: Web Speech API (SpeechRecognition / webkitSpeechRecognition) is not supported in this browser. You can type your German response manually.");
         return;
     }
 
@@ -202,6 +210,7 @@ window.toggleSpeakingMic = function() {
             speakingRecognition.stop();
         } catch (e) {
             console.error("[SpeakingEngine] Stop Error:", e);
+            alert("STT Stop Error: " + (e.message || e));
         }
         isSpeakingRecording = false;
         updateMicUIState(false);
@@ -211,6 +220,7 @@ window.toggleSpeakingMic = function() {
             speakingRecognition.start();
         } catch (e) {
             console.error("[SpeakingEngine] Start Error:", e);
+            alert("STT Start Error: " + (e.message || e));
             isSpeakingRecording = false;
             updateMicUIState(false);
         }
