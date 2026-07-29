@@ -431,9 +431,9 @@
                         <span>Module 3: Audio Pipeline</span>
                     </div>
                     <h2 class="text-2xl font-bold text-white tracking-tight">German Listening Comprehension</h2>
-                    <p class="text-xs text-slate-400">Listen to native German scenario playback (with speed guardrail) and answer 5 comprehension questions.</p>
+                    <p class="text-xs text-slate-400">Listen to native German scenario playback (with speed guardrail) and answer comprehension questions.</p>
                 </div>
-                <button onclick="loadNewListeningScenario()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/20">
+                <button onclick="renderListeningScenario()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/20">
                     <i data-lucide="sparkles" class="w-4 h-4"></i>
                     <span>Generate New Scenario</span>
                 </button>
@@ -444,8 +444,8 @@
                 <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span id="listening-scenario-title" class="text-lg font-bold text-white font-sans">Im Café in Berlin</span>
-                            <div id="listening-scenario-topic" class="text-xs text-emerald-400 font-mono">Topic: Cafe Conversation</div>
+                            <span id="listening-title" class="text-lg font-bold text-white font-sans">Im Café in Berlin</span>
+                            <div id="listening-topic" class="text-xs text-emerald-400 font-mono">Topic: Cafe Conversation</div>
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="text-xs font-mono text-slate-400">Audio Speed:</span>
@@ -458,56 +458,46 @@
 
                     <!-- Audio Controls -->
                     <div class="flex flex-wrap items-center gap-3">
-                        <button onclick="playListeningAudio()" id="btn-play-listening" class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/30">
+                        <button onclick="playGermanTTS(document.getElementById('listening-transcript-de').innerText)" id="btn-play-listening" class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center space-x-2 shadow-lg shadow-emerald-600/30">
                             <i data-lucide="volume-2" class="w-4 h-4"></i>
                             <span>Listen to Audio Scenario</span>
                         </button>
 
-                        <button onclick="toggleListeningScript()" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 text-xs font-medium transition-all flex items-center space-x-2">
+                        <button onclick="toggleListeningTranscript()" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 text-xs font-medium transition-all flex items-center space-x-2">
                             <i data-lucide="eye" class="w-4 h-4"></i>
                             <span id="script-toggle-text">Show Audio Transcript</span>
                         </button>
                     </div>
 
                     <!-- Audio Transcript Container (Collapsible) -->
-                    <div id="listening-script-box" class="hidden p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div id="listening-transcript-container" class="hidden p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                         <div class="flex items-center justify-between">
                             <span class="text-xs font-mono text-emerald-400 uppercase">German Audio Script:</span>
-                            <button onclick="speakGerman(document.getElementById('listening-narrative-de').innerText)" title="Listen to German narrative" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-mono text-[10px] flex items-center space-x-1">
+                            <button onclick="playGermanTTS(document.getElementById('listening-transcript-de').innerText)" title="Listen to German narrative" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-mono text-[10px] flex items-center space-x-1">
                                 <i data-lucide="volume-2" class="w-3 h-3"></i>
                                 <span>Play Audio</span>
                             </button>
                         </div>
-                        <p id="listening-narrative-de" class="text-sm font-semibold text-slate-100 font-sans">Loading German narrative...</p>
+                        <p id="listening-transcript-de" class="text-sm font-semibold text-slate-100 font-sans">Loading German narrative...</p>
                         <div class="border-t border-slate-800 pt-2 space-y-1">
-                            <p id="listening-narrative-en" class="text-xs text-slate-400">English translation...</p>
-                            <p id="listening-narrative-ur" class="text-xs text-emerald-400 font-urdu">Urdu translation...</p>
+                            <p id="listening-transcript-en" class="text-xs text-slate-400">English translation...</p>
+                            <p id="listening-transcript-ur" class="text-xs text-emerald-400 font-urdu">Urdu translation...</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 5 Multiple Choice Questions -->
+                <!-- Multiple Choice Questions -->
                 <div class="space-y-6">
                     <h3 class="text-base font-bold text-white flex items-center space-x-2">
                         <i data-lucide="help-circle" class="w-4 h-4 text-emerald-400"></i>
-                        <span>Comprehension Questions (5 Questions)</span>
+                        <span>Comprehension Questions</span>
                     </h3>
 
                     <div id="listening-questions-container" class="space-y-6">
-                        <!-- 5 Questions will render here -->
                         <div class="p-6 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-slate-500">
                             Click "Generate New Scenario" to load audio listening test.
                         </div>
                     </div>
-
-                    <button onclick="submitListeningTest()" id="btn-submit-listening" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/30">
-                        Submit Listening Test Answers
-                    </button>
-                </div>
-
-                <!-- Result Breakdown -->
-                <div id="listening-result-box" class="hidden p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
-                    <!-- Listening evaluation result -->
                 </div>
             </div>
         </section>
@@ -692,6 +682,7 @@
     <!-- Core Engine Scripts -->
     <script src="js/progress.js"></script>
     <script src="js/quizEngine.js"></script>
+    <script src="js/listeningEngine.js"></script>
 
     <!-- Application Javascript Logic -->
     <script>
@@ -851,9 +842,12 @@
 
             showToast(`German CEFR level set to ${level}`);
 
-            // Trigger vocabulary and grammar re-fetching for newly selected level
+            // Trigger vocabulary, grammar, and listening re-fetching for newly selected level
             generateDailyVocab();
             loadNewGrammarExercise();
+            if (typeof loadListeningScenarios === "function") {
+                loadListeningScenarios();
+            }
         }
 
         async function fetchUserData() {

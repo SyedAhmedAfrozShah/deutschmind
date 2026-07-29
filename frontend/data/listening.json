@@ -1,0 +1,1522 @@
+[
+  {
+    "id": "list_zero_001",
+    "level": "ZERO",
+    "title": "Begrüßung im Deutschkurs",
+    "topic": "Greetings & Introductions",
+    "transcript_de": "Guten Morgen! Ich heiße Thomas Weber und bin Ihr Deutschlehrer. Wie heißen Sie?",
+    "transcript_en": "Good morning! My name is Thomas Weber and I am your German teacher. What is your name?",
+    "transcript_ur": "صبح بخیر! میرا نام تھامس ویبر ہے اور میں آپ کا جرمن کا استاد ہوں۔ آپ کا نام کیا ہے؟",
+    "questions": [
+      {
+        "q": "Wie heißt der Deutschlehrer?",
+        "options": [
+          "Thomas Weber",
+          "Markus Becker",
+          "Lukas Meyer"
+        ],
+        "answer": "Thomas Weber"
+      },
+      {
+        "q": "Welcher Tageszeit ist es?",
+        "options": [
+          "Guten Morgen",
+          "Guten Abend",
+          "Gute Nacht"
+        ],
+        "answer": "Guten Morgen"
+      },
+      {
+        "q": "Was ist der Beruf von Thomas?",
+        "options": [
+          "Deutschlehrer",
+          "Arzt",
+          "Ingenieur"
+        ],
+        "answer": "Deutschlehrer"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_002",
+    "level": "ZERO",
+    "title": "Zahlen und Telefonnummer",
+    "topic": "Numbers & Phone",
+    "transcript_de": "Meine Telefonnummer ist null eins sieben sechs, vier fünf sechs sieben.",
+    "transcript_en": "My phone number is 0176-4567.",
+    "transcript_ur": "میرا فون نمبر 0176-4567 ہے۔",
+    "questions": [
+      {
+        "q": "Wie lautet die Vorwahl?",
+        "options": [
+          "0176",
+          "0151",
+          "0160"
+        ],
+        "answer": "0176"
+      },
+      {
+        "q": "Welche Zahl kommt zuerst?",
+        "options": [
+          "null",
+          "eins",
+          "zwei"
+        ],
+        "answer": "null"
+      },
+      {
+        "q": "Wie lautet die vierte Zahl?",
+        "options": [
+          "sechs",
+          "vier",
+          "fünf"
+        ],
+        "answer": "sechs"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_003",
+    "level": "ZERO",
+    "title": "Im Café bestellen",
+    "topic": "Ordering Beverages",
+    "transcript_de": "Hallo! Eine Tasse Kaffee und ein Glas Wasser, bitte. Danke schön!",
+    "transcript_en": "Hello! A cup of coffee and a glass of water, please. Thank you very much!",
+    "transcript_ur": "ہیلو! ایک کپ کافی اور ایک گلاس پانی، برائے مہربانی۔ بہت شکریہ!",
+    "questions": [
+      {
+        "q": "Was möchte die Person trinken?",
+        "options": [
+          "Kaffee und Wasser",
+          "Tee und Saft",
+          "Bier und Wein"
+        ],
+        "answer": "Kaffee und Wasser"
+      },
+      {
+        "q": "Wie viele Tassen Kaffee werden bestellt?",
+        "options": [
+          "eine Tasse",
+          "zwei Tassen",
+          "drei Tassen"
+        ],
+        "answer": "eine Tasse"
+      },
+      {
+        "q": "Welches Wort sagt man für Höflichkeit?",
+        "options": [
+          "bitte",
+          "tschüss",
+          "nein"
+        ],
+        "answer": "bitte"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_004",
+    "level": "ZERO",
+    "title": "Die Wochentage",
+    "topic": "Calendar & Days",
+    "transcript_de": "Heute ist Montag. Morgen ist Dienstag und übermorgen ist Mittwoch.",
+    "transcript_en": "Today is Monday. Tomorrow is Tuesday and the day after tomorrow is Wednesday.",
+    "transcript_ur": "آج پیر کا دن ہے۔ کل منگل ہے اور پرسوں بدھ ہے۔",
+    "questions": [
+      {
+        "q": "Welcher Tag ist heute?",
+        "options": [
+          "Montag",
+          "Dienstag",
+          "Mittwoch"
+        ],
+        "answer": "Montag"
+      },
+      {
+        "q": "Welcher Tag ist morgen?",
+        "options": [
+          "Dienstag",
+          "Mittwoch",
+          "Donnerstag"
+        ],
+        "answer": "Dienstag"
+      },
+      {
+        "q": "Welcher Tag ist übermorgen?",
+        "options": [
+          "Mittwoch",
+          "Freitag",
+          "Samstag"
+        ],
+        "answer": "Mittwoch"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_005",
+    "level": "ZERO",
+    "title": "Familienmitglieder",
+    "topic": "Family Members",
+    "transcript_de": "Das ist mein Vater Hans und das ist meine Mutter Maria.",
+    "transcript_en": "This is my father Hans and this is my mother Maria.",
+    "transcript_ur": "یہ میرے والد ہنس ہیں اور یہ میری والدہ ماریا ہیں۔",
+    "questions": [
+      {
+        "q": "Wie heißt der Vater?",
+        "options": [
+          "Hans",
+          "Peter",
+          "Stefan"
+        ],
+        "answer": "Hans"
+      },
+      {
+        "q": "Wie heißt die Mutter?",
+        "options": [
+          "Maria",
+          "Anna",
+          "Lisa"
+        ],
+        "answer": "Maria"
+      },
+      {
+        "q": "Wer ist Hans?",
+        "options": [
+          "der Vater",
+          "der Sohn",
+          "der Bruder"
+        ],
+        "answer": "der Vater"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_006",
+    "level": "ZERO",
+    "title": "Abschied nehmen",
+    "topic": "Goodbyes",
+    "transcript_de": "Auf Wiedersehen, Herr Müller! Bis zum nächsten Mal und gute Fahrt!",
+    "transcript_en": "Goodbye, Mr. Müller! Until next time and have a good trip!",
+    "transcript_ur": "الوداع، مسٹر ملر! اگلی بار تک اور آپ کا سفر اچھا رہے!",
+    "questions": [
+      {
+        "q": "Wie verabschiedet man sich formell?",
+        "options": [
+          "Auf Wiedersehen",
+          "Tschüss",
+          "Hallo"
+        ],
+        "answer": "Auf Wiedersehen"
+      },
+      {
+        "q": "Wie heißt der Mann?",
+        "options": [
+          "Herr Müller",
+          "Herr Schneider",
+          "Herr Fischer"
+        ],
+        "answer": "Herr Müller"
+      },
+      {
+        "q": "Was wünscht man für die Reise?",
+        "options": [
+          "Gute Fahrt",
+          "Guten Appetit",
+          "Guten Morgen"
+        ],
+        "answer": "Gute Fahrt"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_007",
+    "level": "ZERO",
+    "title": "Farben nennen",
+    "topic": "Colors",
+    "transcript_de": "Das Auto ist rot und das Fahrrad ist blau.",
+    "transcript_en": "The car is red and the bicycle is blue.",
+    "transcript_ur": "گاڑی سرخ ہے اور سائیکل نیلی ہے۔",
+    "questions": [
+      {
+        "q": "Welche Farbe hat das Auto?",
+        "options": [
+          "rot",
+          "blau",
+          "grün"
+        ],
+        "answer": "rot"
+      },
+      {
+        "q": "Welche Farbe hat das Fahrrad?",
+        "options": [
+          "blau",
+          "gelb",
+          "schwarz"
+        ],
+        "answer": "blau"
+      },
+      {
+        "q": "Was ist rot?",
+        "options": [
+          "das Auto",
+          "das Fahrrad",
+          "das Haus"
+        ],
+        "answer": "das Auto"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_008",
+    "level": "ZERO",
+    "title": "Woher kommst du?",
+    "topic": "Origin & Languages",
+    "transcript_de": "Ich komme aus Spanien und wohne jetzt in Berlin. Ich spreche Spanisch und ein wenig Deutsch.",
+    "transcript_en": "I come from Spain and now live in Berlin. I speak Spanish and a little German.",
+    "transcript_ur": "میں اسپین سے ہوں اور اب برلن میں رہتا ہوں۔ میں ہسپانوی اور تھوڑی جرمن بولتا ہوں۔",
+    "questions": [
+      {
+        "q": "Aus welchem Land kommt die Person?",
+        "options": [
+          "Spanien",
+          "Italien",
+          "Frankreich"
+        ],
+        "answer": "Spanien"
+      },
+      {
+        "q": "In welcher Stadt wohnt die Person?",
+        "options": [
+          "Berlin",
+          "München",
+          "Hamburg"
+        ],
+        "answer": "Berlin"
+      },
+      {
+        "q": "Welche Muttersprache spricht die Person?",
+        "options": [
+          "Spanisch",
+          "Deutsch",
+          "Englisch"
+        ],
+        "answer": "Spanisch"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_009",
+    "level": "ZERO",
+    "title": "Im Supermarkt",
+    "topic": "Supermarket Basics",
+    "transcript_de": "Entschuldigung, wo ist die Milch? Die Milch ist dort drüben im Regal.",
+    "transcript_en": "Excuse me, where is the milk? The milk is over there on the shelf.",
+    "transcript_ur": "معاف کیجیے گا، دودھ کہاں ہے؟ دودھ وہاں شیلف پر ہے۔",
+    "questions": [
+      {
+        "q": "Nach welchem Lebensmittel wird gefragt?",
+        "options": [
+          "Milch",
+          "Brot",
+          "Käse"
+        ],
+        "answer": "Milch"
+      },
+      {
+        "q": "Wo befindet sich das Lebensmittel?",
+        "options": [
+          "im Regal",
+          "an der Kasse",
+          "draußen"
+        ],
+        "answer": "im Regal"
+      },
+      {
+        "q": "Wie beginnt die Frage höflich?",
+        "options": [
+          "Entschuldigung",
+          "Danke",
+          "Ja"
+        ],
+        "answer": "Entschuldigung"
+      }
+    ]
+  },
+  {
+    "id": "list_zero_010",
+    "level": "ZERO",
+    "title": "Uhrzeit ablesen",
+    "topic": "Telling Time",
+    "transcript_de": "Wie viel Uhr ist es? Es ist genau acht Uhr morgens.",
+    "transcript_en": "What time is it? It is exactly eight o'clock in the morning.",
+    "transcript_ur": "کیا وقت ہوا ہے؟ صبح کے ٹھیک آٹھ بج رہے ہیں۔",
+    "questions": [
+      {
+        "q": "Wie viel Uhr ist es?",
+        "options": [
+          "acht Uhr",
+          "neun Uhr",
+          "zehn Uhr"
+        ],
+        "answer": "acht Uhr"
+      },
+      {
+        "q": "Zu welcher Tageszeit?",
+        "options": [
+          "morgens",
+          "abends",
+          "nachts"
+        ],
+        "answer": "morgens"
+      },
+      {
+        "q": "Ist es genau oder ungefähr?",
+        "options": [
+          "genau",
+          "ungefähr",
+          "spät"
+        ],
+        "answer": "genau"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_001",
+    "level": "A1",
+    "title": "Fahrkarte am Bahnhof kaufen",
+    "topic": "Train Station Ticket",
+    "transcript_de": "Guten Tag! Ich möchte eine Fahrkarte nach Frankfurt kaufen. Einfach oder hin und zurück?",
+    "transcript_en": "Good day! I would like to buy a train ticket to Frankfurt. One-way or round-trip?",
+    "transcript_ur": "دن بخیر! میں فرینکفرٹ کے لیے ایک ٹرین ٹکٹ خریدنا چاہتا ہوں۔ ایک طرفہ یا آنے جانے کا؟",
+    "questions": [
+      {
+        "q": "Wohin möchte der Fahrgast reisen?",
+        "options": [
+          "nach Frankfurt",
+          "nach Berlin",
+          "nach Köln"
+        ],
+        "answer": "nach Frankfurt"
+      },
+      {
+        "q": "Was fragt der Verkäufer?",
+        "options": [
+          "Einfach oder hin und zurück?",
+          "Zahlen Sie bar?",
+          "Wann fährt der Zug?"
+        ],
+        "answer": "Einfach oder hin und zurück?"
+      },
+      {
+        "q": "Welches Verkehrsmittel wird genutzt?",
+        "options": [
+          "Zug / Bahn",
+          "Flugzeug",
+          "Taxi"
+        ],
+        "answer": "Zug / Bahn"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_002",
+    "level": "A1",
+    "title": "Einladung zum Geburtstag",
+    "topic": "Birthday Invitation",
+    "transcript_de": "Hallo Sarah! Ich feiere am Samstag meinen Geburtstag. Kommst du um 19 Uhr zu meiner Party?",
+    "transcript_en": "Hello Sarah! I am celebrating my birthday on Saturday. Are you coming to my party at 7 PM?",
+    "transcript_ur": "ہیلو سارہ! میں ہفتے کو اپنی سالگرہ منا رہا ہوں۔ کیا تم شام 7 بجے میری پارٹی میں آ رہی ہو؟",
+    "questions": [
+      {
+        "q": "An welchem Tag ist die Party?",
+        "options": [
+          "Samstag",
+          "Sonntag",
+          "Freitag"
+        ],
+        "answer": "Samstag"
+      },
+      {
+        "q": "Um wie viel Uhr beginnt die Feier?",
+        "options": [
+          "19 Uhr",
+          "18 Uhr",
+          "20 Uhr"
+        ],
+        "answer": "19 Uhr"
+      },
+      {
+        "q": "Was ist der Anlass?",
+        "options": [
+          "Geburtstag",
+          "Hochzeit",
+          "Prüfung"
+        ],
+        "answer": "Geburtstag"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_003",
+    "level": "A1",
+    "title": "Wohnungssuche in München",
+    "topic": "Apartment Search",
+    "transcript_de": "Die Wohnung hat zwei Zimmer, eine Küche und ein Bad. Die Miete beträgt 650 Euro kalt.",
+    "transcript_en": "The apartment has two rooms, a kitchen, and a bathroom. The rent is 650 Euros cold.",
+    "transcript_ur": "فلیٹ میں دو کمرے، ایک باورچی خانہ اور ایک غسل خانہ ہے۔ کرایہ 650 یورو ہے۔",
+    "questions": [
+      {
+        "q": "Wie viele Zimmer hat die Wohnung?",
+        "options": [
+          "zwei Zimmer",
+          "drei Zimmer",
+          "ein Zimmer"
+        ],
+        "answer": "zwei Zimmer"
+      },
+      {
+        "q": "Wie hoch ist die Kaltmiete?",
+        "options": [
+          "650 Euro",
+          "550 Euro",
+          "750 Euro"
+        ],
+        "answer": "650 Euro"
+      },
+      {
+        "q": "Welche Räume sind vorhanden?",
+        "options": [
+          "Küche und Bad",
+          "Garten und Balkon",
+          "Garagenplatz"
+        ],
+        "answer": "Küche und Bad"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_004",
+    "level": "A1",
+    "title": "Termin beim Arzt vereinbaren",
+    "topic": "Doctor Appointment",
+    "transcript_de": "Praxis Dr. Weber. Guten Tag! Ich habe Bauchschmerzen und brauche heute einen Termin.",
+    "transcript_en": "Dr. Weber's Practice. Good day! I have a stomachache and need an appointment today.",
+    "transcript_ur": "ڈاکٹر ویبر کا کلینک۔ دن بخیر! مجھے پیٹ میں درد ہے اور مجھے آج ملاقات کا وقت چاہیے۔",
+    "questions": [
+      {
+        "q": "Welche Beschwerden hat der Patient?",
+        "options": [
+          "Bauchschmerzen",
+          "Kopfschmerzen",
+          "Zahnschmerzen"
+        ],
+        "answer": "Bauchschmerzen"
+      },
+      {
+        "q": "Wann braucht der Patient den Termin?",
+        "options": [
+          "heute",
+          "morgen",
+          "nächste Woche"
+        ],
+        "answer": "heute"
+      },
+      {
+        "q": "Bei wem ruft der Patient an?",
+        "options": [
+          "Arztpraxis Dr. Weber",
+          "Apotheke",
+          "Krankenhaus"
+        ],
+        "answer": "Arztpraxis Dr. Weber"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_005",
+    "level": "A1",
+    "title": "Wegbeschreibung zur Bibliothek",
+    "topic": "Asking Directions",
+    "transcript_de": "Gehen Sie zuerst geradeaus und biegen Sie an der Ampel links ab. Die Bibliothek ist auf der rechten Seite.",
+    "transcript_en": "First go straight ahead and turn left at the traffic light. The library is on the right side.",
+    "transcript_ur": "پہلے سیدھے جائیں اور ٹریفک لائٹ سے بائیں مڑیں۔ لائبریری دائیں طرف ہے۔",
+    "questions": [
+      {
+        "q": "Wohin soll man an der Ampel abbiegen?",
+        "options": [
+          "links",
+          "rechts",
+          "geradeaus"
+        ],
+        "answer": "links"
+      },
+      {
+        "q": "Auf welcher Seite ist die Bibliothek?",
+        "options": [
+          "rechte Seite",
+          "linke Seite",
+          "hinter der Ampel"
+        ],
+        "answer": "rechte Seite"
+      },
+      {
+        "q": "Welches Gebäude wird gesucht?",
+        "options": [
+          "Bibliothek",
+          "Museum",
+          "Supermarkt"
+        ],
+        "answer": "Bibliothek"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_006",
+    "level": "A1",
+    "title": "Kleidung im Kaufhaus",
+    "topic": "Clothes Shopping",
+    "transcript_de": "Ich suche eine schwarze Hose in Größe 38. Haben Sie diese Hose auch in Blau?",
+    "transcript_en": "I am looking for black pants in size 38. Do you also have these pants in blue?",
+    "transcript_ur": "میں سائز 38 کی کالی پتلون تلاش کر رہا ہوں۔ کیا آپ کے پاس یہ پتلون نیلے رنگ میں بھی ہے؟",
+    "questions": [
+      {
+        "q": "Welches Kleidungsstück sucht die Kundin?",
+        "options": [
+          "eine Hose",
+          "eine Jacke",
+          "ein Hemd"
+        ],
+        "answer": "eine Hose"
+      },
+      {
+        "q": "Welche Konfektionsgröße wird benötigt?",
+        "options": [
+          "Größe 38",
+          "Größe 36",
+          "Größe 40"
+        ],
+        "answer": "Größe 38"
+      },
+      {
+        "q": "Nach welcher zweiten Farbe wird gefragt?",
+        "options": [
+          "Blau",
+          "Rot",
+          "Grün"
+        ],
+        "answer": "Blau"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_007",
+    "level": "A1",
+    "title": "Wetterbericht für das Wochenende",
+    "topic": "Weather Forecast",
+    "transcript_de": "Am Samstag scheint die Sonne bei 22 Grad. Am Sonntag wird es regnerisch und kühl.",
+    "transcript_en": "On Saturday the sun will shine at 22 degrees. On Sunday it will be rainy and cool.",
+    "transcript_ur": "ہفتے کو 22 ڈگری سینٹی گریڈ پر دھوپ کھلے گی۔ اتوار کو بارش اور ٹھنڈ ہوگی۔",
+    "questions": [
+      {
+        "q": "Wie wird das Wetter am Samstag?",
+        "options": [
+          "sonnig bei 22 Grad",
+          "regnerisch",
+          "es schneit"
+        ],
+        "answer": "sonnig bei 22 Grad"
+      },
+      {
+        "q": "Wie wird das Wetter am Sonntag?",
+        "options": [
+          "regnerisch und kühl",
+          "heiß und trocken",
+          "windig"
+        ],
+        "answer": "regnerisch und kühl"
+      },
+      {
+        "q": "An welchem Tag scheint die Sonne?",
+        "options": [
+          "Samstag",
+          "Sonntag",
+          "Montag"
+        ],
+        "answer": "Samstag"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_008",
+    "level": "A1",
+    "title": "Hobbys und Freizeit",
+    "topic": "Hobbies & Free Time",
+    "transcript_de": "In meiner Freizeit spiele ich gerne Fußball und koche am Wochenende für meine Freunde.",
+    "transcript_en": "In my free time I like to play soccer and cook for my friends on the weekend.",
+    "transcript_ur": "اپنے فارغ وقت میں میں فٹ بال کھیلنا پسند کرتا ہوں اور ہفتے کے اختتام پر اپنے دوستوں کے لیے کھانا پکاتا ہوں۔",
+    "questions": [
+      {
+        "q": "Welche Sportart betreibt die Person?",
+        "options": [
+          "Fußball",
+          "Tennis",
+          "Schwimmen"
+        ],
+        "answer": "Fußball"
+      },
+      {
+        "q": "Was macht die Person am Wochenende?",
+        "options": [
+          "kochen für Freunde",
+          "Reisen",
+          "Bücher lesen"
+        ],
+        "answer": "kochen für Freunde"
+      },
+      {
+        "q": "Für wen wird gekocht?",
+        "options": [
+          "für Freunde",
+          "für die Eltern",
+          "für Kollegen"
+        ],
+        "answer": "für Freunde"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_009",
+    "level": "A1",
+    "title": "Durchsage im Supermarkt",
+    "topic": "Supermarket Announcement",
+    "transcript_de": "Achtung liebe Kunden! Frische Erdbeeren heute im Angebot für nur 1 Euro 99 pro Schale.",
+    "transcript_en": "Attention valued customers! Fresh strawberries on offer today for only 1.99 Euros per bowl.",
+    "transcript_ur": "توجہ فرمائیے معزز صارفین! تازہ اسٹرابیری آج صرف 1.99 یورو فی پیالہ رعایتی قیمت پر دستیاب ہے۔",
+    "questions": [
+      {
+        "q": "Welches Produkt ist im Angebot?",
+        "options": [
+          "Erdbeeren",
+          "Äpfel",
+          "Bananen"
+        ],
+        "answer": "Erdbeeren"
+      },
+      {
+        "q": "Wie viel kostet eine Schale?",
+        "options": [
+          "1 Euro 99",
+          "2 Euro 50",
+          "99 Cent"
+        ],
+        "answer": "1 Euro 99"
+      },
+      {
+        "q": "Wo hört man diese Durchsage?",
+        "options": [
+          "im Supermarkt",
+          "am Flughafen",
+          "im Zug"
+        ],
+        "answer": "im Supermarkt"
+      }
+    ]
+  },
+  {
+    "id": "list_a1_010",
+    "level": "A1",
+    "title": "Hotelreservierung",
+    "topic": "Hotel Booking",
+    "transcript_de": "Guten Tag! Ich habe ein Doppelzimmer für zwei Nächte mit Frühstück reserviert.",
+    "transcript_en": "Good day! I reserved a double room for two nights with breakfast.",
+    "transcript_ur": "دن بخیر! میں نے ناشتے کے ساتھ دو راتوں کے لیے ایک ڈبل روم بک کروایا ہے۔",
+    "questions": [
+      {
+        "q": "Welche Zimmerkategorie wurde gebucht?",
+        "options": [
+          "Doppelzimmer",
+          "Einzelzimmer",
+          "Suite"
+        ],
+        "answer": "Doppelzimmer"
+      },
+      {
+        "q": "Wie viele Nächte bleibt der Gast?",
+        "options": [
+          "zwei Nächte",
+          "drei Nächte",
+          "eine Nacht"
+        ],
+        "answer": "zwei Nächte"
+      },
+      {
+        "q": "Ist das Frühstück inklusive?",
+        "options": [
+          "ja, mit Frühstück",
+          "nein, ohne Frühstück",
+          "nur Abendessen"
+        ],
+        "answer": "ja, mit Frühstück"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_001",
+    "level": "A2",
+    "title": "Vorstellungsgespräch für Ausbildungsplatz",
+    "topic": "Job Interview",
+    "transcript_de": "Guten Tag Frau Hoffmann! Warum möchten Sie eine Ausbildung als Mechatronikerin bei unserer Firma machen?",
+    "transcript_en": "Good day Ms. Hoffmann! Why would you like to do an apprenticeship as a mechatronics technician at our company?",
+    "transcript_ur": "دن بخیر محترمہ ہفمین! آپ ہماری کمپنی میں میکاٹرانکس ٹیکنیشن کی تربیت کیوں حاصل کرنا چاہتی ہیں؟",
+    "questions": [
+      {
+        "q": "Welcher Ausbildungsberuf wird besprochen?",
+        "options": [
+          "Mechatronikerin",
+          "Kauffrau",
+          "Informatikerin"
+        ],
+        "answer": "Mechatronikerin"
+      },
+      {
+        "q": "Wie heißt die Bewerberin?",
+        "options": [
+          "Frau Hoffmann",
+          "Frau Schneider",
+          "Frau Fischer"
+        ],
+        "answer": "Frau Hoffmann"
+      },
+      {
+        "q": "In welchem Kontext findet das Gespräch statt?",
+        "options": [
+          "Vorstellungsgespräch",
+          "Arzttermin",
+          "Einkauf"
+        ],
+        "answer": "Vorstellungsgespräch"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_002",
+    "level": "A2",
+    "title": "Zugverspätung und Gleiswechsel",
+    "topic": "Train Delay Notice",
+    "transcript_de": "Gleis 4: Der ICE nach München hat ca. 20 Minuten Verspätung. Grund ist eine technische Störung.",
+    "transcript_en": "Track 4: The ICE train to Munich is delayed by approx. 20 minutes due to a technical fault.",
+    "transcript_ur": "پلیٹ فارم 4: میونخ جانے والی ٹرین فنی خرابی کی وجہ سے تقریباً 20 منٹ تاخیر کا شکار ہے۔",
+    "questions": [
+      {
+        "q": "Auf welchem Gleis fährt der Zug?",
+        "options": [
+          "Gleis 4",
+          "Gleis 2",
+          "Gleis 6"
+        ],
+        "answer": "Gleis 4"
+      },
+      {
+        "q": "Wie lange ist die Verspätung?",
+        "options": [
+          "ca. 20 Minuten",
+          "10 Minuten",
+          "eine Stunde"
+        ],
+        "answer": "ca. 20 Minuten"
+      },
+      {
+        "q": "Was ist die Ursache der Verspätung?",
+        "options": [
+          "technische Störung",
+          "Schlechte Wetterlage",
+          "Streik"
+        ],
+        "answer": "technische Störung"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_003",
+    "level": "A2",
+    "title": "Krankmeldung beim Arbeitgeber",
+    "topic": "Sick Leave Call",
+    "transcript_de": "Hallo Herr Wagner, ich bin heute krank und kann wegen Fieber nicht zur Arbeit kommen. Ich gehe gleich zum Arzt.",
+    "transcript_en": "Hello Mr. Wagner, I am sick today and cannot come to work due to a fever. I am going to the doctor right away.",
+    "transcript_ur": "ہیلو مسٹر ویگنر، میں آج بیمار ہوں اور بخار کی وجہ سے کام پر نہیں آ سکتا۔ میں ابھی ڈاکٹر کے پاس جا رہا ہوں۔",
+    "questions": [
+      {
+        "q": "Warum kann der Mitarbeiter nicht arbeiten?",
+        "options": [
+          "wegen Fieber",
+          "wegen Urlaub",
+          "wegen Stau"
+        ],
+        "answer": "wegen Fieber"
+      },
+      {
+        "q": "Bei wem meldet sich der Mitarbeiter?",
+        "options": [
+          "beim Arbeitgeber (Herr Wagner)",
+          "beim Arzt",
+          "bei der Krankenkasse"
+        ],
+        "answer": "beim Arbeitgeber (Herr Wagner)"
+      },
+      {
+        "q": "Wohin geht der Mitarbeiter als Nächstes?",
+        "options": [
+          "zum Arzt",
+          "nach Hause",
+          "in die Apotheke"
+        ],
+        "answer": "zum Arzt"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_004",
+    "level": "A2",
+    "title": "Reparaturdienst für Waschmaschine",
+    "topic": "Appliance Repair",
+    "transcript_de": "Technischer Kundendienst. Unsere Waschmaschine verliert Wasser. Können Sie am Donnerstag einen Techniker schicken?",
+    "transcript_en": "Technical Customer Service. Our washing machine is leaking water. Can you send a technician on Thursday?",
+    "transcript_ur": "ٹیکنیکل کسٹمر سروس۔ ہماری واشنگ مشین سے پانی لِیک ہو رہا ہے۔ کیا آپ جمعرات کو ٹیکنیشن بھیج سکتے ہیں؟",
+    "questions": [
+      {
+        "q": "Welches Gerät ist defekt?",
+        "options": [
+          "Waschmaschine",
+          "Kühlschrank",
+          "Spülmaschine"
+        ],
+        "answer": "Waschmaschine"
+      },
+      {
+        "q": "Was ist das Problem mit dem Gerät?",
+        "options": [
+          "verliert Wasser",
+          "macht Lärm",
+          "geht nicht an"
+        ],
+        "answer": "verliert Wasser"
+      },
+      {
+        "q": "Für welchen Tag wird der Techniker gewünscht?",
+        "options": [
+          "Donnerstag",
+          "Mittwoch",
+          "Freitag"
+        ],
+        "answer": "Donnerstag"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_005",
+    "level": "A2",
+    "title": "Anmeldung bei der Bürgerbehörde",
+    "topic": "City Registration",
+    "transcript_de": "Für die Wohnsitzanmeldung benötige ich Ihren Personalausweis und die Wohnungsgeberbestätigung Ihres Vermieters.",
+    "transcript_en": "For residence registration I need your ID card and the confirmation from your landlord.",
+    "transcript_ur": "رہائشی رجسٹریشن کے لیے مجھے آپ کے شناختی کارڈ اور آپ کے مکان مالک کی تصدیق کی ضرورت ہے۔",
+    "questions": [
+      {
+        "q": "Welcher behördliche Schritt soll durchgeführt werden?",
+        "options": [
+          "Wohnsitzanmeldung",
+          "Passverlängerung",
+          "Führerscheinprüfung"
+        ],
+        "answer": "Wohnsitzanmeldung"
+      },
+      {
+        "q": "Welche Dokumente werden benötigt?",
+        "options": [
+          "Ausweis und Wohnungsgeberbestätigung",
+          "Mietvertrag und Gehaltsabrechnung",
+          "Geburtsurkunde"
+        ],
+        "answer": "Ausweis und Wohnungsgeberbestätigung"
+      },
+      {
+        "q": "Wer stellt die Bestätigung aus?",
+        "options": [
+          "der Vermieter",
+          "der Arbeitgeber",
+          "die Polizei"
+        ],
+        "answer": "der Vermieter"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_006",
+    "level": "A2",
+    "title": "Verkehrsmeldung im Radio",
+    "topic": "Traffic Update",
+    "transcript_de": "A8 München Richtung Stuttgart: Zwischen Ulm und Gruibingen 5 km Stau wegen einer Baustelle.",
+    "transcript_en": "A8 Munich towards Stuttgart: Between Ulm and Gruibingen 5 km traffic jam due to construction work.",
+    "transcript_ur": "ایٹ شاہراہ میونخ تا اسٹٹگارٹ: الس اور گروئبنگن کے درمیان تعمیراتی کام کی وجہ سے 5 کلومیٹر لمبا ٹریفک جام ہے۔",
+    "questions": [
+      {
+        "q": "Auf welcher Autobahn ist der Stau?",
+        "options": [
+          "A8",
+          "A9",
+          "A5"
+        ],
+        "answer": "A8"
+      },
+      {
+        "q": "Wie lang ist der Stau?",
+        "options": [
+          "5 km",
+          "10 km",
+          "2 km"
+        ],
+        "answer": "5 km"
+      },
+      {
+        "q": "Was ist der Grund für die Verzögerung?",
+        "options": [
+          "eine Baustelle",
+          "ein Unfall",
+          "Glatteis"
+        ],
+        "answer": "eine Baustelle"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_007",
+    "level": "A2",
+    "title": "Gespräch im Fitnessstudio",
+    "topic": "Fitness Club Membership",
+    "transcript_de": "Unser Monatsbeitrag kostet 39 Euro inklusive Saunanutzung und Duschen. Die Mindestlaufzeit beträgt 12 Monate.",
+    "transcript_en": "Our monthly fee costs 39 Euros including sauna usage and showers. Minimum contract duration is 12 months.",
+    "transcript_ur": "ہماری ماہانہ فیس 39 یورو ہے جس میں سونا اور شاور کی سہولت شامل ہے۔ معاہدے کی کم از کم مدت 12 ماہ ہے۔",
+    "questions": [
+      {
+        "q": "Wie hoch ist der monatliche Mitgliedsbeitrag?",
+        "options": [
+          "39 Euro",
+          "29 Euro",
+          "49 Euro"
+        ],
+        "answer": "39 Euro"
+      },
+      {
+        "q": "Welche Zusatzleistung ist im Preis enthalten?",
+        "options": [
+          "Saunanutzung",
+          "Personal Trainer",
+          "Getränke-Flatrate"
+        ],
+        "answer": "Saunanutzung"
+      },
+      {
+        "q": "Wie lange ist die Mindestvertragslaufzeit?",
+        "options": [
+          "12 Monate",
+          "6 Monate",
+          "24 Monate"
+        ],
+        "answer": "12 Monate"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_008",
+    "level": "A2",
+    "title": "Nachricht auf dem Anrufbeantworter",
+    "topic": "Voicemail Message",
+    "transcript_de": "Hallo Julia, hier ist Claudia. Unser Treffen im Restaurant verschiebt sich auf 20 Uhr. Ruf mich bitte zurück!",
+    "transcript_en": "Hello Julia, this is Claudia. Our meeting at the restaurant is postponed to 8 PM. Please call me back!",
+    "transcript_ur": "ہیلو جولیا، میں کلاؤڈیا بول رہی ہوں۔ ریسٹورنٹ میں ہماری ملاقات کا وقت رات 8 بجے تک آگے بڑھا دیا گیا ہے۔ مجھے واپس فون کرو!",
+    "questions": [
+      {
+        "q": "Wer hat die Nachricht hinterlassen?",
+        "options": [
+          "Claudia",
+          "Julia",
+          "Sarah"
+        ],
+        "answer": "Claudia"
+      },
+      {
+        "q": "Auf wie viel Uhr wird das Treffen verschoben?",
+        "options": [
+          "20 Uhr",
+          "19 Uhr",
+          "21 Uhr"
+        ],
+        "answer": "20 Uhr"
+      },
+      {
+        "q": "Wo sollte das Treffen ursprünglich stattfinden?",
+        "options": [
+          "im Restaurant",
+          "im Kino",
+          "zu Hause"
+        ],
+        "answer": "im Restaurant"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_009",
+    "level": "A2",
+    "title": "Erfahrungsbericht Sprachreise",
+    "topic": "Language Course Experience",
+    "transcript_de": "Ich habe vier Wochen lang einen Intensivsprachkurs in Heidelberg gemacht. Mein Hörverstehen hat sich stark verbessert.",
+    "transcript_en": "I did an intensive language course in Heidelberg for four weeks. My listening comprehension improved significantly.",
+    "transcript_ur": "میں نے ہائیڈل برگ میں چار ہفتوں تک ایک زبردست لینگویج کورس کیا۔ میری سننے کی صلاحیت میں بہت بہتری آئی ہے۔",
+    "questions": [
+      {
+        "q": "Wie lange dauerte der Sprachkurs?",
+        "options": [
+          "vier Wochen",
+          "zwei Wochen",
+          "sechs Wochen"
+        ],
+        "answer": "vier Wochen"
+      },
+      {
+        "q": "In welcher Stadt fand der Kurs statt?",
+        "options": [
+          "Heidelberg",
+          "Freiburg",
+          "Tübingen"
+        ],
+        "answer": "Heidelberg"
+      },
+      {
+        "q": "Fertigkeit hat sich besonders verbessert?",
+        "options": [
+          "Hörverstehen",
+          "Leseverstehen",
+          "Schreiben"
+        ],
+        "answer": "Hörverstehen"
+      }
+    ]
+  },
+  {
+    "id": "list_a2_010",
+    "level": "A2",
+    "title": "Paket beim Nachbarn abholen",
+    "topic": "Parcel Delivery",
+    "transcript_de": "Der Paketbote hat Ihr Paket bei Frau Fischer im 2. Stock abgegeben, da Sie nicht zu Hause waren.",
+    "transcript_en": "The delivery courier left your parcel with Mrs. Fischer on the 2nd floor because you were not at home.",
+    "transcript_ur": "ڈاکیے نے آپ کا پارسل 2 دوسری منزل پر محترمہ فشر کے پاس چھوڑ دیا کیونکہ آپ گھر پر نہیں تھے۔",
+    "questions": [
+      {
+        "q": "Bei wem liegt das Paket?",
+        "options": [
+          "bei Frau Fischer",
+          "beim Postboten",
+          "in der Filiale"
+        ],
+        "answer": "bei Frau Fischer"
+      },
+      {
+        "q": "In welchem Stockwerk wohnt die Nachbarin?",
+        "options": [
+          "im 2. Stock",
+          "im 1. Stock",
+          "im Erdgeschoss"
+        ],
+        "answer": "im 2. Stock"
+      },
+      {
+        "q": "Warum wurde das Paket dort abgegeben?",
+        "options": [
+          "Empfänger war nicht zu Hause",
+          "Paket war zu schwer",
+          "Falsche Adresse"
+        ],
+        "answer": "Empfänger war nicht zu Hause"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_001",
+    "level": "B1",
+    "title": "Diskussion über Nachhaltigkeit und Plastikmüll",
+    "topic": "Sustainability & Environment",
+    "transcript_de": "Um den Plastikmüll zu reduzieren, sollten Supermärkte unverpackte Lebensmittel anbieten und wiederverwendbare Behälter fördern.",
+    "transcript_en": "To reduce plastic waste, supermarkets should offer unpackaged food and promote reusable containers.",
+    "transcript_ur": "پلاسٹک کے کچرے کو کم کرنے کے لیے، سپر مارکیٹوں کو بغیر پیک شدہ اشیاء فروخت کرنی چاہئیں اور دوبارہ قابلِ استعمال برتنوں کو فروغ دینا چاہیے۔",
+    "questions": [
+      {
+        "q": "Was ist das Hauptziel der vorgeschlagenen Maßnahmen?",
+        "options": [
+          "Plastikmüll reduzieren",
+          "Preise senken",
+          "Öffnungszeiten verlängern"
+        ],
+        "answer": "Plastikmüll reduzieren"
+      },
+      {
+        "q": "Was sollen Supermärkte vermehrt anbieten?",
+        "options": [
+          "unverpackte Lebensmittel",
+          "Tiefkühlwaren",
+          "Importprodukte"
+        ],
+        "answer": "unverpackte Lebensmittel"
+      },
+      {
+        "q": "Welche Behälter sollen gefördert werden?",
+        "options": [
+          "wiederverwendbare Behälter",
+          "Einwegverpackungen",
+          "Papiertüten"
+        ],
+        "answer": "wiederverwendbare Behälter"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_002",
+    "level": "B1",
+    "title": "Vortrag über Homeoffice und Flexibilität",
+    "topic": "Remote Work & Business",
+    "transcript_de": "Homeoffice steigert die Flexibilität der Mitarbeiter, erfordert jedoch eine klare Abgrenzung zwischen Arbeitszeit und Freizeit.",
+    "transcript_en": "Working from home increases employee flexibility, but requires a clear boundary between work time and free time.",
+    "transcript_ur": "گھر سے کام کرنا ملازمین کی لچک میں اضافہ کرتا ہے، لیکن کام کے وقت اور فارغ وقت کے درمیان واضح فرق کی ضرورت ہوتی ہے۔",
+    "questions": [
+      {
+        "q": "Welchen Vorteil bietet das Homeoffice?",
+        "options": [
+          "höhere Flexibilität",
+          "mehr Gehalt",
+          "weniger Verantwortung"
+        ],
+        "answer": "höhere Flexibilität"
+      },
+      {
+        "q": "Was wird als Herausforderung genannt?",
+        "options": [
+          "Abgrenzung von Arbeits- und Freizeit",
+          "schlechte Internetverbindung",
+          "fehlende E-Mails"
+        ],
+        "answer": "Abgrenzung von Arbeits- und Freizeit"
+      },
+      {
+        "q": "Für wen gilt dieser Vorteil?",
+        "options": [
+          "für Mitarbeiter",
+          "nur für Chefs",
+          "für Kunden"
+        ],
+        "answer": "für Mitarbeiter"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_003",
+    "level": "B1",
+    "title": "Podiumsdiskussion: Öffentlicher Nahverkehr",
+    "topic": "Public Transport Policy",
+    "transcript_de": "Ein preiswerter öffentlicher Nahverkehr ermutigt Bürger, das eigene Auto stehen zu lassen und leistet einen Beitrag zum Klimaschutz.",
+    "transcript_en": "Affordable public transit encourages citizens to leave their cars behind and contributes to climate protection.",
+    "transcript_ur": "مناسب قیمت پر پبلک ٹرانسپورٹ شہریوں کو اپنی گاڑیاں چھوڑنے کی ترغیب دیتی ہے اور ماحول کے تحفظ میں حصہ ڈالتی ہے۔",
+    "questions": [
+      {
+        "q": "Wozu führt preiswerter Nahverkehr?",
+        "options": [
+          "Auto stehen lassen",
+          "mehr Staus",
+          "höhere Parkgebühren"
+        ],
+        "answer": "Auto stehen lassen"
+      },
+      {
+        "q": "Welcher gesellschaftliche Beitrag wird betont?",
+        "options": [
+          "Beitrag zum Klimaschutz",
+          "Steuereinsparung",
+          "Tourismusförderung"
+        ],
+        "answer": "Beitrag zum Klimaschutz"
+      },
+      {
+        "q": "Wer soll durch die Maßnahme angesprochen werden?",
+        "options": [
+          "die Bürger",
+          "nur Fernreisende",
+          "LKW-Fahrer"
+        ],
+        "answer": "die Bürger"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_004",
+    "level": "B1",
+    "title": "Kulturbericht: Museen und freier Eintritt",
+    "topic": "Culture & Museum Policy",
+    "transcript_de": "Freier Eintritt in staatliche Museen an Sonntagen hat die Besucherzahlen von Jugendlichen und Familien verdoppelt.",
+    "transcript_en": "Free admission to state museums on Sundays has doubled the visitor numbers among youth and families.",
+    "transcript_ur": "اتوار کے روز سرکاری عجائب گھروں میں مفت داخلے نے نوجوانوں اور خاندانوں کی آمد کی تعداد کو دوگنا کر دیا ہے۔",
+    "questions": [
+      {
+        "q": "An welchem Tag gilt der freie Eintritt?",
+        "options": [
+          "an Sonntagen",
+          "an Samstagen",
+          "jeden Tag"
+        ],
+        "answer": "an Sonntagen"
+      },
+      {
+        "q": "Wie haben sich die Besucherzahlen entwickelt?",
+        "options": [
+          "verdoppelt",
+          "halbiert",
+          "unverändert"
+        ],
+        "answer": "verdoppelt"
+      },
+      {
+        "q": "Welche Zielgruppen profitieren besonders?",
+        "options": [
+          "Jugendliche und Familien",
+          "Senioren",
+          "Geschäftsreisende"
+        ],
+        "answer": "Jugendliche und Familien"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_005",
+    "level": "B1",
+    "title": "Gesundheitsratgeber: Ausgewogene Ernährung",
+    "topic": "Health & Nutrition",
+    "transcript_de": "Eine ausgewogene Ernährung kombiniert mit regelmäßiger Bewegung senkt das Risiko für Herz-Kreislauf-Erkrankungen erheblich.",
+    "transcript_en": "A balanced diet combined with regular exercise significantly lowers the risk of cardiovascular diseases.",
+    "transcript_ur": "باقاعدہ ورزش کے ساتھ متوازن غذا دل کی بیماریوں کے خطرے کو نمایاں طور پر کم کرتی ہے۔",
+    "questions": [
+      {
+        "q": "Welche Faktoren werden für die Gesundheit empfohlen?",
+        "options": [
+          "Ernährung und Bewegung",
+          "nur Nahrungsergänzung",
+          "viel Schlaf alleine"
+        ],
+        "answer": "Ernährung und Bewegung"
+      },
+      {
+        "q": "Welches Risiko wird gesenkt?",
+        "options": [
+          "Herz-Kreislauf-Erkrankungen",
+          "Erkältungen",
+          "Allergien"
+        ],
+        "answer": "Herz-Kreislauf-Erkrankungen"
+      },
+      {
+        "q": "Wie stark unterscheidet sich das Risiko?",
+        "options": [
+          "erheblich gesenkt",
+          "leicht erhöht",
+          "gar nicht"
+        ],
+        "answer": "erheblich gesenkt"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_006",
+    "level": "B1",
+    "title": "Weiterbildung und lebenslanges Lernen",
+    "topic": "Continued Education",
+    "transcript_de": "Aufgrund der Digitalisierung gewinnt das lebenslange Lernen an Bedeutung, da Berufsbilder sich kontinuierlich verändern.",
+    "transcript_en": "Due to digitalization, lifelong learning is gaining importance as job descriptions continuously evolve.",
+    "transcript_ur": "ڈیجیٹلائزیشن کی وجہ سے، زندگی بھر سیکھنے کی اہمیت بڑھ رہی ہے کیونکہ نوکری کے تقاضے مسلسل بدل رہے ہیں۔",
+    "questions": [
+      {
+        "q": "Was ist die Ursache für die Veränderung der Berufsbilder?",
+        "options": [
+          "Digitalisierung",
+          "Globalisierung",
+          "Fachkräftemangel"
+        ],
+        "answer": "Digitalisierung"
+      },
+      {
+        "q": "Welches Konzept gewinnt an Bedeutung?",
+        "options": [
+          "lebenslanges Lernen",
+          "Frührente",
+          "Schulabbruch"
+        ],
+        "answer": "lebenslanges Lernen"
+      },
+      {
+        "q": "Wie entwickeln sich Berufsbilder?",
+        "options": [
+          "kontinuierlich verändernd",
+          "stagnierend",
+          "rückläufig"
+        ],
+        "answer": "kontinuierlich verändernd"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_007",
+    "level": "B1",
+    "title": "Immobilienmarkt und Mietpreise",
+    "topic": "Real Estate Trends",
+    "transcript_de": "Trotz gesetzlicher Mietpreisbremsen steigen die Quadratmeterpreise in Großstädten wegen hoher Nachfrage weiter an.",
+    "transcript_en": "Despite statutory rent control laws, square meter prices in major cities continue to rise due to high demand.",
+    "transcript_ur": "قانونی کرایہ کنٹرول کے باوجود، زیادہ مانگ کی وجہ سے بڑے شہروں میں فی مربع میٹر قیمتیں مسلسل بڑھ رہی ہیں۔",
+    "questions": [
+      {
+        "q": "Wie entwickeln sich die Quadratmeterpreise?",
+        "options": [
+          "steigen weiter an",
+          "fallen drastisch",
+          "bleiben stabil"
+        ],
+        "answer": "steigen weiter an"
+      },
+      {
+        "q": "Was ist der Grund für den Anstieg?",
+        "options": [
+          "hohe Nachfrage",
+          "fehlende Kredite",
+          "niedrige Zinsen"
+        ],
+        "answer": "hohe Nachfrage"
+      },
+      {
+        "q": "Wo ist dieser Trend besonders stark?",
+        "options": [
+          "in Großstädten",
+          "auf dem Land",
+          "im Ausland"
+        ],
+        "answer": "in Großstädten"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_008",
+    "level": "B1",
+    "title": "Erneuerbare Energien und Solaranlagen",
+    "topic": "Renewable Energy",
+    "transcript_de": "Die Installation von Solaranlagen auf privaten Dächern wird von der Bundesregierung finanziell gefördert.",
+    "transcript_en": "The installation of solar panels on private roofs is financially subsidized by the federal government.",
+    "transcript_ur": "نجی چھتوں پر سولر پینل لگانے کے لیے وفاقی حکومت کی طرف سے مالی امداد فراہم کی جاتی ہے۔",
+    "questions": [
+      {
+        "q": "Welche Technologie wird gefördert?",
+        "options": [
+          "Solaranlagen",
+          "Windkrafträder",
+          "Dieselgeneratoren"
+        ],
+        "answer": "Solaranlagen"
+      },
+      {
+        "q": "Wer stellt die finanzielle Förderung bereit?",
+        "options": [
+          "die Bundesregierung",
+          "die Stadtwerke",
+          "private Banken"
+        ],
+        "answer": "die Bundesregierung"
+      },
+      {
+        "q": "Wo sollen die Anlagen installiert werden?",
+        "options": [
+          "auf privaten Dächern",
+          "auf Feldern",
+          "in Fabriken"
+        ],
+        "answer": "auf privaten Dächern"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_009",
+    "level": "B1",
+    "title": "Verbraucherschutz: Datenschutz im Internet",
+    "topic": "Consumer Privacy",
+    "transcript_de": "Verbraucherschützer raten dazu, Passwörter regelmäßig zu ändern und keine sensiblen Daten in öffentlichen WLAN-Netzen einzugeben.",
+    "transcript_en": "Consumer advocates advise regularly changing passwords and not entering sensitive data on public Wi-Fi networks.",
+    "transcript_ur": "صارفین کے تحفظ کے ادارے باقاعدگی سے پاس ورڈ تبدیل کرنے اور پبلک وائی فائی نیٹ ورکس پر حساس معلومات درج نہ کرنے کا مشورہ دیتے ہیں۔",
+    "questions": [
+      {
+        "q": "Was sollte man mit Passwörtern tun?",
+        "options": [
+          "regelmäßig ändern",
+          "niemals ändern",
+          "aufschreiben"
+        ],
+        "answer": "regelmäßig ändern"
+      },
+      {
+        "q": "Was sollte man in öffentlichen WLAN-Netzen vermeiden?",
+        "options": [
+          "sensible Daten eingeben",
+          "Nachrichten lesen",
+          "Videos schauen"
+        ],
+        "answer": "sensible Daten eingeben"
+      },
+      {
+        "q": "Wer gibt diesen Ratschlag?",
+        "options": [
+          "Verbraucherschützer",
+          "Mobilfunkanbieter",
+          "Hardware-Hersteller"
+        ],
+        "answer": "Verbraucherschützer"
+      }
+    ]
+  },
+  {
+    "id": "list_b1_010",
+    "level": "B1",
+    "title": "Integration durch Sprachkurse",
+    "topic": "Integration & Language",
+    "transcript_de": "Integrationskurse vermitteln nicht nur die deutsche Sprache, sondern vermitteln auch Kenntnisse der Rechtsordnung und Kultur.",
+    "transcript_en": "Integration courses not only teach the German language, but also impart knowledge of the legal system and culture.",
+    "transcript_ur": "انٹیگریشن کورسز نہ صرف جرمن زبان سکھاتے ہیں بلکہ قانون اور ثقافت کی معلومات بھی فراہم کرتے ہیں۔",
+    "questions": [
+      {
+        "q": "Was vermitteln Integrationskurse neben der Sprache?",
+        "options": [
+          "Rechtsordnung und Kultur",
+          "Sportkenntnisse",
+          "Kochen"
+        ],
+        "answer": "Rechtsordnung und Kultur"
+      },
+      {
+        "q": "Welchem Zweck dienen diese Kurse?",
+        "options": [
+          "Integration",
+          "Urlaubsvorbereitung",
+          "Berufssport"
+        ],
+        "answer": "Integration"
+      },
+      {
+        "q": "Welche Sprache wird unterrichtet?",
+        "options": [
+          "Deutsche Sprache",
+          "Englische Sprache",
+          "Französische Sprache"
+        ],
+        "answer": "Deutsche Sprache"
+      }
+    ]
+  }
+]
