@@ -1,0 +1,801 @@
+[
+  {
+    "id": "spk_zero_001",
+    "level": "ZERO",
+    "title": "Begrüßung und Name (Greeting & Name)",
+    "prompt_de": "Begrüßen Sie Ihren Gesprächspartner und sagen Sie Ihren Namen.",
+    "prompt_en": "Greet your conversation partner and state your name.",
+    "prompt_ur": "اپنے ساتھ بات کرنے والے کو سلام کریں اور اپنا نام بتائیں۔",
+    "suggested_phrases": [
+      "Hallo, ich heiße...",
+      "Guten Tag, mein Name ist...",
+      "Wie heißen Sie?"
+    ],
+    "target_keywords": [
+      "hallo",
+      "guten",
+      "tag",
+      "heiße",
+      "name",
+      "ich"
+    ]
+  },
+  {
+    "id": "spk_zero_002",
+    "level": "ZERO",
+    "title": "Herkunft nennen (Stating Origin)",
+    "prompt_de": "Sagen Sie, aus welchem Land Sie kommen.",
+    "prompt_en": "State which country you come from.",
+    "prompt_ur": "بتائیں کہ آپ کس ملک سے تعلق رکھتے ہیں۔",
+    "suggested_phrases": [
+      "Ich komme aus...",
+      "Woher kommen Sie?",
+      "Ich wohne in..."
+    ],
+    "target_keywords": [
+      "komme",
+      "aus",
+      "deutschland",
+      "pakistan",
+      "ich"
+    ]
+  },
+  {
+    "id": "spk_zero_003",
+    "level": "ZERO",
+    "title": "Kaffee bestellen (Ordering Coffee)",
+    "prompt_de": "Bestellen Sie höflich eine Tasse Kaffee im Café.",
+    "prompt_en": "Politely order a cup of coffee at a cafe.",
+    "prompt_ur": "کافی شاپ میں برائے مہربانی ایک کپ کافی کا آرڈر دیں۔",
+    "suggested_phrases": [
+      "Eine Tasse Kaffee, bitte.",
+      "Ich möchte einen Kaffee.",
+      "Danke schön!"
+    ],
+    "target_keywords": [
+      "kaffee",
+      "tasse",
+      "bitte",
+      "danke",
+      "möchte"
+    ]
+  },
+  {
+    "id": "spk_zero_004",
+    "level": "ZERO",
+    "title": "Wochentage nennen (Naming Days)",
+    "prompt_de": "Nennen Sie drei Wochentage auf Deutsch.",
+    "prompt_en": "Name three days of the week in German.",
+    "prompt_ur": "جرمن میں ہفتے کے تین دنوں کے نام بتائیں۔",
+    "suggested_phrases": [
+      "Heute ist Montag.",
+      "Morgen ist Dienstag.",
+      "Übermorgen ist Mittwoch."
+    ],
+    "target_keywords": [
+      "montag",
+      "dienstag",
+      "mittwoch",
+      "heute",
+      "morgen"
+    ]
+  },
+  {
+    "id": "spk_zero_005",
+    "level": "ZERO",
+    "title": "Zahlen nennen (Counting 1-5)",
+    "prompt_de": "Zählen Sie laut von eins bis fünf auf Deutsch.",
+    "prompt_en": "Count aloud from one to five in German.",
+    "prompt_ur": "جرمن میں ایک سے پانچ تک بلند آواز میں گنتی گنیں۔",
+    "suggested_phrases": [
+      "Eins, zwei, drei, vier, fünf."
+    ],
+    "target_keywords": [
+      "eins",
+      "zwei",
+      "drei",
+      "vier",
+      "fünf"
+    ]
+  },
+  {
+    "id": "spk_zero_006",
+    "level": "ZERO",
+    "title": "Familie vorstellen (Introducing Family)",
+    "prompt_de": "Stellen Sie Ihre Eltern oder Geschwister vor.",
+    "prompt_en": "Introduce your parents or siblings.",
+    "prompt_ur": "اپنے والدین یا بہن بھائیوں کا تعارف کروائیں۔",
+    "suggested_phrases": [
+      "Das ist mein Vater.",
+      "Das ist meine Mutter.",
+      "Ich habe einen Bruder."
+    ],
+    "target_keywords": [
+      "vater",
+      "mutter",
+      "bruder",
+      "schwester",
+      "das"
+    ]
+  },
+  {
+    "id": "spk_zero_007",
+    "level": "ZERO",
+    "title": "Farben beschreiben (Describing Colors)",
+    "prompt_de": "Sagen Sie Ihre Lieblingsfarbe auf Deutsch.",
+    "prompt_en": "Say your favorite color in German.",
+    "prompt_ur": "جرمن میں اپنا پسندیدہ رنگ بتائیں۔",
+    "suggested_phrases": [
+      "Meine Lieblingsfarbe ist Blau.",
+      "Das Auto ist rot."
+    ],
+    "target_keywords": [
+      "farbe",
+      "blau",
+      "rot",
+      "grün",
+      "schwarz"
+    ]
+  },
+  {
+    "id": "spk_zero_008",
+    "level": "ZERO",
+    "title": "Höflich danken (Expressing Thanks)",
+    "prompt_de": "Bedanken Sie sich für eine nette Geste.",
+    "prompt_en": "Thank someone for a nice gesture.",
+    "prompt_ur": "کسی اچھی بات یا مدد پر شکریہ ادا کریں۔",
+    "suggested_phrases": [
+      "Vielen Dank!",
+      "Herzlichen Dank!",
+      "Bitte sehr!"
+    ],
+    "target_keywords": [
+      "dank",
+      "vielen",
+      "herzlichen",
+      "bitte",
+      "sehr"
+    ]
+  },
+  {
+    "id": "spk_zero_009",
+    "level": "ZERO",
+    "title": "Sprachen nennen (Stating Languages)",
+    "prompt_de": "Sagen Sie, welche Sprachen Sie sprechen.",
+    "prompt_en": "State which languages you speak.",
+    "prompt_ur": "بتائیں کہ آپ کون سی زبانیں بولتے ہیں۔",
+    "suggested_phrases": [
+      "Ich spreche Deutsch und Englisch.",
+      "Ich lerne Deutsch."
+    ],
+    "target_keywords": [
+      "spreche",
+      "deutsch",
+      "englisch",
+      "urdu",
+      "lerne"
+    ]
+  },
+  {
+    "id": "spk_zero_010",
+    "level": "ZERO",
+    "title": "Uhrzeit erfragen (Asking Time)",
+    "prompt_de": "Fragen Sie höflich nach der Uhrzeit.",
+    "prompt_en": "Politely ask for the time of day.",
+    "prompt_ur": "برائے مہربانی وقت کے بارے میں پوچھیں۔",
+    "suggested_phrases": [
+      "Wie viel Uhr ist es?",
+      "Wie spät ist es?",
+      "Es ist acht Uhr."
+    ],
+    "target_keywords": [
+      "uhr",
+      "spät",
+      "wie",
+      "viel",
+      "acht"
+    ]
+  },
+  {
+    "id": "spk_a1_001",
+    "level": "A1",
+    "title": "Sich ausführlich vorstellen (Personal Intro)",
+    "prompt_de": "Stellen Sie sich kurz mit Name, Alter, Wohnort und Beruf vor.",
+    "prompt_en": "Introduce yourself with name, age, city of residence, and occupation.",
+    "prompt_ur": "نام، عمر، شہر اور پیشہ کے ساتھ اپنا مکمل تعارف کروائیں۔",
+    "suggested_phrases": [
+      "Ich heiße...",
+      "Ich bin 25 Jahre alt.",
+      "Ich wohne in Berlin.",
+      "Ich arbeite als..."
+    ],
+    "target_keywords": [
+      "heiße",
+      "jahre",
+      "alt",
+      "wohne",
+      "arbeite"
+    ]
+  },
+  {
+    "id": "spk_a1_002",
+    "level": "A1",
+    "title": "Einkaufen im Supermarkt (Supermarket Shopping)",
+    "prompt_de": "Fragen Sie nach dem Preis von Lebensmitteln im Supermarkt.",
+    "prompt_en": "Ask for the price of grocery items in a supermarket.",
+    "prompt_ur": "سپر مارکیٹ میں اشیائے خوردونوش کی قیمت کے بارے میں پوچھیں۔",
+    "suggested_phrases": [
+      "Wie viel kostet das Brot?",
+      "Ich nehme ein Kilo Äpfel.",
+      "Kann ich mit Karte zahlen?"
+    ],
+    "target_keywords": [
+      "kostet",
+      "brot",
+      "äpfel",
+      "karte",
+      "zahle"
+    ]
+  },
+  {
+    "id": "spk_a1_003",
+    "level": "A1",
+    "title": "Wegbeschreibung geben (Giving Directions)",
+    "prompt_de": "Erklären Sie den Weg zum Hauptbahnhof.",
+    "prompt_en": "Explain the directions to the central train station.",
+    "prompt_ur": "مرکزی ریلوے اسٹیشن کا راستہ سمجھائیں۔",
+    "suggested_phrases": [
+      "Gehen Sie geradeaus.",
+      "Biegen Sie links ab.",
+      "Der Bahnhof ist auf der rechten Seite."
+    ],
+    "target_keywords": [
+      "geradeaus",
+      "links",
+      "rechts",
+      "abbiegen",
+      "bahnhof"
+    ]
+  },
+  {
+    "id": "spk_a1_004",
+    "level": "A1",
+    "title": "Tagesablauf beschreiben (Daily Routine)",
+    "prompt_de": "Beschreiben Sie Ihren typischen Morgenablauf.",
+    "prompt_en": "Describe your typical morning routine.",
+    "prompt_ur": "صبح کی اپنی معمولات کی روٹین بیان کریں۔",
+    "suggested_phrases": [
+      "Ich stehe um 7 Uhr auf.",
+      "Dann trinke ich einen Kaffee.",
+      "Um 8 Uhr fahre ich zur Arbeit."
+    ],
+    "target_keywords": [
+      "stehe",
+      "auf",
+      "trinke",
+      "kaffee",
+      "fahre",
+      "arbeit"
+    ]
+  },
+  {
+    "id": "spk_a1_005",
+    "level": "A1",
+    "title": "Termin beim Arzt machen (Doctor Appointment)",
+    "prompt_de": "Rufen Sie in der Arztpraxis an und vereinbaren Sie einen Termin.",
+    "prompt_en": "Call the doctor's office and make an appointment.",
+    "prompt_ur": "ڈاکٹر کے کلینک میں فون کریں اور ملاقات کا وقت طے کریں۔",
+    "suggested_phrases": [
+      "Ich brauche heute einen Termin.",
+      "Ich habe Kopfschmerzen.",
+      "Geht es am Nachmittag?"
+    ],
+    "target_keywords": [
+      "termin",
+      "arzt",
+      "kopfschmerzen",
+      "heute",
+      "nachmittag"
+    ]
+  },
+  {
+    "id": "spk_a1_006",
+    "level": "A1",
+    "title": "Wohnung beschreiben (Describing Apartment)",
+    "prompt_de": "Beschreiben Sie Ihre Wohnung mit Anzahl der Zimmer.",
+    "prompt_en": "Describe your apartment with the number of rooms.",
+    "prompt_ur": "اپنے فلیٹ اور اس کے کمروں کی تعداد کے بارے میں بتائیں۔",
+    "suggested_phrases": [
+      "Meine Wohnung hat drei Zimmer.",
+      "Es gibt eine Küche und ein Bad.",
+      "Die Miete ist nicht hoch."
+    ],
+    "target_keywords": [
+      "wohnung",
+      "zimmer",
+      "küche",
+      "bad",
+      "miete"
+    ]
+  },
+  {
+    "id": "spk_a1_007",
+    "level": "A1",
+    "title": "Freizeit und Hobbys (Hobbies & Free Time)",
+    "prompt_de": "Sprechen Sie über Ihre liebsten Hobbys am Wochenende.",
+    "prompt_en": "Talk about your favorite hobbies on the weekend.",
+    "prompt_ur": "ہفتے کے اختتام پر اپنے پسندیدہ مشغلوں کے بارے میں بات کریں۔",
+    "suggested_phrases": [
+      "In meiner Freizeit spiele ich Fußball.",
+      "Am Wochenende lese ich gerne Bücher.",
+      "Ich gehe im Park spazieren."
+    ],
+    "target_keywords": [
+      "freizeit",
+      "fußball",
+      "bücher",
+      "wochenende",
+      "spazieren"
+    ]
+  },
+  {
+    "id": "spk_a1_008",
+    "level": "A1",
+    "title": "Fahrkarte bestellen (Buying Train Ticket)",
+    "prompt_de": "Kaufen Sie am Schalter eine Fahrkarte nach München.",
+    "prompt_en": "Buy a train ticket to Munich at the counter.",
+    "prompt_ur": "کاؤنٹر پر میونخ کے لیے ایک ٹرین ٹکٹ خریدیں۔",
+    "suggested_phrases": [
+      "Eine Fahrkarte nach München, bitte.",
+      "Hin und zurück.",
+      "Wann fährt der nächste Zug?"
+    ],
+    "target_keywords": [
+      "fahrkarte",
+      "münchen",
+      "zug",
+      "zurück",
+      "gleis"
+    ]
+  },
+  {
+    "id": "spk_a1_009",
+    "level": "A1",
+    "title": "Einladung zum Essen (Dinner Invitation)",
+    "prompt_de": "Laden Sie einen Freund zum Abendessen ein.",
+    "prompt_en": "Invite a friend over for dinner.",
+    "prompt_ur": "اپنے دوست کو رات کے کھانے کی دعوت دیں۔",
+    "suggested_phrases": [
+      "Möchtest du am Freitag zu mir kommen?",
+      "Ich koche ein leckeres Abendessen.",
+      "Hast du Zeit?"
+    ],
+    "target_keywords": [
+      "einladung",
+      "freitag",
+      "koche",
+      "abendessen",
+      "zeit"
+    ]
+  },
+  {
+    "id": "spk_a1_010",
+    "level": "A1",
+    "title": "Wetter beschreiben (Describing Weather)",
+    "prompt_de": "Sagen Sie, wie das Wetter heute ist.",
+    "prompt_en": "Say what the weather is like today.",
+    "prompt_ur": "بتائیں کہ آج کا موسم کیسا ہے۔",
+    "suggested_phrases": [
+      "Heute scheint die Sonne.",
+      "Es ist warm und schön.",
+      "Morgen soll es regnen."
+    ],
+    "target_keywords": [
+      "wetter",
+      "sonne",
+      "scheint",
+      " warm",
+      "regen"
+    ]
+  },
+  {
+    "id": "spk_a2_001",
+    "level": "A2",
+    "title": "Vorstellungsgespräch (Job Interview Intro)",
+    "prompt_de": "Begründen Sie im Vorstellungsgespräch Ihre Stärken und Motivation.",
+    "prompt_en": "Explain your strengths and motivation during a job interview.",
+    "prompt_ur": "نوکری کے انٹرویو میں اپنی صلاحیتوں اور جذبے کی وضاحت کریں۔",
+    "suggested_phrases": [
+      "Ich möchte mich um die Stelle bewerben.",
+      "Ich bin pünktlich und zuverlässig.",
+      "Ich habe Erfahrung in diesem Bereich."
+    ],
+    "target_keywords": [
+      "bewerben",
+      "stelle",
+      "pünktlich",
+      "zuverlässig",
+      "erfahrung"
+    ]
+  },
+  {
+    "id": "spk_a2_002",
+    "level": "A2",
+    "title": "Krankmeldung abgeben (Calling in Sick)",
+    "prompt_de": "Informieren Sie Ihren Chef telefonisch über Ihre Krankheit.",
+    "prompt_en": "Inform your boss by phone about your illness.",
+    "prompt_ur": "فون پر اپنے مینیجر کو اپنی بیماری کے بارے میں مطلع کریں۔",
+    "suggested_phrases": [
+      "Ich kann heute leider nicht kommen.",
+      "Ich habe hohes Fieber.",
+      "Der Arzt hat mich bis Freitag krankgeschrieben."
+    ],
+    "target_keywords": [
+      "krank",
+      "fieber",
+      "arzt",
+      "krankgeschrieben",
+      "freitag"
+    ]
+  },
+  {
+    "id": "spk_a2_003",
+    "level": "A2",
+    "title": "Urlaubserlebnis erzählen (Past Vacation Story)",
+    "prompt_de": "Erzählen Sie im Perfekt von Ihrem letzten Urlaub.",
+    "prompt_en": "Narrate your last vacation using the conversational past tense (Perfekt).",
+    "prompt_ur": "فعل ماضی (Perfekt) کا استعمال کرتے ہوئے اپنی پچھلی چھٹیوں کا احوال سنائیں۔",
+    "suggested_phrases": [
+      "Letzten Sommer bin ich nach Italien gefahren.",
+      "Wir haben am Strand gelegen.",
+      "Das Essen hat sehr gut geschmeckt."
+    ],
+    "target_keywords": [
+      "gefahren",
+      "gelegen",
+      "geschmeckt",
+      "sommer",
+      "urlaub"
+    ]
+  },
+  {
+    "id": "spk_a2_004",
+    "level": "A2",
+    "title": "Reklamation im Geschäft (Making a Complaint)",
+    "prompt_de": "Reklamieren Sie ein defektes Gerät im Laden.",
+    "prompt_en": "Complain about a defective device in a store.",
+    "prompt_ur": "دکان میں خرابی کی شکار چیز کے خلاف شکایت درج کروائیں۔",
+    "suggested_phrases": [
+      "Dieses Gerät funktioniert leider nicht.",
+      "Ich möchte das Gerät umtauschen.",
+      "Hier ist mein Kassenbon."
+    ],
+    "target_keywords": [
+      "defekt",
+      "funktioniert",
+      "umtauschen",
+      "kassenbon",
+      "garantie"
+    ]
+  },
+  {
+    "id": "spk_a2_005",
+    "level": "A2",
+    "title": "Wohnungssuche & Besichtigung (Apartment Viewing)",
+    "prompt_de": "Fragen Sie beim Vermieter nach Nebenkosten und Kaution.",
+    "prompt_en": "Ask the landlord about utility costs and security deposit.",
+    "prompt_ur": "مکان مالک سے بجلی/پانی کے اخراجات اور ضمانتی رقم کے بارے میں پوچھیں۔",
+    "suggested_phrases": [
+      "Wie hoch sind die Nebenkosten?",
+      "Ist die Kaution drei Monatsmieten?",
+      "Ab wann ist die Wohnung frei?"
+    ],
+    "target_keywords": [
+      "nebenkosten",
+      "kaution",
+      "vermieter",
+      "frei",
+      "warmmiete"
+    ]
+  },
+  {
+    "id": "spk_a2_006",
+    "level": "A2",
+    "title": "Gesundheit & Ratschläge (Health Advice)",
+    "prompt_de": "Geben Sie einem kranken Freund Ratschläge mit Modalverben.",
+    "prompt_en": "Give a sick friend health advice using modal verbs.",
+    "prompt_ur": "بیمار دوست کو مناسب مشورے دیں۔",
+    "suggested_phrases": [
+      "Du solltest viel Tee trinken.",
+      "Du musst im Bett bleiben.",
+      "Geh am besten zum Arzt."
+    ],
+    "target_keywords": [
+      "solltest",
+      "musst",
+      "trinken",
+      "bleiben",
+      "arzt"
+    ]
+  },
+  {
+    "id": "spk_a2_007",
+    "level": "A2",
+    "title": "Termin verschieben (Rescheduling Appointment)",
+    "prompt_de": "Verschieben Sie höflich einen festen Termin auf nächste Woche.",
+    "prompt_en": "Politely reschedule a fixed appointment to next week.",
+    "prompt_ur": "پہلے سے طے شدہ ملاقات کو برائے مہربانی اگلے ہفتے تک ملتوی کریں۔",
+    "suggested_phrases": [
+      "Leider muss ich unseren Termin absagen.",
+      "Können wir das Treffen verschieben?",
+      "Passt es Ihnen am Dienstag?"
+    ],
+    "target_keywords": [
+      "verschieben",
+      "absagen",
+      "termin",
+      "dienstag",
+      "passt"
+    ]
+  },
+  {
+    "id": "spk_a2_008",
+    "level": "A2",
+    "title": "Ausbildung & Berufspläne (Career Plans)",
+    "prompt_de": "Sprechen Sie über Ihre Wünsche für Ihre berufliche Zukunft.",
+    "prompt_en": "Talk about your wishes for your professional future.",
+    "prompt_ur": "مستقبل میں اپنے پیشہ ورانہ ارادوں کے بارے میں بات کریں۔",
+    "suggested_phrases": [
+      "Ich möchte eine Ausbildung machen.",
+      "Mein Ziel ist es, als Ingenieur zu arbeiten.",
+      "Ich lerne viel dafür."
+    ],
+    "target_keywords": [
+      "ausbildung",
+      "ziel",
+      "ingenieur",
+      "zukunft",
+      "arbeiten"
+    ]
+  },
+  {
+    "id": "spk_a2_009",
+    "level": "A2",
+    "title": "Verkehrsmittel vergleichen (Comparing Transport)",
+    "prompt_de": "Vergleichen Sie Zugfahrt und Autofahrt in Deutschland.",
+    "prompt_en": "Compare traveling by train vs car in Germany.",
+    "prompt_ur": "جرمنی میں ٹرین اور گاڑی کے سفر کا موازنہ کریں۔",
+    "suggested_phrases": [
+      "Die Bahn ist umweltfreundlicher als das Auto.",
+      "Autofahren ist oft bequemer.",
+      "Der Zug ist meist pünktlich."
+    ],
+    "target_keywords": [
+      "bahn",
+      "auto",
+      "umweltfreundlicher",
+      "bequemer",
+      "pünktlich"
+    ]
+  },
+  {
+    "id": "spk_a2_010",
+    "level": "A2",
+    "title": "Behördengang & Dokumente (City Office Visit)",
+    "prompt_de": "Fragen Sie im Bürgeramt nach den nötigen Unterlagen.",
+    "prompt_en": "Ask at the city registration office for necessary documents.",
+    "prompt_ur": "سرکاری دفتر میں درکار دستاویزات کے بارے میں دریافت کریں۔",
+    "suggested_phrases": [
+      "Welche Dokumente brauche ich für die Anmeldung?",
+      "Hier ist meine Wohnungsgeberbestätigung.",
+      "Reicht mein Ausweis?"
+    ],
+    "target_keywords": [
+      "dokumente",
+      "anmeldung",
+      "ausweis",
+      "bürgeramt",
+      "unterlagen"
+    ]
+  },
+  {
+    "id": "spk_b1_001",
+    "level": "B1",
+    "title": "Meinung zu Umweltschutz (Environmental Opinion)",
+    "prompt_de": "Äußern Sie Ihre Meinung zur Reduzierung von Plastikmüll im Alltag.",
+    "prompt_en": "Express your opinion on reducing plastic waste in daily life.",
+    "prompt_ur": "روزمرہ کی زندگی میں پلاسٹک کا کچرا کم کرنے کے حوالے سے اپنی رائے کا اظہار کریں۔",
+    "suggested_phrases": [
+      "Meiner Meinung nach sollten wir mehr Stoffbeutel nutzen.",
+      "Ich bin davon überzeugt, dass Plastik schädlich ist.",
+      "Es ist wichtig, Müll zu trennen."
+    ],
+    "target_keywords": [
+      "meinung",
+      "überzeugt",
+      "plastik",
+      "umwelt",
+      "wichtig"
+    ]
+  },
+  {
+    "id": "spk_b1_002",
+    "level": "B1",
+    "title": "Vor- und Nachteile von Homeoffice (Remote Work Pros/Cons)",
+    "prompt_de": "Diskutieren Sie Vor- und Nachteile des Arbeitens von zu Hause.",
+    "prompt_en": "Discuss the pros and cons of working from home.",
+    "prompt_ur": "گھر سے کام کرنے (Homeoffice) کے فائدوں اور نقصان کے بارے میں بحث کریں۔",
+    "suggested_phrases": [
+      "Ein großer Vorteil von Homeoffice ist die Flexibilität.",
+      "Ein Nachteil ist der fehlende persönliche Kontakt.",
+      "Man spart viel Fahrtzeit."
+    ],
+    "target_keywords": [
+      "vorteil",
+      "nachteil",
+      "flexibilität",
+      "kontakt",
+      "fahrtzeit"
+    ]
+  },
+  {
+    "id": "spk_b1_003",
+    "level": "B1",
+    "title": "Präsentation halten: Auslandsaufenthalt (Presentation)",
+    "prompt_de": "Halten Sie eine kurze Präsentation über die Vorteile eines Auslandssemesters.",
+    "prompt_en": "Give a short presentation on the benefits of studying abroad.",
+    "prompt_ur": "بیرون ملک تعلیم کے فائدوں پر ایک مختصر پیشکش (Presentation) دیں۔",
+    "suggested_phrases": [
+      "Das Thema meiner Präsentation lautet Auslandsstudium.",
+      "Zuerst möchte ich über meine Erfahrungen sprechen.",
+      "Zusammenfassend lässt sich sagen..."
+    ],
+    "target_keywords": [
+      "thema",
+      "präsentation",
+      "erfahrungen",
+      "vorteile",
+      "zusammenfassend"
+    ]
+  },
+  {
+    "id": "spk_b1_004",
+    "level": "B1",
+    "title": "Rolle sozialer Medien (Role of Social Media)",
+    "prompt_de": "Bewerten Sie den Einfluss von Social Media auf Jugendliche.",
+    "prompt_en": "Evaluate the influence of social media on young people.",
+    "prompt_ur": "نوجوانوں پر سوشل میڈیا کے اثرات کا جائزہ لیں۔",
+    "suggested_phrases": [
+      "Einerseits verbindet Social Media Menschen.",
+      "Andererseits führt es oft zu Ablenkung.",
+      "Man sollte die Nutzungszeit begrenzen."
+    ],
+    "target_keywords": [
+      "einerseits",
+      "andererseits",
+      "medien",
+      "einfluss",
+      "jugendliche"
+    ]
+  },
+  {
+    "id": "spk_b1_005",
+    "level": "B1",
+    "title": "Lebenslanges Lernen (Lifelong Learning)",
+    "prompt_de": "Begründen Sie, warum Weiterbildung im Beruf heutzutage unerlässlich ist.",
+    "prompt_en": "Explain why professional continued education is essential nowadays.",
+    "prompt_ur": "وضاحت کریں کہ موجودہ دور میں پیشہ ورانہ تربیت کیوں ضروری ہے۔",
+    "suggested_phrases": [
+      "Durch die Digitalisierung verändern sich Berufe ständig.",
+      "Man muss sich fortlaufend weiterbilden.",
+      "Neue Technologien erfordern neue Kenntnisse."
+    ],
+    "target_keywords": [
+      "digitalisierung",
+      "weiterbildung",
+      "technologien",
+      "kenntnisse",
+      "beruf"
+    ]
+  },
+  {
+    "id": "spk_b1_006",
+    "level": "B1",
+    "title": "Öffentlicher Nahverkehr vs Auto (Public Transit Debate)",
+    "prompt_de": "Argumentieren Sie für den Ausbau des kostenfreien Nahverkehrs.",
+    "prompt_en": "Argument in favor of expanding free public transportation.",
+    "prompt_ur": "مفت پبلک ٹرانسپورٹ کی توسیع کے حق میں دلائل دیں۔",
+    "suggested_phrases": [
+      "Kostenlose Busse entlasten den Stadtverkehr.",
+      "Das schont die Umwelt und reduziert Abgase.",
+      "Die Bürger sparen dadurch Geld."
+    ],
+    "target_keywords": [
+      "kostenlos",
+      "busse",
+      "umwelt",
+      "abgase",
+      "entlasten"
+    ]
+  },
+  {
+    "id": "spk_b1_007",
+    "level": "B1",
+    "title": "Gesunde Lebensweise (Healthy Lifestyle Discussion)",
+    "prompt_de": "Beschreiben Sie die wichtigsten Säulen einer gesunden Lebensführung.",
+    "prompt_en": "Describe the main pillars of leading a healthy lifestyle.",
+    "prompt_ur": "صحت مند زندگی گزارنے کے اہم اصولوں کو بیان کریں۔",
+    "suggested_phrases": [
+      "Ausgewogene Ernährung spielt eine zentrale Rolle.",
+      "Regelmäßiger Sport hält den Körper fit.",
+      "Auch ausreichend Schlaf ist entscheidend."
+    ],
+    "target_keywords": [
+      "ausgewogene",
+      "ernährung",
+      "sport",
+      "schlaf",
+      "gesundheit"
+    ]
+  },
+  {
+    "id": "spk_b1_008",
+    "level": "B1",
+    "title": "Kulturelle Unterschiede (Cultural Differences)",
+    "prompt_de": "Sprechen Sie über kulturelle Unterschiede beim Leben im Ausland.",
+    "prompt_en": "Talk about cultural differences when living abroad.",
+    "prompt_ur": "بیرون ملک مقیم رہتے ہوئے ثقافتی تفریق کے تجربات شیئر کریں۔",
+    "suggested_phrases": [
+      "In Deutschland legt man viel Wert auf Pünktlichkeit.",
+      "Die Kommunikation ist oft direkter.",
+      "Man lernt neue Traditionen kennen."
+    ],
+    "target_keywords": [
+      "kultur",
+      "pünktlichkeit",
+      "direkter",
+      "traditionen",
+      "deutschland"
+    ]
+  },
+  {
+    "id": "spk_b1_009",
+    "level": "B1",
+    "title": "Erneuerbare Energien (Renewable Energy Pitch)",
+    "prompt_de": "Erklären Sie die Bedeutung von Solarenergie für die Energiewende.",
+    "prompt_en": "Explain the significance of solar energy for energy transition.",
+    "prompt_ur": "توانائی کے بحران میں سولر انرجی کی اہمیت واضح کریں۔",
+    "suggested_phrases": [
+      "Solaranlagen produzieren sauberen Strom.",
+      "Die Abhängigkeit von fossilen Brennstoffen sinkt.",
+      "Das schützt unser Klima langfristig."
+    ],
+    "target_keywords": [
+      "solaranlagen",
+      "strom",
+      "fossilen",
+      "klima",
+      "energiewende"
+    ]
+  },
+  {
+    "id": "spk_b1_010",
+    "level": "B1",
+    "title": "Zukunft der Arbeit (Future of Work)",
+    "prompt_de": "Spekulieren Sie über die Rolle von Künstlicher Intelligenz in der Arbeitswelt.",
+    "prompt_en": "Speculate on the role of Artificial Intelligence in the workplace.",
+    "prompt_ur": "کام کی دنیا میں آرٹیفیشل انٹیلی جنس کے مستقبل کے کردار پر روشنی ڈالیں۔",
+    "suggested_phrases": [
+      "Künstliche Intelligenz wird viele Routineaufgaben übernehmen.",
+      "Menschen werden sich auf kreative Aufgaben konzentrieren.",
+      "Neue Berufsfelder entstehen."
+    ],
+    "target_keywords": [
+      "künstliche",
+      "intelligenz",
+      "routineaufgaben",
+      "kreative",
+      "zukunft"
+    ]
+  }
+]
