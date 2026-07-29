@@ -1,29 +1,25 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Bulletproof inline SpeechRecognition instantiation fix.
+ * Transition lock & native event state synchronization.
  */
 
 let speakingPromptsList = [];
 let currentSpeakingPromptObj = null;
 let speakingRecognition = null;
 let isSpeakingRecording = false;
+let isMicTransitioning = false; // Transition lock to prevent button spamming
 
 // =========================================================================
 // GLOBAL CLICK DIAGNOSTICS & EVENT DELEGATION
 // =========================================================================
 document.addEventListener("click", function(event) {
-    console.log("Global click detected on: ", event.target);
-
     // 1. Handle Mic Button Clicks (Catches SVG icons and paths inside the mic button)
     const micBtn = event.target.closest("#btn-toggle-mic") || event.target.closest("#btn-mic-record");
     if (micBtn) {
         event.preventDefault();
-        console.log("Mic button successfully targeted via closest().");
         if (typeof window.toggleSpeakingMic === "function") {
             window.toggleSpeakingMic();
-        } else {
-            alert("ERROR: window.toggleSpeakingMic is undefined!");
         }
         return;
     }
@@ -33,7 +29,6 @@ document.addEventListener("click", function(event) {
     if (ttsBtn) {
         event.preventDefault();
         const textToSpeak = ttsBtn.getAttribute("data-text");
-        console.log("[EventDelegation] TTS speaker button click detected, text:", textToSpeak);
         if (textToSpeak && typeof window.playGermanTTS === "function") {
             window.playGermanTTS(textToSpeak);
         }
@@ -95,7 +90,7 @@ window.renderSpeakingPrompt = function() {
         promptUrEl.setAttribute("dir", "rtl");
     }
 
-    // 3. Suggested Target German Phrase Chips (Uses class dynamic-tts-btn and data-text)
+    // 3. Suggested Target German Phrase Chips
     const phrasesContainer = document.getElementById("speaking-suggested-phrases");
     if (phrasesContainer && prompt.suggested_phrases) {
         phrasesContainer.innerHTML = prompt.suggested_phrases.map(phrase => `
@@ -118,81 +113,94 @@ window.renderSpeakingPrompt = function() {
 };
 
 /**
- * BULLETPROOF MICROPHONE TOGGLE & INLINE STT INSTANTIATION FIX
+ * MICROPHONE TOGGLE WITH TRANSITION LOCK & ASYNC NATIVE EVENT SYNC
  */
 window.toggleSpeakingMic = function() {
     console.log("[SpeakingEngine] window.toggleSpeakingMic called!");
+
+    // 1. Transition lock check (Prevents rapid click spamming)
+    if (isMicTransitioning) {
+        console.log("[SpeakingEngine] Mic transition in progress, ignoring click.");
+        return;
+    }
+    isMicTransitioning = true;
 
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
     }
 
-    // Ensure SpeechRecognition object is instantiated before executing .start()
+    // Inline SpeechRecognition Instantiation if null
     if (!speakingRecognition) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            alert("STT Error: Speech Recognition API is not supported in this browser. Please use Google Chrome or Microsoft Edge.");
+            console.error("[SpeakingEngine] Web Speech API unsupported.");
+            isMicTransitioning = false;
+            const warningBanner = document.getElementById("stt-warning-banner");
+            if (warningBanner) warningBanner.classList.remove("hidden");
+            if (typeof showToast === "function") {
+                showToast("Speech Recognition is not supported in this browser.");
+            }
             return;
         }
-        
+
         try {
             speakingRecognition = new SpeechRecognition();
-            speakingRecognition.lang = 'de-DE'; // Enforce German
+            speakingRecognition.lang = "de-DE"; // Enforce German
             speakingRecognition.interimResults = true;
             speakingRecognition.continuous = false;
 
+            // Native Event Callbacks handle UI state & unlock transition lock
             speakingRecognition.onstart = () => {
-                console.log("[SpeakingEngine] Speech recognition started.");
+                console.log("[SpeakingEngine] Native onstart fired.");
                 isSpeakingRecording = true;
                 updateMicUIState(true);
+                isMicTransitioning = false;
             };
-            
+
             speakingRecognition.onresult = (event) => {
                 const transcript = Array.from(event.results)
                     .map(result => result[0].transcript)
-                    .join('');
+                    .join("");
                 console.log("[SpeakingEngine] Transcript captured:", transcript);
-                const outputArea = document.getElementById('transcribed-speech-output') || document.getElementById('speaking-transcript-input');
+                const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
                 if (outputArea) outputArea.value = transcript;
             };
 
             speakingRecognition.onerror = (event) => {
-                console.error("[SpeakingEngine] Speech Recognition Error:", event.error);
+                console.error("[SpeakingEngine] Native onerror fired:", event.error);
                 isSpeakingRecording = false;
                 updateMicUIState(false);
-                if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-                    alert("Microphone Access Denied: Please allow microphone permissions in your browser settings.");
+                isMicTransitioning = false;
+                if (typeof showToast === "function") {
+                    showToast(`Mic Notice: ${event.error}`);
                 }
             };
 
             speakingRecognition.onend = () => {
-                console.log("[SpeakingEngine] Speech Recognition session ended.");
+                console.log("[SpeakingEngine] Native onend fired.");
                 isSpeakingRecording = false;
                 updateMicUIState(false);
+                isMicTransitioning = false;
             };
         } catch (e) {
             console.error("[SpeakingEngine] Construction Error:", e);
-            alert("STT Construction Error: " + (e.message || e));
+            isMicTransitioning = false;
             return;
         }
     }
 
-    // Now it is 100% safe to start or stop
+    // 2. Execution block (relies 100% on native event callbacks above for state update)
     try {
         if (isSpeakingRecording) {
-            speakingRecognition.stop();
-            isSpeakingRecording = false;
-            updateMicUIState(false);
+            console.log("[SpeakingEngine] Calling abort() for immediate hard stop...");
+            speakingRecognition.abort(); // Hard kill instead of stop()
         } else {
+            console.log("[SpeakingEngine] Calling start()...");
             speakingRecognition.start();
-            isSpeakingRecording = true;
-            updateMicUIState(true);
         }
     } catch (e) {
         console.error("[SpeakingEngine] STT Execution Error:", e);
-        alert("STT Execution Error: " + (e.message || e));
-        isSpeakingRecording = false;
-        updateMicUIState(false);
+        isMicTransitioning = false; // Unlock if instant hardware error
     }
 };
 
