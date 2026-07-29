@@ -217,7 +217,7 @@ function updateMicUIState(recording) {
             if (statusText) statusText.innerHTML = `<span class="text-rose-400 font-bold animate-pulse">Listening... Speak German now!</span>`;
         } else {
             btn.className = "w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-600/30 transition-all mx-auto cursor-pointer";
-            if (statusText) statusText.innerHTML = `<span class="text-slate-400">Click microphone to record your voice</span>`;
+            if (statusText) statusText.innerHTML = `<span class="text-slate-400">Read one of the suggested target German phrases aloud into mic</span>`;
         }
     }
 }
