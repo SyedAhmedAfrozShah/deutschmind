@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Diagnostic & Force-Fix Edition with explicit alert notifications and console logging.
+ * Bulletproof inline SpeechRecognition instantiation fix.
  */
 
 let speakingPromptsList = [];
@@ -10,7 +10,7 @@ let speakingRecognition = null;
 let isSpeakingRecording = false;
 
 // =========================================================================
-// STEP 2: GLOBAL CLICK DIAGNOSTICS & EVENT DELEGATION
+// GLOBAL CLICK DIAGNOSTICS & EVENT DELEGATION
 // =========================================================================
 document.addEventListener("click", function(event) {
     console.log("Global click detected on: ", event.target);
@@ -115,78 +115,10 @@ window.renderSpeakingPrompt = function() {
     if (reportBox) {
         reportBox.classList.add("hidden");
     }
-
-    // Check Browser Compatibility
-    initSpeechRecognition();
 };
 
 /**
- * Bulletproof STT Initialization supporting standard & webkit SpeechRecognition
- */
-function initSpeechRecognition() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const warningBanner = document.getElementById("stt-warning-banner");
-
-    if (!SpeechRecognition) {
-        console.error("[SpeakingEngine] Web Speech API (SpeechRecognition / webkitSpeechRecognition) is unsupported.");
-        if (warningBanner) {
-            warningBanner.classList.remove("hidden");
-            warningBanner.innerText = "⚠ Speech Recognition API is not supported in this browser. You can type your German response manually below.";
-        }
-        return;
-    }
-
-    if (warningBanner) warningBanner.classList.add("hidden");
-
-    if (!speakingRecognition) {
-        try {
-            speakingRecognition = new SpeechRecognition();
-            speakingRecognition.continuous = false;
-            speakingRecognition.interimResults = true;
-            speakingRecognition.lang = "de-DE";
-
-            speakingRecognition.onstart = () => {
-                console.log("[SpeakingEngine] Speech recognition started.");
-                isSpeakingRecording = true;
-                updateMicUIState(true);
-            };
-
-            speakingRecognition.onresult = (event) => {
-                let finalTranscript = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    finalTranscript += event.results[i][0].transcript;
-                }
-                console.log("[SpeakingEngine] Speech captured:", finalTranscript);
-                const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
-                if (outputArea && finalTranscript) {
-                    outputArea.value = finalTranscript;
-                }
-            };
-
-            speakingRecognition.onerror = (event) => {
-                console.error("[SpeakingEngine] STT Error:", event.error);
-                isSpeakingRecording = false;
-                updateMicUIState(false);
-                if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-                    alert("Microphone Access Denied: Please allow microphone permissions in your browser settings to record audio.");
-                } else if (typeof showToast === "function") {
-                    showToast(`Mic Notice (${event.error}): You can speak again or type German text manually.`);
-                }
-            };
-
-            speakingRecognition.onend = () => {
-                console.log("[SpeakingEngine] STT session ended.");
-                isSpeakingRecording = false;
-                updateMicUIState(false);
-            };
-        } catch (e) {
-            console.error("[SpeakingEngine] Failed to construct SpeechRecognition:", e);
-        }
-    }
-}
-
-/**
- * STEP 3: AUDIT SPEECH RECOGNITION TOGGLE WITH TRY/CATCH & DIAGNOSTIC ALERTS
+ * BULLETPROOF MICROPHONE TOGGLE & INLINE STT INSTANTIATION FIX
  */
 window.toggleSpeakingMic = function() {
     console.log("[SpeakingEngine] window.toggleSpeakingMic called!");
@@ -195,35 +127,72 @@ window.toggleSpeakingMic = function() {
         window.speechSynthesis.cancel();
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-        console.error("[SpeakingEngine] STT Unsupported when clicking mic.");
-        alert("STT Notice: Web Speech API (SpeechRecognition / webkitSpeechRecognition) is not supported in this browser. You can type your German response manually.");
-        return;
+    // Ensure SpeechRecognition object is instantiated before executing .start()
+    if (!speakingRecognition) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("STT Error: Speech Recognition API is not supported in this browser. Please use Google Chrome or Microsoft Edge.");
+            return;
+        }
+        
+        try {
+            speakingRecognition = new SpeechRecognition();
+            speakingRecognition.lang = 'de-DE'; // Enforce German
+            speakingRecognition.interimResults = true;
+            speakingRecognition.continuous = false;
+
+            speakingRecognition.onstart = () => {
+                console.log("[SpeakingEngine] Speech recognition started.");
+                isSpeakingRecording = true;
+                updateMicUIState(true);
+            };
+            
+            speakingRecognition.onresult = (event) => {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0].transcript)
+                    .join('');
+                console.log("[SpeakingEngine] Transcript captured:", transcript);
+                const outputArea = document.getElementById('transcribed-speech-output') || document.getElementById('speaking-transcript-input');
+                if (outputArea) outputArea.value = transcript;
+            };
+
+            speakingRecognition.onerror = (event) => {
+                console.error("[SpeakingEngine] Speech Recognition Error:", event.error);
+                isSpeakingRecording = false;
+                updateMicUIState(false);
+                if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+                    alert("Microphone Access Denied: Please allow microphone permissions in your browser settings.");
+                }
+            };
+
+            speakingRecognition.onend = () => {
+                console.log("[SpeakingEngine] Speech Recognition session ended.");
+                isSpeakingRecording = false;
+                updateMicUIState(false);
+            };
+        } catch (e) {
+            console.error("[SpeakingEngine] Construction Error:", e);
+            alert("STT Construction Error: " + (e.message || e));
+            return;
+        }
     }
 
-    if (!speakingRecognition) initSpeechRecognition();
-
-    if (isSpeakingRecording) {
-        console.log("[SpeakingEngine] Stopping active recording...");
-        try {
+    // Now it is 100% safe to start or stop
+    try {
+        if (isSpeakingRecording) {
             speakingRecognition.stop();
-        } catch (e) {
-            console.error("[SpeakingEngine] Stop Error:", e);
-            alert("STT Stop Error: " + (e.message || e));
-        }
-        isSpeakingRecording = false;
-        updateMicUIState(false);
-    } else {
-        console.log("[SpeakingEngine] Starting new recording session...");
-        try {
-            speakingRecognition.start();
-        } catch (e) {
-            console.error("[SpeakingEngine] Start Error:", e);
-            alert("STT Start Error: " + (e.message || e));
             isSpeakingRecording = false;
             updateMicUIState(false);
+        } else {
+            speakingRecognition.start();
+            isSpeakingRecording = true;
+            updateMicUIState(true);
         }
+    } catch (e) {
+        console.error("[SpeakingEngine] STT Execution Error:", e);
+        alert("STT Execution Error: " + (e.message || e));
+        isSpeakingRecording = false;
+        updateMicUIState(false);
     }
 };
 
