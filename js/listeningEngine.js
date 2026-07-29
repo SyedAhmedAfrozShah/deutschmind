@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Isolated Listening Comprehension Engine (js/listeningEngine.js)
  * STRICT SCOPE: Text-to-Speech (TTS) playback and MCQ Rendering ONLY.
- * NO SpeechRecognition / STT variables or logic allowed in this file.
+ * Binds playGermanTTS and speakGerman globally on window.
  */
 
 let listeningScenariosList = [];
@@ -9,9 +9,53 @@ let currentListeningScenarioObj = null;
 let currentListeningAnswers = {};
 
 /**
+ * Global TTS Audio Playback Function attached to window.
+ */
+window.playGermanTTS = function(textToSpeak) {
+    if (!textToSpeak) return;
+
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
+
+    const rate = typeof currentListeningSpeed !== "undefined" ? currentListeningSpeed : 0.85;
+
+    const speakNow = () => {
+        const uttr = new SpeechSynthesisUtterance(textToSpeak);
+        uttr.lang = "de-DE";
+        uttr.rate = rate;
+
+        const voices = window.speechSynthesis.getVoices();
+        const deVoice = voices.find(v => v.lang.includes("de") || v.lang.includes("DE"));
+        if (deVoice) uttr.voice = deVoice;
+
+        window.speechSynthesis.speak(uttr);
+        if (typeof showToast === "function") {
+            showToast(`🔊 Playing German audio (${rate}x speed)...`);
+        }
+    };
+
+    if ("speechSynthesis" in window) {
+        if (window.speechSynthesis.getVoices().length === 0) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                speakNow();
+                window.speechSynthesis.onvoiceschanged = null;
+            };
+        } else {
+            speakNow();
+        }
+    } else {
+        alert("Speech synthesis is not supported in this browser.");
+    }
+};
+
+// Global Alias for speakGerman
+window.speakGerman = window.playGermanTTS;
+
+/**
  * Loads listening scenarios from static data/listening.json or fallback dataset.
  */
-async function loadListeningScenarios() {
+window.loadListeningScenarios = async function() {
     try {
         const res = await fetch("data/listening.json");
         if (res.ok) {
@@ -21,13 +65,13 @@ async function loadListeningScenarios() {
         console.warn("[ListeningEngine] Failed to load data/listening.json, using memory fallback.", e);
     }
 
-    renderListeningScenario();
-}
+    window.renderListeningScenario();
+};
 
 /**
  * Renders a random scenario matching the current global CEFR level.
  */
-function renderListeningScenario() {
+window.renderListeningScenario = function() {
     const level = (typeof currentLevel !== "undefined" ? currentLevel : "ZERO").toUpperCase();
     
     // Filter scenarios by CEFR level
@@ -74,7 +118,7 @@ function renderListeningScenario() {
             qBox.innerHTML = `
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-mono text-emerald-400 font-bold">Question ${qIdx + 1}: ${qObj.q}</span>
-                    <button onclick="playGermanTTS('${qObj.q.replace(/'/g, "\\'")}')" title="Listen Question" class="p-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30">
+                    <button onclick="window.playGermanTTS('${qObj.q.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" title="Listen Question" class="p-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30">
                         <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
                     </button>
                 </div>
@@ -82,10 +126,10 @@ function renderListeningScenario() {
                     ${qObj.options.map((opt, oIdx) => `
                         <label id="opt_label_${qIdx}_${oIdx}" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between cursor-pointer hover:border-emerald-500/40 text-xs text-slate-200 transition-all">
                             <div class="flex items-center space-x-2">
-                                <input type="radio" name="listening_q_${qIdx}" value="${opt.replace(/"/g, '&quot;')}" onchange="selectListeningAnswer(${qIdx}, '${opt.replace(/'/g, "\\'")}')" class="text-emerald-500 bg-slate-950 border-slate-700">
+                                <input type="radio" name="listening_q_${qIdx}" value="${opt.replace(/"/g, '&quot;')}" onchange="window.selectListeningAnswer(${qIdx}, '${opt.replace(/'/g, "\\'")}')" class="text-emerald-500 bg-slate-950 border-slate-700">
                                 <span>${opt}</span>
                             </div>
-                            <button type="button" onclick="event.preventDefault(); event.stopPropagation(); playGermanTTS('${opt.replace(/'/g, "\\'")}')" class="p-1 text-slate-400 hover:text-emerald-300">
+                            <button type="button" onclick="event.preventDefault(); event.stopPropagation(); window.playGermanTTS('${opt.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" class="p-1 text-slate-400 hover:text-emerald-300">
                                 <i data-lucide="volume-2" class="w-3 h-3"></i>
                             </button>
                         </label>
@@ -99,7 +143,7 @@ function renderListeningScenario() {
         const submitBtnBox = document.createElement("div");
         submitBtnBox.className = "pt-2";
         submitBtnBox.innerHTML = `
-            <button onclick="submitListeningAnswers()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2">
+            <button onclick="window.submitListeningAnswers()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2">
                 <i data-lucide="check-circle" class="w-4 h-4"></i>
                 <span>Submit Listening Test Answers</span>
             </button>
@@ -109,29 +153,29 @@ function renderListeningScenario() {
 
         if (typeof lucide !== "undefined") lucide.createIcons();
     }
-}
+};
 
 /**
  * Stores user choice for a listening question.
  */
-function selectListeningAnswer(qIdx, optionText) {
+window.selectListeningAnswer = function(qIdx, optionText) {
     currentListeningAnswers[qIdx] = optionText;
-}
+};
 
 /**
  * Toggles visibility of DE, EN, UR transcript box.
  */
-function toggleListeningTranscript() {
+window.toggleListeningTranscript = function() {
     const transContainer = document.getElementById("listening-transcript-container");
     if (transContainer) {
         transContainer.classList.toggle("hidden");
     }
-}
+};
 
 /**
  * Validates listening test answers and highlights choices.
  */
-function submitListeningAnswers() {
+window.submitListeningAnswers = function() {
     const scenario = currentListeningScenarioObj;
     if (!scenario || !scenario.questions) return;
 
@@ -178,4 +222,4 @@ function submitListeningAnswers() {
             addXP(100);
         }
     }
-}
+};

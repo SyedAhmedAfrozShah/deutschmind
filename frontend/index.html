@@ -560,7 +560,7 @@
                     <!-- Microphone Recording Console -->
                     <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 text-center space-y-4">
                         <div class="relative inline-block">
-                            <button onclick="toggleSpeakingMic()" id="btn-toggle-mic" class="w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center mx-auto transition-all shadow-xl shadow-violet-600/30">
+                            <button onclick="window.toggleSpeakingMic()" id="btn-toggle-mic" class="w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center mx-auto transition-all shadow-xl shadow-violet-600/30">
                                 <i data-lucide="mic" class="w-7 h-7"></i>
                             </button>
                         </div>
@@ -575,7 +575,7 @@
                             <textarea id="transcribed-speech-output" rows="3" placeholder="Speak into mic or type your German response..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs text-white font-mono focus:outline-none focus:border-violet-500/60"></textarea>
                         </div>
 
-                        <button onclick="submitSpeakingEvaluation()" id="btn-submit-speaking" class="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all shadow-lg shadow-violet-600/30 flex items-center justify-center space-x-2">
+                        <button onclick="window.submitSpeakingEvaluation()" id="btn-submit-speaking" class="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all shadow-lg shadow-violet-600/30 flex items-center justify-center space-x-2">
                             <i data-lucide="send" class="w-4 h-4"></i>
                             <span>Submit Speech to 4-Criterion AI Grader</span>
                         </button>

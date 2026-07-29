@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Isolated state variables and DOM targets.
+ * Binds toggleSpeakingMic and engine functions globally on window.
  */
 
 let speakingPromptsList = [];
@@ -12,7 +12,7 @@ let isSpeakingRecording = false;
 /**
  * Loads speaking prompts from static data/speaking.json or fallback dataset.
  */
-async function loadSpeakingPrompts() {
+window.loadSpeakingPrompts = async function() {
     try {
         const res = await fetch("data/speaking.json");
         if (res.ok) {
@@ -22,13 +22,13 @@ async function loadSpeakingPrompts() {
         console.warn("[SpeakingEngine] Failed to load data/speaking.json, using memory fallback.", e);
     }
 
-    renderSpeakingPrompt();
-}
+    window.renderSpeakingPrompt();
+};
 
 /**
  * Renders a random speaking prompt matching the active CEFR level.
  */
-function renderSpeakingPrompt() {
+window.renderSpeakingPrompt = function() {
     const level = (typeof currentLevel !== "undefined" ? currentLevel : "ZERO").toUpperCase();
     
     // Filter prompts by CEFR level
@@ -68,7 +68,7 @@ function renderSpeakingPrompt() {
     const phrasesContainer = document.getElementById("speaking-suggested-phrases");
     if (phrasesContainer && prompt.suggested_phrases) {
         phrasesContainer.innerHTML = prompt.suggested_phrases.map(phrase => `
-            <button onclick="playGermanTTS('${phrase.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-violet-500/50 text-violet-300 text-xs font-mono flex items-center space-x-1.5 transition-all">
+            <button onclick="window.playGermanTTS('${phrase.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-violet-500/50 text-violet-300 text-xs font-mono flex items-center space-x-1.5 transition-all">
                 <i data-lucide="volume-2" class="w-3 h-3 text-violet-400"></i>
                 <span>${phrase}</span>
             </button>
@@ -87,7 +87,7 @@ function renderSpeakingPrompt() {
 
     // Check Browser Compatibility
     initSpeechRecognition();
-}
+};
 
 /**
  * Bulletproof STT Initialization supporting standard & webkit SpeechRecognition
@@ -97,7 +97,7 @@ function initSpeechRecognition() {
     const warningBanner = document.getElementById("stt-warning-banner");
 
     if (!SpeechRecognition) {
-        console.error("[SpeakingEngine] STT unsupported.");
+        console.error("[SpeakingEngine] Web Speech API (SpeechRecognition / webkitSpeechRecognition) is unsupported.");
         if (warningBanner) {
             warningBanner.classList.remove("hidden");
             warningBanner.innerText = "⚠ Speech Recognition API is not supported in this browser. You can type your German response manually below.";
@@ -149,18 +149,20 @@ function initSpeechRecognition() {
 }
 
 /**
- * Toggles microphone recording with UI unlocking and active TTS cancellation
+ * Global Microphone Toggle Function attached to window.
  */
-function toggleSpeakingMic() {
-    console.log("[SpeakingEngine] Mic button clicked.");
+window.toggleSpeakingMic = function() {
+    console.log("Mic clicked!");
+
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
     }
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
+        console.error("[SpeakingEngine] STT Unsupported when clicking mic.");
         if (typeof showToast === "function") {
-            showToast("Speech Recognition unsupported. Please type text manually.");
+            showToast("Speech Recognition unsupported in this browser. Please type text manually.");
         }
         return;
     }
@@ -168,6 +170,7 @@ function toggleSpeakingMic() {
     if (!speakingRecognition) initSpeechRecognition();
 
     if (isSpeakingRecording) {
+        console.log("[SpeakingEngine] Stopping active recording...");
         try {
             speakingRecognition.stop();
         } catch (e) {
@@ -176,6 +179,7 @@ function toggleSpeakingMic() {
         isSpeakingRecording = false;
         updateMicUIState(false);
     } else {
+        console.log("[SpeakingEngine] Starting new recording session...");
         try {
             speakingRecognition.start();
         } catch (e) {
@@ -184,7 +188,7 @@ function toggleSpeakingMic() {
             updateMicUIState(false);
         }
     }
-}
+};
 
 /**
  * Updates Mic Button Visuals and status text
@@ -207,7 +211,7 @@ function updateMicUIState(recording) {
 /**
  * Evaluates speech transcript against 4 criteria: Accuracy, Range, Relevance, Fluency
  */
-function submitSpeakingEvaluation() {
+window.submitSpeakingEvaluation = function() {
     const prompt = currentSpeakingPromptObj;
     const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
     const transcript = outputArea ? outputArea.value.trim().toLowerCase() : "";
@@ -317,4 +321,4 @@ function submitSpeakingEvaluation() {
             addXP(100);
         }
     }
-}
+};
