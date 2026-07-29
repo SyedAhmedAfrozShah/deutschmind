@@ -1,7 +1,8 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Transition lock & native event state synchronization.
+ * Single-Phrase Candidate Isolation Math: Evaluates speech against individual target phrases
+ * to prevent denominator inflation bugs when user speaks a single phrase.
  */
 
 let speakingPromptsList = [];
@@ -224,6 +225,8 @@ function updateMicUIState(recording) {
 
 /**
  * Evaluates speech transcript against 4 criteria: Accuracy, Range, Relevance, Fluency
+ * ISOLATION RULE: User speaks ONE target phrase. Candidate phrases are evaluated individually,
+ * taking the max score across candidate options to prevent denominator inflation bugs.
  */
 window.submitSpeakingEvaluation = function() {
     const prompt = currentSpeakingPromptObj;
@@ -242,29 +245,49 @@ window.submitSpeakingEvaluation = function() {
     const words = transcript.split(/\s+/).filter(w => w.length > 0);
     const totalWords = words.length;
 
-    // 1. Accuracy Score (Target Keywords match ratio)
-    const keywords = prompt.target_keywords || [];
-    let matchedKeywords = 0;
-    keywords.forEach(kw => {
-        if (transcript.includes(kw.toLowerCase())) matchedKeywords++;
-    });
-    const accuracyScore = keywords.length > 0 ? Math.min(100, Math.round((matchedKeywords / keywords.length) * 100)) : 75;
+    // Collect all candidate phrases (main prompt_de + each suggested_phrase)
+    const candidates = [];
+    if (prompt.prompt_de) candidates.push(prompt.prompt_de);
+    if (prompt.suggested_phrases && Array.isArray(prompt.suggested_phrases)) {
+        candidates.push(...prompt.suggested_phrases);
+    }
+    if (candidates.length === 0 && prompt.target_keywords) {
+        candidates.push(prompt.target_keywords.join(" "));
+    }
 
-    // 2. Vocabulary Range Score (Unique words & length)
+    // Single-Phrase Isolation Matching: evaluate transcript against each candidate phrase
+    let bestAccuracy = 0;
+    let bestMatchedPhrase = candidates[0] || "";
+
+    candidates.forEach(cand => {
+        const cleanCand = cand.replace(/[.,!?;:]/g, "").toLowerCase();
+        const candWords = cleanCand.split(/\s+/).filter(w => w.length > 0);
+        if (candWords.length === 0) return;
+
+        let matched = 0;
+        candWords.forEach(w => {
+            if (transcript.includes(w)) matched++;
+        });
+
+        const score = Math.round((matched / candWords.length) * 100);
+        if (score > bestAccuracy) {
+            bestAccuracy = score;
+            bestMatchedPhrase = cand;
+        }
+    });
+
+    // 1. Accuracy Score (Bounded 0 - 100%)
+    const accuracyScore = Math.min(100, Math.max(0, bestAccuracy));
+
+    // 2. Vocabulary Range Score (Unique spoken words vs length)
     const uniqueWords = new Set(words).size;
-    const rangeScore = Math.min(100, Math.round((uniqueWords / Math.max(1, totalWords)) * 70 + Math.min(30, totalWords * 3)));
+    const rangeScore = Math.min(100, Math.round((uniqueWords / Math.max(1, totalWords)) * 60 + Math.min(40, totalWords * 8)));
 
-    // 3. Relevance Score (Suggested phrases match ratio)
-    const phrases = prompt.suggested_phrases || [];
-    let matchedPhrases = 0;
-    phrases.forEach(ph => {
-        const cleanPh = ph.replace(/\./g, "").toLowerCase();
-        if (transcript.includes(cleanPh.substring(0, 8))) matchedPhrases++;
-    });
-    const relevanceScore = phrases.length > 0 ? Math.min(100, Math.round((matchedPhrases / phrases.length) * 100) + 40) : 80;
+    // 3. Relevance Score (Match against best phrase & keyword coverage)
+    const relevanceScore = Math.min(100, Math.max(50, bestAccuracy));
 
-    // 4. Fluency Score (Word density & length consistency)
-    const fluencyScore = Math.min(100, Math.round(Math.min(100, totalWords * 12) * 0.6 + (accuracyScore * 0.4)));
+    // 4. Fluency Score (Speech length & word articulation)
+    const fluencyScore = Math.min(100, Math.round(Math.min(100, totalWords * 15) * 0.5 + (accuracyScore * 0.5)));
 
     // Overall Aggregate Score
     const overallScore = Math.round((accuracyScore + rangeScore + relevanceScore + fluencyScore) / 4);
@@ -291,9 +314,13 @@ window.submitSpeakingEvaluation = function() {
                     </span>
                 </div>
 
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-300 font-mono">
+                    <span class="text-slate-400">Target Match:</span> <strong class="text-emerald-400">"${bestMatchedPhrase}"</strong>
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-                        <div class="text-[11px] text-slate-400">Accuracy (Keywords)</div>
+                        <div class="text-[11px] text-slate-400">Accuracy (Matched Phrase)</div>
                         <div class="text-sm font-bold text-white">${accuracyScore}%</div>
                         <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
                             <div class="bg-violet-500 h-full" style="width: ${accuracyScore}%"></div>
@@ -326,7 +353,7 @@ window.submitSpeakingEvaluation = function() {
                 </div>
 
                 <div class="pt-2 text-center text-xs text-slate-300 font-sans">
-                    ${passed ? "🎉 Excellent German pronunciation and sentence structure!" : "💡 Keep practicing! Try using more suggested target German phrases."}
+                    ${passed ? "🎉 Excellent German pronunciation and sentence structure!" : "💡 Keep practicing! Try reading the target German phrase aloud again into the mic."}
                 </div>
             </div>
         `;
