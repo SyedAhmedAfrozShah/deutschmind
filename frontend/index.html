@@ -1707,15 +1707,14 @@
                         <div class="h-full bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-300 shadow-lg shadow-amber-500/30" style="width: ${progressPercent}%;"></div>
                     </div>
 
-                    <!-- German Prompt Box -->
+                    <!-- German Prompt Box (Urdu text suppressed for Anti-Cheat exam integrity) -->
                     <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 relative overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
                                 <div class="text-[10px] font-mono text-amber-400/80 uppercase tracking-widest font-semibold">German Exam Prompt</div>
                                 <h3 class="text-lg sm:text-xl font-extrabold text-white mt-1 font-sans">${q.germanPrompt}</h3>
-                                ${q.urduSubtext ? `<p class="text-xs text-emerald-400 font-urdu mt-1">${q.urduSubtext}</p>` : ''}
                             </div>
-                            <button onclick="speakGerman('${(q.germanPrompt || '').replace(/'/g, "\\'")}')" title="Listen" class="p-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 transition-all">
+                            <button onclick="window.playGermanTTS('${(q.germanPrompt || '').replace(/'/g, "\\'")}')" title="Listen to German Prompt" class="p-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 transition-all">
                                 <i data-lucide="volume-2" class="w-5 h-5"></i>
                             </button>
                         </div>
