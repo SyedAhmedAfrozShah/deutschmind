@@ -1,7 +1,7 @@
 /**
- * DeutschMind - Speaking & Pronunciation Engine (js/speakingEngine.js)
- * Handles speaking.json data fetching, Speech-to-Text (STT) browser recognition with
- * state unlocking, native TTS audio playback, and 4-metric AI speech grading evaluation.
+ * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
+ * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
+ * Isolated state variables and DOM targets.
  */
 
 let speakingPromptsList = [];
@@ -57,7 +57,7 @@ function renderSpeakingPrompt() {
     const promptEnEl = document.getElementById("speaking-prompt-en");
     if (promptEnEl) promptEnEl.innerText = prompt.prompt_en;
 
-    // GUARDRAIL 3: RTL Urdu Text Formatting
+    // RTL Urdu Text Formatting
     const promptUrEl = document.getElementById("speaking-prompt-ur");
     if (promptUrEl) {
         promptUrEl.innerText = prompt.prompt_ur;
@@ -97,7 +97,7 @@ function initSpeechRecognition() {
     const warningBanner = document.getElementById("stt-warning-banner");
 
     if (!SpeechRecognition) {
-        console.error("[SpeakingEngine] Web Speech API (SpeechRecognition / webkitSpeechRecognition) is not supported in this browser.");
+        console.error("[SpeakingEngine] STT unsupported.");
         if (warningBanner) {
             warningBanner.classList.remove("hidden");
             warningBanner.innerText = "⚠ Speech Recognition API is not supported in this browser. You can type your German response manually below.";
@@ -114,7 +114,7 @@ function initSpeechRecognition() {
         speakingRecognition.lang = "de-DE";
 
         speakingRecognition.onstart = () => {
-            console.log("[SpeakingEngine] Speech recognition started successfully.");
+            console.log("[SpeakingEngine] Speech recognition started.");
             isSpeakingRecording = true;
             updateMicUIState(true);
         };
@@ -132,8 +132,7 @@ function initSpeechRecognition() {
         };
 
         speakingRecognition.onerror = (event) => {
-            console.error("[SpeakingEngine] Speech recognition error:", event.error);
-            // CRITICAL FIX: Unlock UI state immediately on error
+            console.error("[SpeakingEngine] STT Error:", event.error);
             isSpeakingRecording = false;
             updateMicUIState(false);
             if (typeof showToast === "function") {
@@ -142,8 +141,7 @@ function initSpeechRecognition() {
         };
 
         speakingRecognition.onend = () => {
-            console.log("[SpeakingEngine] Speech recognition session ended.");
-            // CRITICAL FIX: Unlock UI state immediately when recording stops
+            console.log("[SpeakingEngine] STT session ended.");
             isSpeakingRecording = false;
             updateMicUIState(false);
         };
@@ -154,16 +152,13 @@ function initSpeechRecognition() {
  * Toggles microphone recording with UI unlocking and active TTS cancellation
  */
 function toggleSpeakingMic() {
-    console.log("[SpeakingEngine] Mic button clicked");
-
-    // Cancel any playing TTS audio to prevent speaker loop
+    console.log("[SpeakingEngine] Mic button clicked.");
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
     }
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-        console.error("[SpeakingEngine] STT Unsupported when clicking mic");
         if (typeof showToast === "function") {
             showToast("Speech Recognition unsupported. Please type text manually.");
         }
@@ -173,7 +168,6 @@ function toggleSpeakingMic() {
     if (!speakingRecognition) initSpeechRecognition();
 
     if (isSpeakingRecording) {
-        console.log("[SpeakingEngine] Stopping active recording...");
         try {
             speakingRecognition.stop();
         } catch (e) {
@@ -182,7 +176,6 @@ function toggleSpeakingMic() {
         isSpeakingRecording = false;
         updateMicUIState(false);
     } else {
-        console.log("[SpeakingEngine] Starting new recording session...");
         try {
             speakingRecognition.start();
         } catch (e) {

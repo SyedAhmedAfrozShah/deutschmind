@@ -1,7 +1,7 @@
 /**
- * DeutschMind - Listening Comprehension Engine (js/listeningEngine.js)
- * Handles listening.json data fetching, dynamic scenario selection, MCQ rendering,
- * Native Web Speech API audio synthesis with rate multipliers, and anti-cheating validation.
+ * DeutschMind - Isolated Listening Comprehension Engine (js/listeningEngine.js)
+ * STRICT SCOPE: Text-to-Speech (TTS) playback and MCQ Rendering ONLY.
+ * NO SpeechRecognition / STT variables or logic allowed in this file.
  */
 
 let listeningScenariosList = [];
@@ -62,10 +62,10 @@ function renderListeningScenario() {
         if (urEl) urEl.innerText = scenario.transcript_ur;
     }
 
-    // 2. MCQ Generation (GUARDRAIL 4: Enforce container.innerHTML = '' to prevent duplication)
+    // 2. MCQ Generation (Clears any stuck placeholder or loading text)
     const questionsContainer = document.getElementById("listening-questions-container");
     if (questionsContainer) {
-        questionsContainer.innerHTML = "";
+        questionsContainer.innerHTML = ""; // Enforce DOM clear
 
         scenario.questions.forEach((qObj, qIdx) => {
             const qBox = document.createElement("div");
@@ -129,50 +129,7 @@ function toggleListeningTranscript() {
 }
 
 /**
- * Native Speech Synthesis Audio Playback (PHASE 3 + GUARDRAILS 1 & 2)
- */
-function playGermanTTS(textToSpeak) {
-    if (!textToSpeak) return;
-
-    // GUARDRAIL 2: Stop any playing audio before starting new playback (prevents audio stacking)
-    if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-    }
-
-    const rate = typeof currentListeningSpeed !== "undefined" ? currentListeningSpeed : 0.85;
-
-    const speakNow = () => {
-        const uttr = new SpeechSynthesisUtterance(textToSpeak);
-        uttr.lang = "de-DE";
-        uttr.rate = rate;
-
-        const voices = window.speechSynthesis.getVoices();
-        const deVoice = voices.find(v => v.lang.includes("de") || v.lang.includes("DE"));
-        if (deVoice) uttr.voice = deVoice;
-
-        window.speechSynthesis.speak(uttr);
-        if (typeof showToast === "function") {
-            showToast(`🔊 Playing German audio (${rate}x speed)...`);
-        }
-    };
-
-    // GUARDRAIL 1: Voice Loading Delay Protection
-    if ("speechSynthesis" in window) {
-        if (window.speechSynthesis.getVoices().length === 0) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                speakNow();
-                window.speechSynthesis.onvoiceschanged = null;
-            };
-        } else {
-            speakNow();
-        }
-    } else {
-        alert("Speech synthesis is not supported in this browser.");
-    }
-}
-
-/**
- * Validates listening test answers and highlights correct/incorrect choices (GUARDRAIL 5)
+ * Validates listening test answers and highlights choices.
  */
 function submitListeningAnswers() {
     const scenario = currentListeningScenarioObj;
@@ -187,7 +144,6 @@ function submitListeningAnswers() {
 
         if (isCorrect) correctCount++;
 
-        // Disable all radio buttons for this question
         const radios = document.getElementsByName(`listening_q_${qIdx}`);
         radios.forEach(radio => {
             radio.disabled = true;
