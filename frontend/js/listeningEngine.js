@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Isolated Listening Comprehension Engine (js/listeningEngine.js)
  * STRICT SCOPE: Text-to-Speech (TTS) playback and MCQ Rendering ONLY.
- * Binds playGermanTTS and speakGerman globally on window.
+ * Uses Event Delegation with .dynamic-tts-btn and data-text attributes.
  */
 
 let listeningScenariosList = [];
@@ -106,7 +106,7 @@ window.renderListeningScenario = function() {
         if (urEl) urEl.innerText = scenario.transcript_ur;
     }
 
-    // 2. MCQ Generation (Clears any stuck placeholder or loading text)
+    // 2. MCQ Generation (Uses class dynamic-tts-btn and data-text for Event Delegation)
     const questionsContainer = document.getElementById("listening-questions-container");
     if (questionsContainer) {
         questionsContainer.innerHTML = ""; // Enforce DOM clear
@@ -118,8 +118,8 @@ window.renderListeningScenario = function() {
             qBox.innerHTML = `
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-mono text-emerald-400 font-bold">Question ${qIdx + 1}: ${qObj.q}</span>
-                    <button onclick="window.playGermanTTS('${qObj.q.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" title="Listen Question" class="p-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30">
-                        <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+                    <button type="button" class="dynamic-tts-btn p-1.5 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 cursor-pointer" data-text="${qObj.q.replace(/"/g, '&quot;')}" title="Listen Question">
+                        <i data-lucide="volume-2" class="w-3.5 h-3.5 pointer-events-none"></i>
                     </button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -129,8 +129,8 @@ window.renderListeningScenario = function() {
                                 <input type="radio" name="listening_q_${qIdx}" value="${opt.replace(/"/g, '&quot;')}" onchange="window.selectListeningAnswer(${qIdx}, '${opt.replace(/'/g, "\\'")}')" class="text-emerald-500 bg-slate-950 border-slate-700">
                                 <span>${opt}</span>
                             </div>
-                            <button type="button" onclick="event.preventDefault(); event.stopPropagation(); window.playGermanTTS('${opt.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" class="p-1 text-slate-400 hover:text-emerald-300">
-                                <i data-lucide="volume-2" class="w-3 h-3"></i>
+                            <button type="button" class="dynamic-tts-btn p-1 text-slate-400 hover:text-emerald-300 cursor-pointer" data-text="${opt.replace(/"/g, '&quot;')}" title="Listen Option">
+                                <i data-lucide="volume-2" class="w-3 h-3 pointer-events-none"></i>
                             </button>
                         </label>
                     `).join("")}

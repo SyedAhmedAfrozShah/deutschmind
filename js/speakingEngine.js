@@ -1,13 +1,40 @@
 /**
  * DeutschMind - Isolated Speaking & Pronunciation Engine (js/speakingEngine.js)
  * STRICT SCOPE: Speech-to-Text (STT) Browser Microphone & AI Speech Evaluation.
- * Binds toggleSpeakingMic and engine functions globally on window.
+ * Implements Event Delegation using .closest() for SVG/icon click bubbling.
  */
 
 let speakingPromptsList = [];
 let currentSpeakingPromptObj = null;
 let speakingRecognition = null;
 let isSpeakingRecording = false;
+
+// =========================================================================
+// PHASE 1: BULLETPROOF GLOBAL EVENT DELEGATION
+// =========================================================================
+document.addEventListener("click", function(event) {
+    // 1. Handle Mic Button Clicks (Catches SVG icons and paths inside the mic button)
+    const micBtn = event.target.closest("#btn-toggle-mic") || event.target.closest("#btn-mic-record");
+    if (micBtn) {
+        event.preventDefault();
+        console.log("[EventDelegation] Mic button click detected via closest()");
+        if (typeof window.toggleSpeakingMic === "function") {
+            window.toggleSpeakingMic();
+        }
+        return;
+    }
+
+    // 2. Handle Dynamic TTS Speaker Clicks
+    const ttsBtn = event.target.closest(".dynamic-tts-btn");
+    if (ttsBtn) {
+        event.preventDefault();
+        const textToSpeak = ttsBtn.getAttribute("data-text");
+        console.log("[EventDelegation] TTS speaker button click detected, text:", textToSpeak);
+        if (textToSpeak && typeof window.playGermanTTS === "function") {
+            window.playGermanTTS(textToSpeak);
+        }
+    }
+});
 
 /**
  * Loads speaking prompts from static data/speaking.json or fallback dataset.
@@ -64,13 +91,13 @@ window.renderSpeakingPrompt = function() {
         promptUrEl.setAttribute("dir", "rtl");
     }
 
-    // 3. Suggested Target German Phrase Chips
+    // 3. Suggested Target German Phrase Chips (Uses class dynamic-tts-btn and data-text)
     const phrasesContainer = document.getElementById("speaking-suggested-phrases");
     if (phrasesContainer && prompt.suggested_phrases) {
         phrasesContainer.innerHTML = prompt.suggested_phrases.map(phrase => `
-            <button onclick="window.playGermanTTS('${phrase.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-violet-500/50 text-violet-300 text-xs font-mono flex items-center space-x-1.5 transition-all">
-                <i data-lucide="volume-2" class="w-3 h-3 text-violet-400"></i>
-                <span>${phrase}</span>
+            <button type="button" class="dynamic-tts-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-violet-500/50 text-violet-300 text-xs font-mono flex items-center space-x-1.5 transition-all cursor-pointer" data-text="${phrase.replace(/"/g, '&quot;')}">
+                <i data-lucide="volume-2" class="w-3 h-3 text-violet-400 pointer-events-none"></i>
+                <span class="pointer-events-none">${phrase}</span>
             </button>
         `).join("");
         if (typeof lucide !== "undefined") lucide.createIcons();
@@ -152,7 +179,7 @@ function initSpeechRecognition() {
  * Global Microphone Toggle Function attached to window.
  */
 window.toggleSpeakingMic = function() {
-    console.log("Mic clicked!");
+    console.log("[SpeakingEngine] window.toggleSpeakingMic called!");
 
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -199,10 +226,10 @@ function updateMicUIState(recording) {
 
     if (btn) {
         if (recording) {
-            btn.className = "w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-600/50 animate-pulse transition-all mx-auto";
+            btn.className = "w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-600/50 animate-pulse transition-all mx-auto cursor-pointer";
             if (statusText) statusText.innerHTML = `<span class="text-rose-400 font-bold animate-pulse">Listening... Speak German now!</span>`;
         } else {
-            btn.className = "w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-600/30 transition-all mx-auto";
+            btn.className = "w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-600/30 transition-all mx-auto cursor-pointer";
             if (statusText) statusText.innerHTML = `<span class="text-slate-400">Click microphone to record your voice</span>`;
         }
     }
