@@ -1,7 +1,7 @@
 /**
  * DeutschMind - Speaking & Pronunciation Engine (js/speakingEngine.js)
- * Handles speaking.json data fetching, Speech-to-Text (STT) browser recognition,
- * native TTS audio playback, and 4-metric AI speech grading evaluation.
+ * Handles speaking.json data fetching, Speech-to-Text (STT) browser recognition with
+ * state unlocking, native TTS audio playback, and 4-metric AI speech grading evaluation.
  */
 
 let speakingPromptsList = [];
@@ -77,7 +77,7 @@ function renderSpeakingPrompt() {
     }
 
     // Reset STT Output Text Area & Report Box
-    const transcriptOutput = document.getElementById("transcribed-speech-output");
+    const transcriptOutput = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
     if (transcriptOutput) transcriptOutput.value = "";
 
     const reportBox = document.getElementById("speaking-evaluation-report");
@@ -85,18 +85,19 @@ function renderSpeakingPrompt() {
         reportBox.classList.add("hidden");
     }
 
-    // Check Browser Compatibility (GUARDRAIL 1)
+    // Check Browser Compatibility
     initSpeechRecognition();
 }
 
 /**
- * Initializes browser Speech-to-Text (STT) Recognition with Fallback (GUARDRAILS 1 & 2)
+ * Bulletproof STT Initialization supporting standard & webkit SpeechRecognition
  */
 function initSpeechRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const warningBanner = document.getElementById("stt-warning-banner");
 
     if (!SpeechRecognition) {
+        console.error("[SpeakingEngine] Web Speech API (SpeechRecognition / webkitSpeechRecognition) is not supported in this browser.");
         if (warningBanner) {
             warningBanner.classList.remove("hidden");
             warningBanner.innerText = "⚠ Speech Recognition API is not supported in this browser. You can type your German response manually below.";
@@ -113,6 +114,7 @@ function initSpeechRecognition() {
         speakingRecognition.lang = "de-DE";
 
         speakingRecognition.onstart = () => {
+            console.log("[SpeakingEngine] Speech recognition started successfully.");
             isSpeakingRecording = true;
             updateMicUIState(true);
         };
@@ -122,22 +124,26 @@ function initSpeechRecognition() {
             for (let i = event.resultIndex; i < event.results.length; ++i) {
                 finalTranscript += event.results[i][0].transcript;
             }
-            const outputArea = document.getElementById("transcribed-speech-output");
+            console.log("[SpeakingEngine] Speech captured:", finalTranscript);
+            const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
             if (outputArea && finalTranscript) {
                 outputArea.value = finalTranscript;
             }
         };
 
         speakingRecognition.onerror = (event) => {
-            console.warn("[SpeakingEngine] STT Error:", event.error);
+            console.error("[SpeakingEngine] Speech recognition error:", event.error);
+            // CRITICAL FIX: Unlock UI state immediately on error
             isSpeakingRecording = false;
             updateMicUIState(false);
             if (typeof showToast === "function") {
-                showToast(`Mic Notice: ${event.error}. You can type German text manually.`);
+                showToast(`Mic Notice (${event.error}): You can speak again or type German text manually.`);
             }
         };
 
         speakingRecognition.onend = () => {
+            console.log("[SpeakingEngine] Speech recognition session ended.");
+            // CRITICAL FIX: Unlock UI state immediately when recording stops
             isSpeakingRecording = false;
             updateMicUIState(false);
         };
@@ -145,16 +151,19 @@ function initSpeechRecognition() {
 }
 
 /**
- * Toggles microphone recording state (GUARDRAIL 5: Stops active TTS before recording)
+ * Toggles microphone recording with UI unlocking and active TTS cancellation
  */
 function toggleSpeakingMic() {
-    // GUARDRAIL 5: Stop any playing audio before opening microphone
+    console.log("[SpeakingEngine] Mic button clicked");
+
+    // Cancel any playing TTS audio to prevent speaker loop
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
     }
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
+        console.error("[SpeakingEngine] STT Unsupported when clicking mic");
         if (typeof showToast === "function") {
             showToast("Speech Recognition unsupported. Please type text manually.");
         }
@@ -164,29 +173,39 @@ function toggleSpeakingMic() {
     if (!speakingRecognition) initSpeechRecognition();
 
     if (isSpeakingRecording) {
-        speakingRecognition.stop();
+        console.log("[SpeakingEngine] Stopping active recording...");
+        try {
+            speakingRecognition.stop();
+        } catch (e) {
+            console.error("[SpeakingEngine] Stop Error:", e);
+        }
+        isSpeakingRecording = false;
+        updateMicUIState(false);
     } else {
+        console.log("[SpeakingEngine] Starting new recording session...");
         try {
             speakingRecognition.start();
         } catch (e) {
-            console.warn("STT Start Error:", e);
+            console.error("[SpeakingEngine] Start Error:", e);
+            isSpeakingRecording = false;
+            updateMicUIState(false);
         }
     }
 }
 
 /**
- * Updates Mic Button Visuals during recording
+ * Updates Mic Button Visuals and status text
  */
 function updateMicUIState(recording) {
-    const btn = document.getElementById("btn-toggle-mic");
-    const statusText = document.getElementById("mic-status-text");
+    const btn = document.getElementById("btn-toggle-mic") || document.getElementById("btn-mic-record");
+    const statusText = document.getElementById("mic-status-text") || document.getElementById("recording-status");
 
     if (btn) {
         if (recording) {
-            btn.className = "w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-600/50 animate-pulse transition-all";
+            btn.className = "w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-600/50 animate-pulse transition-all mx-auto";
             if (statusText) statusText.innerHTML = `<span class="text-rose-400 font-bold animate-pulse">Listening... Speak German now!</span>`;
         } else {
-            btn.className = "w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-600/30 transition-all";
+            btn.className = "w-16 h-16 rounded-full bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-600/30 transition-all mx-auto";
             if (statusText) statusText.innerHTML = `<span class="text-slate-400">Click microphone to record your voice</span>`;
         }
     }
@@ -197,7 +216,7 @@ function updateMicUIState(recording) {
  */
 function submitSpeakingEvaluation() {
     const prompt = currentSpeakingPromptObj;
-    const outputArea = document.getElementById("transcribed-speech-output");
+    const outputArea = document.getElementById("transcribed-speech-output") || document.getElementById("speaking-transcript-input");
     const transcript = outputArea ? outputArea.value.trim().toLowerCase() : "";
 
     if (!transcript) {
@@ -240,7 +259,7 @@ function submitSpeakingEvaluation() {
     const overallScore = Math.round((accuracyScore + rangeScore + relevanceScore + fluencyScore) / 4);
 
     // Update Report Card UI
-    const reportBox = document.getElementById("speaking-evaluation-report");
+    const reportBox = document.getElementById("speaking-evaluation-report") || document.getElementById("speaking-result-container");
     if (reportBox) {
         reportBox.classList.remove("hidden");
 
