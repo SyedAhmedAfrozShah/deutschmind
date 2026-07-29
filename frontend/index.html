@@ -718,6 +718,31 @@
             showToast(`Audio speed set to ${currentListeningSpeed}x`);
         }
 
+        window.autoLogTopic = async function(category, topicSummary) {
+            if (!topicSummary) return;
+            try {
+                console.log(`[AntiRepetition] Auto-logging topic (${category}):`, topicSummary);
+                const res = await fetch(`${API_BASE}/api/topics`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        category: category || "German Learning",
+                        topic_summary: topicSummary
+                    })
+                });
+                const data = await res.json();
+                console.log("[AntiRepetition] Successfully logged topic:", data);
+
+                // Dynamically refresh the UI badge list & count in real time
+                if (typeof fetchCompletedTopics === "function") {
+                    fetchCompletedTopics();
+                }
+            } catch (e) {
+                console.error("[AntiRepetition] Failed to auto-log topic:", e);
+            }
+        };
+
         async function submitManualTopic() {
             const catInput = document.getElementById('manual-topic-category');
             const sumInput = document.getElementById('manual-topic-summary');
@@ -1055,6 +1080,12 @@
             localStorage.setItem(seenKey, JSON.stringify(seen));
 
             renderVocabCards(selected, activeLevel);
+            if (selected && selected.length > 0) {
+                const mainWord = selected[0].word || selected[0].german_word;
+                if (mainWord && typeof window.autoLogTopic === "function") {
+                    window.autoLogTopic("German Vocabulary", mainWord);
+                }
+            }
         }
 
         function renderVocabCards(items, activeLevel) {
@@ -1233,6 +1264,9 @@
             if (fUr) fUr.innerText = urMeaning;
 
             lucide.createIcons();
+            if (ex && ex.target_concept && typeof window.autoLogTopic === "function") {
+                window.autoLogTopic("German Grammar", ex.target_concept);
+            }
             showToast(`Loaded new German grammar sentence!`);
         }
 

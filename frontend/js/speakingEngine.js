@@ -74,6 +74,10 @@ window.renderSpeakingPrompt = function() {
     const titleEl = document.getElementById("speaking-title");
     if (titleEl) titleEl.innerText = prompt.title;
 
+    if (prompt && prompt.title && typeof window.autoLogTopic === "function") {
+        window.autoLogTopic("German Speaking", prompt.title);
+    }
+
     const levelBadge = document.getElementById("speaking-cefr-badge");
     if (levelBadge) levelBadge.innerText = prompt.level;
 
