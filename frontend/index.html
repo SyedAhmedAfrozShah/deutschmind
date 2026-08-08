@@ -312,9 +312,12 @@
                                 <p class="text-xs text-slate-400">Queries completed German topics to guarantee 100% novel learning scenarios</p>
                             </div>
                         </div>
-                        <span id="anti-repetition-count" class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono font-bold">
-                            0 Topics Logged
-                        </span>
+                        <div class="flex items-center space-x-3">
+                            <span id="anti-repetition-count" class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono font-bold">
+                                0 Topics Logged
+                            </span>
+                            <button onclick="clearStagedTopics()" class="text-xs text-rose-400 hover:text-rose-300 underline cursor-pointer transition-colors duration-200 font-mono">Reset Staged Memory</button>
+                        </div>
                     </div>
 
                     <div class="space-y-2">

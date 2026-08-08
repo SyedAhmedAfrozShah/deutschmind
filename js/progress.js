@@ -292,6 +292,21 @@ async function refreshLoggedTopicsUI() {
     }
 }
 
+/**
+ * Manually resets staged short-term memory and returns topics to daily learning pool.
+ */
+window.clearStagedTopics = function() {
+    if (confirm("Are you sure you want to restore all staged topics? This will return them to your daily learning pool. (Verified topics will not be affected).")) {
+        localStorage.setItem("deutschmind_staged_topics", JSON.stringify([]));
+        if (typeof refreshLoggedTopicsUI === "function") {
+            refreshLoggedTopicsUI();
+        }
+        if (typeof showToast === "function") {
+            showToast("Staged memory restored to the active pool!");
+        }
+    }
+};
+
 // Expose functions globally
 window.getStagedTopics = getStagedTopics;
 window.getVerifiedTopics = getVerifiedTopics;
