@@ -719,27 +719,8 @@
         }
 
         window.autoLogTopic = async function(category, topicSummary) {
-            if (!topicSummary) return;
-            try {
-                console.log(`[AntiRepetition] Auto-logging topic (${category}):`, topicSummary);
-                const res = await fetch(`${API_BASE}/api/topics`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        user_id: currentUserId,
-                        category: category || "German Learning",
-                        topic_summary: topicSummary
-                    })
-                });
-                const data = await res.json();
-                console.log("[AntiRepetition] Successfully logged topic:", data);
-
-                // Dynamically refresh the UI badge list & count in real time
-                if (typeof fetchCompletedTopics === "function") {
-                    fetchCompletedTopics();
-                }
-            } catch (e) {
-                console.error("[AntiRepetition] Failed to auto-log topic:", e);
+            if (typeof logCompletedTopic === "function") {
+                await logCompletedTopic(category, topicSummary);
             }
         };
 
@@ -896,6 +877,10 @@
         }
 
         async function fetchCompletedTopics() {
+            if (typeof refreshLoggedTopicsUI === "function") {
+                await refreshLoggedTopicsUI();
+                return;
+            }
             try {
                 const res = await fetch(`${API_BASE}/api/topics/${currentUserId}`);
                 const data = await res.json();
