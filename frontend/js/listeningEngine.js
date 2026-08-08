@@ -94,10 +94,6 @@ window.renderListeningScenario = function() {
     const topicEl = document.getElementById("listening-topic");
     if (topicEl) topicEl.innerText = `${scenario.topic} (${scenario.level})`;
 
-    if (scenario && scenario.topic && typeof window.autoLogTopic === "function") {
-        window.autoLogTopic("German Listening", scenario.topic);
-    }
-
     // Reset transcripts display
     const transContainer = document.getElementById("listening-transcript-container");
     if (transContainer) {

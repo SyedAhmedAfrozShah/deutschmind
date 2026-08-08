@@ -730,10 +730,9 @@
             showToast(`Audio speed set to ${currentListeningSpeed}x`);
         }
 
-        window.autoLogTopic = async function(category, topicSummary) {
-            if (typeof logCompletedTopic === "function") {
-                await logCompletedTopic(category, topicSummary);
-            }
+        window.autoLogTopic = function() {
+            // Automatic logging during content loading/rendering is disabled.
+            // Topics are logged exclusively upon passing thresholds or manual mastery confirmation.
         };
 
         async function submitManualTopic() {
@@ -1016,15 +1015,24 @@
             return null;
         }
 
-        let currentVocabSetTitle = "Daily Vocabulary Set";
-
         function markVocabMastered() {
-            let title = currentVocabSetTitle || "German Vocabulary Set";
+            const container = document.getElementById('vocab-card-container');
+            let words = [];
+            if (container) {
+                const wordEls = container.querySelectorAll('span.text-indigo-300');
+                words = Array.from(wordEls).map(el => el.innerText.trim()).filter(text => text.length > 0);
+            }
+
+            const topicSummary = words.length > 0 
+                ? `Vocabulary Set: [${words.join(', ')}]` 
+                : (currentVocabSetTitle || `Vocabulary Set (${currentLevel})`);
+
             if (typeof logCompletedTopic === "function") {
-                logCompletedTopic("Vocabulary", title);
+                logCompletedTopic("Vocabulary", topicSummary);
             }
             showToast("Vocabulary set logged to Anti-Repetition Vault!");
         }
+        window.markVocabMastered = markVocabMastered;
 
         async function generateDailyVocab() {
             const activeLevel = currentLevel;
