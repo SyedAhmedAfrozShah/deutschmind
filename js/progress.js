@@ -199,15 +199,15 @@ async function logCompletedTopic(category, topicSummary) {
 }
 
 async function refreshLoggedTopicsUI() {
-    let topicsList = [];
+    let topics = [];
 
     // 1. Retrieve topics from localStorage
     try {
-        const stored = localStorage.getItem(LOCAL_STORAGE_TOPICS_KEY);
-        if (stored) {
-            const parsed = JSON.parse(stored);
+        const raw = localStorage.getItem(LOCAL_STORAGE_TOPICS_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
             if (Array.isArray(parsed)) {
-                topicsList = parsed.map(item => typeof item === 'string' ? item : item.topic_summary).filter(Boolean);
+                topics = parsed;
             }
         }
     } catch (e) {
@@ -225,59 +225,70 @@ async function refreshLoggedTopicsUI() {
             const data = await res.json();
             const serverTopics = data.completed_topics || [];
             if (Array.isArray(serverTopics) && serverTopics.length > 0) {
-                // Merge server topics into localStorage state
                 const mergedMap = new Map();
-                topicsList.forEach(t => mergedMap.set(t, { category: "German Learning", topic_summary: t, timestamp: new Date().toISOString() }));
-                serverTopics.forEach(t => mergedMap.set(t, { category: "German Learning", topic_summary: t, timestamp: new Date().toISOString() }));
-                
-                const mergedArray = Array.from(mergedMap.values());
-                localStorage.setItem(LOCAL_STORAGE_TOPICS_KEY, JSON.stringify(mergedArray));
-                topicsList = Array.from(mergedMap.keys());
+                topics.forEach(t => {
+                    const key = typeof t === 'string' ? t : t.topic_summary;
+                    const cat = typeof t === 'string' ? 'General' : (t.category || 'General');
+                    mergedMap.set(key, { category: cat, topic_summary: key, timestamp: new Date().toISOString() });
+                });
+                serverTopics.forEach(st => {
+                    if (!mergedMap.has(st)) {
+                        mergedMap.set(st, { category: 'General', topic_summary: st, timestamp: new Date().toISOString() });
+                    }
+                });
+                topics = Array.from(mergedMap.values());
+                localStorage.setItem(LOCAL_STORAGE_TOPICS_KEY, JSON.stringify(topics));
             }
         }
     } catch (e) {
         // Backend unavailable (GitHub Pages) - fallback 100% to localStorage state
     }
 
-    // 3. Update DOM elements (#topic-count-badge and container list)
-    const badgeEl = document.getElementById('topic-count-badge');
-    if (badgeEl) {
-        badgeEl.innerText = `${topicsList.length} Topics Logged`;
+    // 3. Update counter elements (anti-repetition-count & topic-count-badge)
+    const countEl = document.getElementById("anti-repetition-count") || document.getElementById("topic-count-badge");
+    if (countEl) {
+        countEl.innerText = `${topics.length} Topics Logged`;
+    }
+    const topicCountBadge = document.getElementById("topic-count-badge");
+    if (topicCountBadge && topicCountBadge !== countEl) {
+        topicCountBadge.innerText = `${topics.length} Topics Logged`;
     }
 
-    const listEl = document.getElementById('topics-badge-list');
-    const fullListEl = document.getElementById('full-topics-list');
+    // 4. Update list container elements (anti-repetition-list & topics-badge-list)
+    const listEl = document.getElementById("anti-repetition-list") || document.getElementById("topics-badge-list");
+    const topicsBadgeList = document.getElementById("topics-badge-list");
+    const fullListEl = document.getElementById("full-topics-list");
+
+    const renderListHTML = (items) => {
+        if (items.length === 0) {
+            return '<p class="text-slate-500 text-xs italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</p>';
+        }
+        return items.map(t => {
+            const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
+            return `<span class="inline-block bg-slate-800 text-emerald-400 border border-slate-700 text-xs px-2.5 py-1 rounded-md mr-2 mb-2">${label}</span>`;
+        }).join('');
+    };
 
     if (listEl) {
-        if (topicsList.length === 0) {
-            listEl.innerHTML = `<span class="text-xs text-slate-500 italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</span>`;
-        } else {
-            listEl.innerHTML = `
-                <div class="flex flex-wrap gap-2 mb-2 w-full">
-                    ${topicsList.map(t => `
-                        <span class="px-3 py-1 rounded-lg bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono flex items-center space-x-1">
-                            <i data-lucide="shield" class="w-3 h-3 text-indigo-400"></i>
-                            <span>${t}</span>
-                        </span>
-                    `).join('')}
-                </div>
-                <div class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-300">
-                    <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Logged Topics:</span> ${topicsList.join(', ')}
-                </div>
-            `;
-        }
+        listEl.innerHTML = renderListHTML(topics);
+    }
+    if (topicsBadgeList && topicsBadgeList !== listEl) {
+        topicsBadgeList.innerHTML = renderListHTML(topics);
     }
 
     if (fullListEl) {
-        if (topicsList.length === 0) {
+        if (topics.length === 0) {
             fullListEl.innerHTML = `<div class="text-xs text-slate-500 italic">No topics logged yet.</div>`;
         } else {
-            fullListEl.innerHTML = topicsList.map((t, i) => `
-                <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono">
-                    <span class="text-white">#${i+1} ${t}</span>
-                    <span class="text-emerald-400">Excluded</span>
-                </div>
-            `).join('');
+            fullListEl.innerHTML = topics.map((t, i) => {
+                const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
+                return `
+                    <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono">
+                        <span class="text-white">#${i+1} ${label}</span>
+                        <span class="text-emerald-400">Excluded</span>
+                    </div>
+                `;
+            }).join('');
         }
     }
 
@@ -291,5 +302,6 @@ window.getLoggedTopicsArray = getLoggedTopicsArray;
 window.getAntiRepetitionPromptDirective = getAntiRepetitionPromptDirective;
 window.logCompletedTopic = logCompletedTopic;
 window.refreshLoggedTopicsUI = refreshLoggedTopicsUI;
+
 
 

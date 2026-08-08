@@ -306,14 +306,14 @@
                                 <p class="text-xs text-slate-400">Queries completed German topics to guarantee 100% novel learning scenarios</p>
                             </div>
                         </div>
-                        <span id="topic-count-badge" class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono font-bold">
+                        <span id="anti-repetition-count" class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono font-bold">
                             0 Topics Logged
                         </span>
                     </div>
 
                     <div class="space-y-2">
                         <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Logged German Topics (Excluded from future prompts):</div>
-                        <div id="topics-badge-list" class="flex flex-wrap gap-2 min-h-[40px] p-3 rounded-xl bg-slate-950 border border-slate-800">
+                        <div id="anti-repetition-list" class="flex flex-wrap gap-2 min-h-[40px] p-3 rounded-xl bg-slate-950 border border-slate-800">
                             <span class="text-xs text-slate-500 italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</span>
                         </div>
                     </div>
@@ -1006,6 +1006,9 @@
 
         async function generateDailyVocab() {
             const activeLevel = currentLevel;
+            if (typeof logCompletedTopic === "function") {
+                logCompletedTopic("Vocabulary", "Daily Words Set (" + new Date().toLocaleTimeString() + ")");
+            }
             const container = document.getElementById('vocab-card-container');
             container.innerHTML = `
                 <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-indigo-400 font-mono col-span-2 space-y-2">
@@ -1067,8 +1070,8 @@
             renderVocabCards(selected, activeLevel);
             if (selected && selected.length > 0) {
                 const mainWord = selected[0].word || selected[0].german_word;
-                if (mainWord && typeof window.autoLogTopic === "function") {
-                    window.autoLogTopic("German Vocabulary", mainWord);
+                if (mainWord && typeof logCompletedTopic === "function") {
+                    logCompletedTopic("Vocabulary", mainWord);
                 }
             }
         }
@@ -1249,8 +1252,8 @@
             if (fUr) fUr.innerText = urMeaning;
 
             lucide.createIcons();
-            if (ex && ex.target_concept && typeof window.autoLogTopic === "function") {
-                window.autoLogTopic("German Grammar", ex.target_concept);
+            if (ex && ex.target_concept && typeof logCompletedTopic === "function") {
+                logCompletedTopic("Grammar", ex.target_concept);
             }
             showToast(`Loaded new German grammar sentence!`);
         }
