@@ -213,10 +213,16 @@
                                 <p class="text-xs text-slate-400">German words with English &amp; Urdu (اردو) meanings</p>
                             </div>
                         </div>
-                        <button onclick="generateDailyVocab()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center space-x-2 shadow-md shadow-indigo-600/20">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                            <span>Generate 4 Words</span>
-                        </button>
+                        <div class="flex items-center space-x-2">
+                            <button id="btn-master-vocab" onclick="markVocabMastered()" class="px-3 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-semibold text-xs transition-all flex items-center space-x-1.5 shadow-md">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                                <span>Mark Set as Mastered ✓</span>
+                            </button>
+                            <button onclick="generateDailyVocab()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center space-x-2 shadow-md shadow-indigo-600/20">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                <span>Generate 4 Words</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Cards Container -->
@@ -1004,11 +1010,18 @@
             return null;
         }
 
+        let currentVocabSetTitle = "Daily Vocabulary Set";
+
+        function markVocabMastered() {
+            let title = currentVocabSetTitle || "German Vocabulary Set";
+            if (typeof logCompletedTopic === "function") {
+                logCompletedTopic("Vocabulary", title);
+            }
+            showToast("Vocabulary set logged to Anti-Repetition Vault!");
+        }
+
         async function generateDailyVocab() {
             const activeLevel = currentLevel;
-            if (typeof logCompletedTopic === "function") {
-                logCompletedTopic("Vocabulary", "Daily Words Set (" + new Date().toLocaleTimeString() + ")");
-            }
             const container = document.getElementById('vocab-card-container');
             container.innerHTML = `
                 <div class="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-indigo-400 font-mono col-span-2 space-y-2">
@@ -1029,6 +1042,7 @@
                 if (res.ok) {
                     const data = await res.json();
                     if (data.vocabulary && data.vocabulary.length > 0) {
+                        currentVocabSetTitle = `Vocab Set (${data.vocabulary[0].word || activeLevel})`;
                         renderVocabCards(data.vocabulary, activeLevel);
                         return;
                     }
@@ -1067,13 +1081,10 @@
             });
             localStorage.setItem(seenKey, JSON.stringify(seen));
 
-            renderVocabCards(selected, activeLevel);
             if (selected && selected.length > 0) {
-                const mainWord = selected[0].word || selected[0].german_word;
-                if (mainWord && typeof logCompletedTopic === "function") {
-                    logCompletedTopic("Vocabulary", mainWord);
-                }
+                currentVocabSetTitle = `Vocab Set (${selected[0].word || activeLevel})`;
             }
+            renderVocabCards(selected, activeLevel);
         }
 
         function renderVocabCards(items, activeLevel) {
@@ -1252,9 +1263,6 @@
             if (fUr) fUr.innerText = urMeaning;
 
             lucide.createIcons();
-            if (ex && ex.target_concept && typeof logCompletedTopic === "function") {
-                logCompletedTopic("Grammar", ex.target_concept);
-            }
             showToast(`Loaded new German grammar sentence!`);
         }
 
@@ -1281,7 +1289,10 @@
                 const data = await res.json();
                 const evalRes = data.evaluation;
 
-                if (evalRes.is_correct) {
+                if (evalRes.is_correct || (evalRes.score && evalRes.score >= 80)) {
+                    if (typeof logCompletedTopic === "function" && currentGrammarExercise) {
+                        logCompletedTopic("Grammar", currentGrammarExercise.target_concept || "German Grammar");
+                    }
                     resBox.innerHTML = `
                         <div class="text-emerald-400 font-bold">✓ Passed (Score: ${evalRes.score}/100)</div>
                         <div class="text-slate-200 text-xs">${evalRes.explanation_en || ''}</div>
@@ -1329,6 +1340,12 @@
                 });
                 const data = await res.json();
                 const evalRes = data.evaluation;
+
+                if (evalRes.is_correct || (evalRes.score && evalRes.score >= 80)) {
+                    if (typeof logCompletedTopic === "function" && currentGrammarExercise) {
+                        logCompletedTopic("Grammar", currentGrammarExercise.target_concept || "German Grammar");
+                    }
+                }
 
                 resBox.innerHTML = `
                     <div class="${evalRes.is_correct ? 'text-emerald-400' : 'text-rose-400'} font-bold text-sm">
@@ -1460,6 +1477,11 @@
                     })
                 });
                 const data = await res.json();
+
+                if ((data.passed || data.score_percentage >= 80) && typeof logCompletedTopic === "function") {
+                    const title = (currentListeningScenario && (currentListeningScenario.title || currentListeningScenario.topic)) || "German Listening Practice";
+                    logCompletedTopic("Listening", title);
+                }
                 
                 resBox.innerHTML = `
                     <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -1616,6 +1638,11 @@
                 });
                 const data = await res.json();
                 const ev = data.evaluation;
+
+                if ((ev.passed || ev.overall_score >= 65) && typeof logCompletedTopic === "function") {
+                    const title = (currentSpeakingPrompt && (currentSpeakingPrompt.title || currentSpeakingPrompt.prompt_de || currentSpeakingPrompt.prompt)) || "German Speaking Practice";
+                    logCompletedTopic("Speaking", title);
+                }
 
                 resContainer.innerHTML = `
                     <div class="p-5 rounded-2xl bg-slate-950 border border-violet-500/30 space-y-4">

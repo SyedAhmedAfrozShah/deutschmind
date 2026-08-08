@@ -309,6 +309,11 @@ window.submitSpeakingEvaluation = function() {
 
         const passed = overallScore >= 65;
 
+        if (passed && typeof window.logCompletedTopic === "function") {
+            const promptTitle = (promptObj && (promptObj.title || promptObj.prompt || promptObj.topic)) || "German Speaking Practice";
+            window.logCompletedTopic("Speaking", promptTitle);
+        }
+
         reportBox.innerHTML = `
             <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4 font-mono text-xs">
                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
