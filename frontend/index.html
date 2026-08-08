@@ -637,10 +637,16 @@
                             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800"><span class="text-rose-400 font-bold">Mod 4: Speaking</span><div class="text-[10px] text-slate-400">30% Weight (STT Grader)</div></div>
                         </div>
                     </div>
-                    <button onclick="startPromotionExam()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm transition-all shadow-xl shadow-amber-500/20 whitespace-nowrap flex items-center space-x-2">
-                        <i data-lucide="play" class="w-5 h-5"></i>
-                        <span>Start Promotion Exam</span>
-                    </button>
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <button id="btn-practice-exam" onclick="startExam('practice')" class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2">
+                            <i data-lucide="brain" class="w-4 h-4"></i>
+                            <span>🧠 Practice Exam</span>
+                        </button>
+                        <button id="btn-strict-exam" onclick="startExam('strict')" class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition-all shadow-lg shadow-emerald-600/20 flex items-center justify-center space-x-2">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>🛡️ Strict Certification</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1701,10 +1707,37 @@
             }
         }
 
-        // --- PHASE 4: DYNAMIC PROMOTION EXAM & STATE MANAGER GATEWAY ---
+        // --- PHASE 4: DYNAMIC PROMOTION EXAM & TWO-TIER VERIFICATION GATEWAY ---
         let currentQuizAnswers = {};
+        let currentExamMode = 'practice';
 
-        async function startPromotionExam() {
+        async function startExam(mode) {
+            currentExamMode = mode || 'practice';
+
+            const staged = typeof getStagedTopics === "function" ? getStagedTopics() : [];
+            const stagedSummaries = staged.map(t => typeof t === 'string' ? t : t.topic_summary).filter(Boolean);
+
+            if (stagedSummaries.length === 0 && mode === 'strict') {
+                alert("No staged topics available. Complete daily lessons first!");
+                if (typeof showToast === "function") {
+                    showToast("No staged topics available. Complete daily lessons first!");
+                }
+                return;
+            }
+
+            let examPromptDirective = "";
+            if (mode === 'practice') {
+                examPromptDirective = `System Directive: PRACTICE MODE. The user is practicing the following topics: [${stagedSummaries.join(', ')}]. Generate a rigorous 4-module exam combining these rules. This is for practice.`;
+            } else {
+                examPromptDirective = `System Directive: CERTIFICATION MODE. Generate a highly strict exam exclusively testing the following claimed topics: [${stagedSummaries.join(', ')}]. Use complex combinations to verify true mastery.`;
+            }
+
+            console.log(`[ExamEngine] Starting ${mode.toUpperCase()} exam. Directive:`, examPromptDirective);
+            await startPromotionExam(mode, examPromptDirective);
+        }
+
+        async function startPromotionExam(mode, promptDirective) {
+            currentExamMode = mode || currentExamMode || 'practice';
             const container = document.getElementById('exam-active-container');
             const startCard = document.getElementById('exam-start-card');
             const scoreboard = document.getElementById('exam-scoreboard-container');
@@ -1713,10 +1746,11 @@
             if (scoreboard) scoreboard.classList.add('hidden');
             if (container) {
                 container.classList.remove('hidden');
+                const modeLabel = currentExamMode === 'strict' ? '🛡️ Strict Certification' : '🧠 Practice Exam';
                 container.innerHTML = `
                     <div class="p-12 text-center text-xs text-amber-400 font-mono space-y-3">
                         <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-400"></i>
-                        <div class="text-sm font-bold">Generating Dynamic CEFR ${currentLevel} Promotion Exam...</div>
+                        <div class="text-sm font-bold">Generating ${modeLabel} (CEFR ${currentLevel})...</div>
                         <div class="text-slate-400">Fetching 10 MCQ questions with distractor options...</div>
                     </div>
                 `;
@@ -1744,6 +1778,7 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                         <div class="flex items-center space-x-2">
                             <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">CEFR Level: ${session.cefrLevel}</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold ${currentExamMode === 'strict' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'}">${currentExamMode === 'strict' ? '🛡️ Strict Certification' : '🧠 Practice Mode'}</span>
                             <span class="text-xs font-mono text-slate-400">${q.topic}</span>
                         </div>
                         <div class="text-xs font-mono text-amber-400 font-bold">
@@ -1756,7 +1791,7 @@
                         <div class="h-full bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-300 shadow-lg shadow-amber-500/30" style="width: ${progressPercent}%;"></div>
                     </div>
 
-                    <!-- German Prompt Box (Urdu text suppressed for Anti-Cheat exam integrity) -->
+                    <!-- German Prompt Box -->
                     <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 relative overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
@@ -1798,7 +1833,7 @@
                         ` : `
                             <button onclick="submitDynamicQuiz()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-extrabold text-xs transition-all shadow-lg shadow-emerald-500/30 flex items-center space-x-2">
                                 <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                                <span>Submit Promotion Exam</span>
+                                <span>Submit ${currentExamMode === 'strict' ? 'Strict Certification' : 'Practice Exam'}</span>
                             </button>
                         `}
                     </div>
@@ -1818,6 +1853,50 @@
 
             const userAnswersArr = session.questions.map((_, idx) => currentQuizAnswers[idx] || "");
             const result = gradeQuiz(userAnswersArr);
+            const overallScore = result.scorePercent;
+
+            // Two-Tier Verification Interceptor
+            if (currentExamMode === 'practice') {
+                if (typeof showToast === "function") {
+                    showToast(`Practice Exam Complete (${overallScore}%). Staged memory retained.`);
+                }
+            } else if (currentExamMode === 'strict') {
+                const staged = typeof getStagedTopics === "function" ? getStagedTopics() : [];
+                if (result.passed || overallScore >= 80) {
+                    // Move all tested topics from staged directly into verified
+                    let verified = typeof getVerifiedTopics === "function" ? getVerifiedTopics() : [];
+                    const mergedMap = new Map();
+                    verified.forEach(t => {
+                        const k = typeof t === 'string' ? t : t.topic_summary;
+                        mergedMap.set(k, t);
+                    });
+                    staged.forEach(t => {
+                        const k = typeof t === 'string' ? t : t.topic_summary;
+                        mergedMap.set(k, t);
+                    });
+
+                    try {
+                        localStorage.setItem("deutschmind_verified_topics", JSON.stringify(Array.from(mergedMap.values())));
+                        localStorage.setItem("deutschmind_staged_topics", JSON.stringify([]));
+                    } catch (e) {}
+
+                    if (typeof showToast === "function") {
+                        showToast("Topics Permanently Verified!");
+                    }
+                } else {
+                    // Certification Failed -> Delete tested topics from staged (demoting back to daily pool)
+                    try {
+                        localStorage.setItem("deutschmind_staged_topics", JSON.stringify([]));
+                    } catch (e) {}
+
+                    if (typeof showToast === "function") {
+                        showToast("Certification Failed. Topics returned to daily queue.");
+                    }
+                }
+                if (typeof refreshLoggedTopicsUI === "function") {
+                    refreshLoggedTopicsUI();
+                }
+            }
 
             const activeContainer = document.getElementById('exam-active-container');
             const scoreboardContainer = document.getElementById('exam-scoreboard-container');
@@ -1825,32 +1904,38 @@
             if (activeContainer) activeContainer.classList.add('hidden');
             if (scoreboardContainer) {
                 scoreboardContainer.classList.remove('hidden');
+                const isStrict = currentExamMode === 'strict';
+                const passVerified = result.passed || overallScore >= 80;
+
                 scoreboardContainer.innerHTML = `
-                    <div class="minimal-card p-8 border ${result.passed ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-rose-500/40 bg-rose-950/20'} space-y-6 text-center">
-                        <div class="w-16 h-16 rounded-2xl ${result.passed ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400' : 'bg-rose-500/20 border border-rose-500/40 text-rose-400'} mx-auto flex items-center justify-center">
-                            <i data-lucide="${result.passed ? 'trophy' : 'alert-triangle'}" class="w-8 h-8"></i>
+                    <div class="minimal-card p-8 border ${passVerified ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-rose-500/40 bg-rose-950/20'} space-y-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl ${passVerified ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400' : 'bg-rose-500/20 border border-rose-500/40 text-rose-400'} mx-auto flex items-center justify-center">
+                            <i data-lucide="${passVerified ? 'trophy' : 'alert-triangle'}" class="w-8 h-8"></i>
                         </div>
 
                         <div class="space-y-2">
-                            <h3 class="text-2xl font-extrabold text-white">${result.passed ? '🎉 CONGRATULATIONS! LEVEL PROMOTED!' : 'EXAM ATTEMPT COMPLETE'}</h3>
+                            <div class="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${isStrict ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'}">
+                                ${isStrict ? '🛡️ Strict Certification Mode' : '🧠 Practice Mode'}
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-white">${passVerified ? (isStrict ? '🎉 CERTIFICATION PASSED! TOPICS VERIFIED!' : '🎉 PRACTICE EXAM PASSED!') : 'EXAM ATTEMPT COMPLETE'}</h3>
                             <p class="text-xs text-slate-300">
                                 Final Score: <span class="font-bold text-amber-400 text-sm">${result.scorePercent}%</span> (${result.correctCount} of ${result.totalQuestions} correct)
                             </p>
                         </div>
 
-                        ${result.passed ? `
+                        ${passVerified ? `
                             <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-mono space-y-1">
                                 <div>+500 XP Earned &bull; New CEFR Tier Unlocked: <span class="font-extrabold text-white">${result.nextLevel}</span></div>
-                                <div class="text-[10px] text-emerald-400/80">Saved to client-side localStorage state manager!</div>
+                                <div class="text-[10px] text-emerald-400/80">${isStrict ? '🛡️ Topics permanently locked into Verified Long-Term Queue!' : '🧠 Staged memory preserved in learning queue.'}</div>
                             </div>
                         ` : `
                             <div class="p-4 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-300 text-xs font-mono">
-                                Minimum pass score is 80%. Review your vocabulary &amp; grammar and try again!
+                                ${isStrict ? '⚠ Certification Failed (< 80%). Staged topics demoted back to daily active learning pool.' : 'Practice score below 80%. Review weak topics and try again!'}
                             </div>
                         `}
 
                         <div class="flex items-center justify-center space-x-4 pt-2">
-                            <button onclick="startPromotionExam()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow-md shadow-amber-500/20">
+                            <button onclick="startExam('${currentExamMode}')" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow-md shadow-amber-500/20">
                                 Retake Exam
                             </button>
                             <button onclick="switchTab('dashboard')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs transition-all border border-slate-700">

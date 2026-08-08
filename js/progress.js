@@ -116,25 +116,49 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshLoggedTopicsUI();
 });
 
-const LOCAL_STORAGE_TOPICS_KEY = "deutschmind_completed_topics";
+const STAGED_TOPICS_KEY = "deutschmind_staged_topics";
+const VERIFIED_TOPICS_KEY = "deutschmind_verified_topics";
 
 /**
- * Helper function to retrieve completed topic summaries from localStorage.
+ * Retrieves staged (short-term) topics from localStorage.
  */
-function getLoggedTopicsArray() {
+function getStagedTopics() {
     try {
-        const raw = localStorage.getItem(LOCAL_STORAGE_TOPICS_KEY);
+        const raw = localStorage.getItem(STAGED_TOPICS_KEY);
         if (!raw) return [];
         const items = JSON.parse(raw);
-        if (!Array.isArray(items)) return [];
-        return items.map(item => typeof item === 'string' ? item : item.topic_summary).filter(Boolean);
+        return Array.isArray(items) ? items : [];
     } catch (e) {
         return [];
     }
 }
 
 /**
- * Constructs AI anti-repetition directive from localStorage.
+ * Retrieves verified (long-term certified) topics from localStorage.
+ */
+function getVerifiedTopics() {
+    try {
+        const raw = localStorage.getItem(VERIFIED_TOPICS_KEY);
+        if (!raw) return [];
+        const items = JSON.parse(raw);
+        return Array.isArray(items) ? items : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+/**
+ * Helper function to retrieve concatenated staged + verified topic summaries for AI blacklist.
+ */
+function getLoggedTopicsArray() {
+    const staged = getStagedTopics();
+    const verified = getVerifiedTopics();
+    const all = [...staged, ...verified];
+    return all.map(item => typeof item === 'string' ? item : item.topic_summary).filter(Boolean);
+}
+
+/**
+ * Constructs AI anti-repetition directive concatenating BOTH staged and verified topics.
  */
 function getAntiRepetitionPromptDirective() {
     const topics = getLoggedTopicsArray();
@@ -146,42 +170,32 @@ function getAntiRepetitionPromptDirective() {
 }
 
 /**
- * Anti-Repetition Auto-Log Functions with Serverless localStorage Fallback
+ * Anti-Repetition Auto-Log Functions — Appends EXCLUSIVELY to Staged Memory Queue
  */
 async function logCompletedTopic(category, topicSummary) {
     if (!topicSummary) return;
 
-    // 1. Read existing topics array from localStorage
-    let localTopics = [];
-    try {
-        const stored = localStorage.getItem(LOCAL_STORAGE_TOPICS_KEY);
-        localTopics = stored ? JSON.parse(stored) : [];
-        if (!Array.isArray(localTopics)) localTopics = [];
-    } catch (e) {
-        localTopics = [];
-    }
-
-    // 2. Append new topic object with category, topic_summary, timestamp
+    let staged = getStagedTopics();
+    const verified = getVerifiedTopics();
     const summaryStr = typeof topicSummary === 'string' ? topicSummary : (topicSummary.topic_summary || String(topicSummary));
-    const alreadyExists = localTopics.some(t => 
-        (typeof t === 'string' ? t : t.topic_summary) === summaryStr
-    );
 
-    if (!alreadyExists) {
-        localTopics.push({
+    const alreadyStaged = staged.some(t => (typeof t === 'string' ? t : t.topic_summary) === summaryStr);
+    const alreadyVerified = verified.some(t => (typeof t === 'string' ? t : t.topic_summary) === summaryStr);
+
+    if (!alreadyStaged && !alreadyVerified) {
+        staged.push({
             category: category || "German Learning",
             topic_summary: summaryStr,
             timestamp: new Date().toISOString()
         });
-        // Save back to localStorage
         try {
-            localStorage.setItem(LOCAL_STORAGE_TOPICS_KEY, JSON.stringify(localTopics));
+            localStorage.setItem(STAGED_TOPICS_KEY, JSON.stringify(staged));
         } catch (e) {
-            console.error("[AntiRepetition] Failed to save to localStorage:", e);
+            console.error("[AntiRepetition] Failed to save staged topic to localStorage:", e);
         }
     }
 
-    // 3. Background POST to /api/topics (try/catch so it doesn't crash if backend is offline)
+    // Silent background POST attempt to /api/topics for backend sync
     try {
         fetch('/api/topics', {
             method: 'POST',
@@ -194,101 +208,82 @@ async function logCompletedTopic(category, topicSummary) {
         }).catch(() => {});
     } catch (e) {}
 
-    // 4. Immediately call refreshLoggedTopicsUI()
     await refreshLoggedTopicsUI();
 }
 
 async function refreshLoggedTopicsUI() {
-    let topics = [];
+    const staged = getStagedTopics();
+    const verified = getVerifiedTopics();
+    const totalCount = staged.length + verified.length;
 
-    // 1. Retrieve topics from localStorage
-    try {
-        const raw = localStorage.getItem(LOCAL_STORAGE_TOPICS_KEY);
-        if (raw) {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed)) {
-                topics = parsed;
-            }
-        }
-    } catch (e) {
-        console.error("[AntiRepetition] Error reading topics from localStorage:", e);
-    }
-
-    // 2. Attempt background sync with backend if live server is available
-    try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1200);
-        const res = await fetch('/api/topics/default_user', { signal: controller.signal });
-        clearTimeout(timeoutId);
-
-        if (res.ok) {
-            const data = await res.json();
-            const serverTopics = data.completed_topics || [];
-            if (Array.isArray(serverTopics) && serverTopics.length > 0) {
-                const mergedMap = new Map();
-                topics.forEach(t => {
-                    const key = typeof t === 'string' ? t : t.topic_summary;
-                    const cat = typeof t === 'string' ? 'General' : (t.category || 'General');
-                    mergedMap.set(key, { category: cat, topic_summary: key, timestamp: new Date().toISOString() });
-                });
-                serverTopics.forEach(st => {
-                    if (!mergedMap.has(st)) {
-                        mergedMap.set(st, { category: 'General', topic_summary: st, timestamp: new Date().toISOString() });
-                    }
-                });
-                topics = Array.from(mergedMap.values());
-                localStorage.setItem(LOCAL_STORAGE_TOPICS_KEY, JSON.stringify(topics));
-            }
-        }
-    } catch (e) {
-        // Backend unavailable (GitHub Pages) - fallback 100% to localStorage state
-    }
-
-    // 3. Update counter elements (anti-repetition-count & topic-count-badge)
+    // 1. Update counter elements
     const countEl = document.getElementById("anti-repetition-count") || document.getElementById("topic-count-badge");
     if (countEl) {
-        countEl.innerText = `${topics.length} Topics Logged`;
+        countEl.innerText = `${totalCount} Topics (${staged.length} Staged / ${verified.length} Verified)`;
     }
     const topicCountBadge = document.getElementById("topic-count-badge");
     if (topicCountBadge && topicCountBadge !== countEl) {
-        topicCountBadge.innerText = `${topics.length} Topics Logged`;
+        topicCountBadge.innerText = `${totalCount} Topics (${staged.length} Staged / ${verified.length} Verified)`;
     }
 
-    // 4. Update list container elements (anti-repetition-list & topics-badge-list)
+    // 2. Update list container elements
     const listEl = document.getElementById("anti-repetition-list") || document.getElementById("topics-badge-list");
     const topicsBadgeList = document.getElementById("topics-badge-list");
     const fullListEl = document.getElementById("full-topics-list");
 
-    const renderListHTML = (items) => {
-        if (items.length === 0) {
-            return '<p class="text-slate-500 text-xs italic">No topics logged yet. Generate exercises to populate anti-repetition rules.</p>';
+    const renderListHTML = () => {
+        if (totalCount === 0) {
+            return '<p class="text-slate-500 text-xs italic">No topics in queue. Complete daily lessons to stage memory topics for certification.</p>';
         }
-        return items.map(t => {
-            const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
-            return `<span class="inline-block bg-slate-800 text-emerald-400 border border-slate-700 text-xs px-2.5 py-1 rounded-md mr-2 mb-2">${label}</span>`;
-        }).join('');
+
+        let html = '';
+        if (staged.length > 0) {
+            html += `<div class="w-full text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider mb-1">⏳ Short-Term Staged Memory (${staged.length}):</div>`;
+            html += staged.map(t => {
+                const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
+                return `<span class="inline-block bg-indigo-950/80 text-indigo-300 border border-indigo-500/40 text-xs px-2.5 py-1 rounded-md mr-2 mb-2 font-mono">⏳ ${label}</span>`;
+            }).join('');
+        }
+
+        if (verified.length > 0) {
+            html += `<div class="w-full text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider mt-2 mb-1">🛡️ Verified Long-Term Mastery (${verified.length}):</div>`;
+            html += verified.map(t => {
+                const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
+                return `<span class="inline-block bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 text-xs px-2.5 py-1 rounded-md mr-2 mb-2 font-mono">🛡️ ${label} ✓</span>`;
+            }).join('');
+        }
+
+        return html;
     };
 
-    if (listEl) {
-        listEl.innerHTML = renderListHTML(topics);
-    }
-    if (topicsBadgeList && topicsBadgeList !== listEl) {
-        topicsBadgeList.innerHTML = renderListHTML(topics);
-    }
+    const listHTML = renderListHTML();
+    if (listEl) listEl.innerHTML = listHTML;
+    if (topicsBadgeList && topicsBadgeList !== listEl) topicsBadgeList.innerHTML = listHTML;
 
     if (fullListEl) {
-        if (topics.length === 0) {
+        if (totalCount === 0) {
             fullListEl.innerHTML = `<div class="text-xs text-slate-500 italic">No topics logged yet.</div>`;
         } else {
-            fullListEl.innerHTML = topics.map((t, i) => {
+            let fullHTML = '';
+            staged.forEach((t, i) => {
                 const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
-                return `
-                    <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono">
-                        <span class="text-white">#${i+1} ${label}</span>
-                        <span class="text-emerald-400">Excluded</span>
+                fullHTML += `
+                    <div class="p-3 rounded-lg bg-indigo-950/30 border border-indigo-500/30 flex items-center justify-between text-xs font-mono">
+                        <span class="text-indigo-200">#${i+1} ${label}</span>
+                        <span class="text-indigo-400">⏳ Staged</span>
                     </div>
                 `;
-            }).join('');
+            });
+            verified.forEach((t, i) => {
+                const label = typeof t === 'string' ? t : (`${t.category || 'General'}: ${t.topic_summary}`);
+                fullHTML += `
+                    <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/30 flex items-center justify-between text-xs font-mono">
+                        <span class="text-emerald-200">#${staged.length + i + 1} ${label}</span>
+                        <span class="text-emerald-400">🛡️ Verified</span>
+                    </div>
+                `;
+            });
+            fullListEl.innerHTML = fullHTML;
         }
     }
 
@@ -298,10 +293,13 @@ async function refreshLoggedTopicsUI() {
 }
 
 // Expose functions globally
+window.getStagedTopics = getStagedTopics;
+window.getVerifiedTopics = getVerifiedTopics;
 window.getLoggedTopicsArray = getLoggedTopicsArray;
 window.getAntiRepetitionPromptDirective = getAntiRepetitionPromptDirective;
 window.logCompletedTopic = logCompletedTopic;
 window.refreshLoggedTopicsUI = refreshLoggedTopicsUI;
+
 
 
 
